@@ -7,7 +7,8 @@ function Questions() {
   function handleSubmit(event) {
     event.preventDefault();
     const capturedDetails = { pupilName, pupilScore };
-    fetch("http://localhost:5000/pupilRecord/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(capturedDetails) })
+    // fetch("http://localhost:5000/pupilRecord/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(capturedDetails) })
+    fetch("https://teacher-server-9cir.onrender.com/pupilRecord/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(capturedDetails) })
       .then((res) => {
         return res.json();
       })
