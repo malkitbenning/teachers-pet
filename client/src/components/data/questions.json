@@ -1,0 +1,322 @@
+[
+  {
+    "Criterion": "Criterion 1.1: Degree of VI - distance (corrected vision with both eyes open – see Vision loss reference table above)",
+    "options": [
+      {"id":1,
+        "text": "Criterion 1.1: Degree of VI - distance (corrected vision with both eyes open",
+        "score": 0
+      },
+      {"id":2,
+        "text": "Monocular/Mild/Fluctuating VI (with reasonable vision for a considerable amount of time)/ Functional mild loss due to CVI or other visual factors such as visual field loss or nystagmus",
+        "score": 2
+      },
+      {"id":3,
+        "text": "Moderate/Fluctuating VI/Functional moderate loss due to CVI or other visual factors such as visual field loss or nystagmus",
+        "score": 4
+      },
+      {"id":4,
+        "text": "severe/Fluctuating VI/Functional severe loss due to CVI or other visual factors such as visual field loss or nystagmus",
+        "score": 6
+      },
+      {"id":5,
+        "text": "Profound VI/Functional profound loss due to CVI or other visual factors such as visual field loss or nystagmus",
+        "score": 7
+      }
+    ]
+  },
+  {
+    "Criterion": "Criterion 1.2: Degree of VI - near (corrected vision with both eyes open - see Vision loss reference table above )",
+    "options": [
+      {     "id":1,
+            "text": "Does not have a vision impairment",
+            "score": 0
+          },
+         {"id":2,
+            "text": "Monocular/Mild/Fluctuating VI (with reasonable vision for a considerable amount of time)/ Functional mild loss due to CVI or other visual factors such as visual field loss or nystagmus",
+            "score": 2
+          },
+          {"id":3,
+            "text": "Moderate/Fluctuating VI/Functional moderate loss due to CVI or other visual factors such as visual field loss or nystagmus",
+            "score": 4
+          },
+         {"id":4,
+            "text": "severe/Fluctuating VI/Functional severe loss due to CVI or other visual factors such as visual field loss or nystagmus",
+            "score": 6
+          },
+        {"id":5,
+            "text": "Profound VI/Functional profound loss due to CVI or other visual factors such as visual field loss or nystagmus",
+            "score": 8
+          }
+    ]
+  },{
+
+  "Criterion": "Criterion 2: Additional factors relating to VI",
+    "options": [{
+      "id":1,
+      "text": "No relevant additional factors",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "Late referral of permanent VI (more than 12 months from presumed onset)",
+      "score": 5
+    },
+     {
+      "id":3,
+      "text": "Continuing assessment of VI required e.g. fluctuating condition, deteriorating/degenerative/progressive loss",
+      "score": 5
+    },
+     {
+      "id":4,
+      "text": "Recently acquired permanent VI (within the last 6 months)",
+      "score": 5
+    }]
+
+  },
+  {
+    "Criterion": "Criterion 3: Impact of the CYP’s VI on language and communication development and on access to learning and the curriculum (particularly English, mathematics and science)",
+    "options": [{
+      "id":1,
+      "text": "Expected/better than expected progress that does not need additional input",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "The learner requires assessment and advice from a QTVI",
+      "score": 4
+    },
+     {
+      "id":3,
+      "text": "The learner requires a short-term programme delivered by a QTVI to develop skills that enable access to the curriculum e.g. touch-typing, developing independence and self-advocacy",
+      "score": 8
+    },
+    {
+      "id":4,
+      "text": "The learner requires a long-term programme delivered and maintained by a QTVI e.g. Braille",
+      "score": 14
+    }
+
+]},
+  {
+    "Criterion": "Criterion 4: Development of habilitation skills",
+    "options": [
+      {
+      "id":1,
+      "text": "The learner has no issues affecting independent mobility or daily living skills",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "The learner requires assessment and advice by a Habilitation specialist qualified to work with CYP",
+      "score": 2
+    },
+     {
+      "id":3,
+      "text": "The learner needs a structured approach to develop independence, self-organisational skills and functional life skills",
+      "score": 3
+    },
+     {
+      "id":4,
+      "text": "The learner requires a short-term programme delivered by a Habilitation specialist",
+      "score": 4
+    },
+    {
+      "id":5,
+      "text": "The learner has CVI/complex needs/is non-ambulant (wheelchair)/has developmental mobility or balance and co-ordination issues affecting independent mobility. Requires support from a Habilitation specialist and liaison with an Occupational Therapist or Physiotherapist",
+      "score": 6
+    },
+     {
+      "id":6,
+      "text": "The learner requires a long-term programme delivered and maintained by a Habilitation specialist",
+      "score": 8
+    }]
+
+  },
+  {
+    "Criterion": "Criterion 5.1: Training and mentoring requirement",
+    "options":[
+    {
+      "id":1,
+      "text": "Key staff/parents/carers have knowledge and understanding of the impact of VI on all key areas",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "Key staff/parents/carers require additional or continuing training and/or mentoring on VI",
+      "score": 6
+    },
+    {
+      "id":3,
+      "text": "Key staff/parents/carers new to VI and require initial intensive training and/or mentoring",
+      "score": 8
+    },
+    {
+      "id":4,
+      "text": "Key staff need tuition in Braille/use of specialist equipment",
+      "score": 10
+    }]
+
+  },
+  {
+    "Criterion": "Criterion 5.2: Transition support (i.e. change of placement)",
+    "options": [
+      {
+        "id":1,
+      "text": "Transition not currently relevant to the CYP",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "Low contribution required as the service is confident that the learner can make a successful transition with minimal additional support",
+      "score": 3
+    },
+    {
+      "id":3,
+      "text": "Moderate contribution due to enhanced transition arrangements",
+      "score": 5
+    },
+    {
+      "id":4,
+      "text": "High contribution required as a high level of training is needed and the learner requires a high level of support from the service to make a successful transition",
+      "score": 10
+    }]
+
+  },
+  {
+    "Criterion": "Criterion 6: support for effective use of specialist equipment by learner and key staff (may include CCTVs, LVAs, Braille, tactile and speech access and adaptation of print materials)",
+    "options": [
+      {
+        "id":1,
+      "text": "No additional assistive technology required",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "Low level of support including short-term programme",
+      "score": 2
+    },
+    {
+      "id":3,
+      "text": "Moderate level of support including short-term programme and some regular monitoring",
+      "score": 4
+    },
+    {
+      "id":4,
+      "text": "New user of equipment requiring longer-term programme and refresher programmes",
+      "score": 6
+
+    },
+     {
+      "id":5,
+      "text": "High level of support including Braille equipment",
+      "score": 8
+
+    }]
+
+},
+  {
+    "Criterion": "Criterion 7: Physical learning environment. NB factors affecting the quality of the acoustic and visual environment are outlined in the Appendix at 2.4",
+    "options":[
+      {
+        "id":1,
+      "text": "Learning environment which meets appropriate acoustic and visual standards for VI pupils and supports inclusive learning for the VI learner",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "Learning environment which supports inclusive learning for the VI learner and which will include reasonable adjustments in relation to acoustics, lighting, carpets and blinds and minimal reflections off surfaces",
+      "score": 2
+    },
+    {
+      "id":3,
+      "text": "Learning environment which supports aspects of inclusive learning for the VI learner and which will include some reasonable adjustments in relation to acoustics, lighting and visual contrast. (Educational placement requires an informal audit by QTVI)",
+      "score": 5
+    },
+    {
+      "id":4,
+      "text": "Learning environment which needs considerable improvement to meet appropriate acoustic and visual standards (e.g. highly reverberant, high level of noise interference, inconsistent room layout, inappropriate lighting, physical hazards). Environment will need to accommodate physical and learning access needs of a Braille user. Educational placement requires a full environmental audit by a Habilitation specialist. A referral to an audiologist may also be needed",
+      "score": 8
+    }]
+
+  },
+  {
+    "Criterion": "Criterion 8: Impact of the CYP’s VI on personal, social and emotional learning",
+    "options": [
+      {
+        "id":1,
+      "text": "No/minimal impact on personal, social and emotional learning",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "Low level of impact upon the development of personal, social and emotional learning skills",
+      "score": 2
+    },
+    {
+      "id":3,
+      "text": "Moderate level of impact upon the development of personal, social and emotional learning skills",
+      "score": 4
+    },
+    {
+      "id":4,
+      "text": "High level of impact upon the development of personal, social and emotional learning skills (e.g. CYP displays a low level of emotional resilience requiring a high level of additional support; long term support required for emotional/personal/social learning needs)",
+      "score": 6
+    }]
+
+  },
+  {
+    "Criterion": "Criterion 9: Additional factors relating to family support (e.g. acceptance of VI; family speaks English as an additional language; LA as corporate parent)",
+    "options": [
+      {
+        "id":1,
+      "text": "No additional factors relating to family support",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "Family requires a low level of additional support",
+      "score": 2
+    },
+    {
+      "id":3,
+      "text": "Family requires a moderate level of additional support",
+      "score": 4
+    },
+    {
+      "id":4,
+      "text": "Family requires a high level of additional support",
+      "score": 6
+    }]
+
+  },
+  {
+    "Criterion": "Criterion 10: Multi-agency liaison/role (including safeguarding)",
+    "options": [
+      {
+        "id":1,
+      "text": "Minimal multi-agency liaison/role requirement",
+      "score": 0
+    },
+     {
+      "id":2,
+      "text": "QTVI contributes to multi-agency working for learner",
+      "score": 2
+    },
+    {
+      "id":3,
+      "text": "QTVI contributes to multi-agency working for learner with complex needs",
+      "score": 4
+    },
+    {
+      "id":4,
+      "text": "QTVI is the keyworking professional identified for EY/school aged/post-16 learner",
+      "score": 6
+    },
+     {
+      "id":5,
+      "text": "QTVI is the keyworking professional for learner with complex support needs requiring a high level of liaison and joint working with other professionals",
+      "score": 10
+    }]
+
+  }
+]
