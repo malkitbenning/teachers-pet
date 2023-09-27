@@ -1,6 +1,7 @@
 import "./App.css";
-import Questions from "./Questions";
-import ServerTest from "./ServerTest";
+import "./formStyle.css";
+
+import Form from "./components/Form";
 
 function App() {
   return (
@@ -8,8 +9,8 @@ function App() {
       <header className="App-header">
         <p>Teachers PET</p>
       </header>
-      <ServerTest />
-      <Questions />
+
+      <Form />
     </div>
   );
 }
