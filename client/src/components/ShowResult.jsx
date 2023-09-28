@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TeacherOverride from "./TeacherOveride";
+import TeacherOverride from "./TeacherOverride";
 
 function ShowResult({
   selectedAnswers,
