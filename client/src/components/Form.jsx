@@ -6,6 +6,8 @@ function Form() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
+  const [teacherName, setTeacherName] = useState("");
+
 
   const handleRadioChange = (questionIndex, answerId) => {
     const answer = questions[questionIndex].options.find((ans) => ans.id === answerId);
@@ -30,6 +32,12 @@ function Form() {
     <>
       <table className="table">
         <tbody>
+          <tr>
+            <td colSpan="6">Teacher Name:
+              <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="Enter your Name: " />
+            </td>
+          </tr>
+
           {questions.map((que, index) => (
             <React.Fragment key={index}>
               <tr className="question">
@@ -74,7 +82,7 @@ function Form() {
           ))}
         </tbody>
       </table>
-      <ShowResult selectedAnswers={selectedAnswers} questions={questions} comments={comments} />
+      <ShowResult selectedAnswers={selectedAnswers} questions={questions} comments={comments} teacherName={teacherName} />
     </>
   );
 }
