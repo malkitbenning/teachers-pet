@@ -9,7 +9,7 @@ function ShowResult({
 }) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
-  const [overrideScore, setOverrideScore] = useState(0);
+  const [overrideScore, setOverrideScore] = useState("");
   const handleShowResults = () => {
     setShowResults(true);
   };
