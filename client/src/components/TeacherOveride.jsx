@@ -11,10 +11,11 @@ function TeacherOverride({
       <tr>
         <td>CYP Total</td>
         <td>
-          <input
+          <span className="span-spacer">{totalScore}</span>
+          {/* <input
             value={totalScore}
             onChange={(e) => setTotalScore(Number(e.target.value))}
-          />
+          /> */}
         </td>
       </tr>
       <tr className="tr-spacer">
