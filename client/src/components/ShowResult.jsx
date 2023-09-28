@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import TeacherOverride from "./TeacherOveride";
 
-function ShowResult({ selectedAnswers, questions, comments = [],teacherName }) {
+function ShowResult({
+  selectedAnswers,
+  questions,
+  comments = [],
+  teacherName,
+}) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
+  const [overrideScore, setOverrideScore] = useState(0);
   const handleShowResults = () => {
     setShowResults(true);
   };
@@ -12,18 +18,23 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName }) {
   useEffect(() => {
     let score = 0;
     for (let questionIndex in selectedAnswers) {
-        const answer = questions[questionIndex].options.find((ans) => ans.id === selectedAnswers[questionIndex]);
-        if (answer && answer.score) {
-            score += answer.score;
-        }
+      const answer = questions[questionIndex].options.find(
+        (ans) => ans.id === selectedAnswers[questionIndex]
+      );
+      if (answer && answer.score) {
+        score += answer.score;
+      }
     }
     setTotalScore(score);
-}, [selectedAnswers, questions]);
-
+  }, [selectedAnswers, questions]);
 
   return (
     <div>
-      <button type="button" className="btn btn-primary" onClick={handleShowResults}>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={handleShowResults}
+      >
         Show Result
       </button>
       {showResults && (
@@ -32,7 +43,9 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName }) {
           <tbody>
             {Object.keys(selectedAnswers).map((questionIndex) => {
               const que = questions[questionIndex];
-              const answer = que.options.find((ans) => ans.id === selectedAnswers[questionIndex]);
+              const answer = que.options.find(
+                (ans) => ans.id === selectedAnswers[questionIndex]
+              );
               const commentForAnswer = comments[questionIndex] || "";
 
               return (
@@ -60,7 +73,12 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName }) {
               );
             })}
             {/*Display TeacherOverride Component at the end}*/}
-            <TeacherOverride totalScore={totalScore} setTotalScore={setTotalScore} />
+            <TeacherOverride
+              totalScore={totalScore}
+              setTotalScore={setTotalScore}
+              overrideScore={overrideScore}
+              setOverrideScore={setOverrideScore}
+            />
           </tbody>
         </table>
       )}
