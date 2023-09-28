@@ -7,6 +7,7 @@ function Form() {
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
   const [teacherName, setTeacherName] = useState("");
+  const [pupilName, setPupilName] = useState("");
 
 
   const handleRadioChange = (questionIndex, answerId) => {
@@ -35,6 +36,11 @@ function Form() {
           <tr>
             <td colSpan="6">Teacher Name:
               <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="Enter your Name: " />
+            </td>
+          </tr>
+          <tr>
+           <td colSpan="6">Pupil Name:
+              <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="Enter your Name: " />
             </td>
           </tr>
 
@@ -82,7 +88,7 @@ function Form() {
           ))}
         </tbody>
       </table>
-      <ShowResult selectedAnswers={selectedAnswers} questions={questions} comments={comments} teacherName={teacherName} />
+      <ShowResult selectedAnswers={selectedAnswers} questions={questions} comments={comments} teacherName={teacherName} pupilName={pupilName} />
     </>
   );
 }
