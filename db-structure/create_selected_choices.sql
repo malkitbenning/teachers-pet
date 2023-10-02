@@ -1,6 +1,5 @@
-CREATE TABLE Selected_Choice (
+CREATE TABLE selected_choices (
     choices_id           SERIAL PRIMARY KEY,
-    pupils_id            INTEGER NOT NULL REFERENCES pupils(pupils_id),
-    selected_QA_id       INTEGER NOT NULL REFERENCES selected_QA(selected_QA_id),
-    
-);
+    pupil_id             INTEGER NOT NULL REFERENCES pupil(pupil_id),
+    selected_qa_id       INTEGER NOT NULL REFERENCES selected_qa(selected_qa_id)
+    );
