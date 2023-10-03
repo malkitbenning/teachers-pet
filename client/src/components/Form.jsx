@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import questions from "./data/questions.json";
 import ShowResult from "./ShowResult";
 
@@ -8,9 +8,20 @@ function Form() {
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
   const [teacherName, setTeacherName] = useState("");
   const [pupilName, setPupilName] = useState("");
+  const [date, setDate] = useState("");
 
+  
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${(
+      currentDate.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`;
+    setDate(formattedDate);
+  }, []); 
 
-  const handleRadioChange = (questionIndex, answerId) => {
+   const handleRadioChange = (questionIndex, answerId) => {
     const answer = questions[questionIndex].options.find((ans) => ans.id === answerId);
     setSelectedAnswers((prevSelected) => ({
       ...prevSelected,
@@ -43,7 +54,16 @@ function Form() {
               <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="Enter your Name: " />
             </td>
           </tr>
-
+          <tr>
+            <td colSpan="3">Date:
+              <input className="date-input"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                type="date"
+                placeholder="Select Date "
+              />
+            </td>
+          </tr>
           {questions.map((que, index) => (
             <React.Fragment key={index}>
               <tr className="question">
@@ -88,7 +108,7 @@ function Form() {
           ))}
         </tbody>
       </table>
-      <ShowResult selectedAnswers={selectedAnswers} questions={questions} comments={comments} teacherName={teacherName} pupilName={pupilName} />
+      <ShowResult selectedAnswers={selectedAnswers} questions={questions} comments={comments} teacherName={teacherName} pupilName={pupilName} date={date} />
     </>
   );
 }
