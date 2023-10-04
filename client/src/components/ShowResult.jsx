@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TeacherOverride from "./TeacherOverride";
 
-function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pupilName }) {
+function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pupilName,date }) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [overrideScore, setOverrideScore] = useState("");
@@ -36,6 +36,7 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
         <table className="table">
           <h2>Teacher Name: {teacherName}</h2>
            <h2>Pupil Name: {pupilName}</h2>
+           <h2>Date: {date}</h2>
           <tbody>
             {Object.keys(selectedAnswers).map((questionIndex) => {
               const que = questions[questionIndex];
