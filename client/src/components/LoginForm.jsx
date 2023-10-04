@@ -7,7 +7,6 @@ import LoginButton from "./LoginButton";
 function LoginForm() {
   return (
  <>
-  
   <div className="login-container">
     <div className="content">
       <div className="text">Login </div>
