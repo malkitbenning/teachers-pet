@@ -26,8 +26,8 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
   return (
     <div>
       <button
-        type="button"
-        className="btn btn-primary"
+         type="button"
+        className="btn btn-primary showResultBtn"
         onClick={handleShowResults}
       >
         Show Result
