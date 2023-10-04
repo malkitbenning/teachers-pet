@@ -2,6 +2,8 @@ import React, { useState,useEffect } from "react";
 import questions from "./data/questions.json";
 import ShowResult from "./ShowResult";
 
+
+
 function Form() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
@@ -42,7 +44,7 @@ function Form() {
 
   return (
     <>
-      <table className="table">
+     <table className="table">
         <tbody>
           <tr>
             <td colSpan="6">Teacher Name:

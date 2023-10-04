@@ -1,8 +1,14 @@
 import  "../styles/login.css";
 import LoginButton from "./LoginButton";
+
+
+
+
 function LoginForm() {
   return (
-    <div className="login-container">
+ <>
+  
+  <div className="login-container">
     <div className="content">
       <div className="text">Login </div>
       <form className="loginForm" action="#">
@@ -23,7 +29,9 @@ function LoginForm() {
       </form>
     </div>
     </div>
+  </>
   );
 }
+
 
 export default LoginForm;
