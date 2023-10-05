@@ -1,130 +1,116 @@
-/*
-
- /* General styling */
+/* General styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
-
 .table {
-    width: 60%;
-    margin: 50px auto;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
 /* Styling for table cells */
 .table td {
-    border: 1px solid #dee2e6;
-    padding: 10px;
+  border: 1px solid #dee2e6;
+  padding: 10px;
 }
 
 /* Styling for questions */
 .question {
-    background-color: #e9ecef;
+  background-color: #e9ecef;
 }
 
 .question h3 {
-    margin: 0;
-    padding: 10px 16px;
+  margin: 0;
+  padding: 10px 16px;
 }
 
-
-
-
 .form-check {
-    margin-right: 10px;
-
+  margin-right: 10px;
 }
 
 /* Adjustments for radio buttons and labels */
 .form-check-input {
-    margin-top: 0;
-    transform: scale(1.5);
-
+  margin-top: 0;
+  transform: scale(1.5);
 }
-
 
 td:last-child {
-    font-weight: bold;
-    color: #007bff;
-    text-align: center;
+  font-weight: bold;
+  color: #007bff;
+  text-align: center;
 }
 
-.table th, .table td {
-    border: 1px solid #e0e0e0;
-    padding: 10px 15px;
-    text-align: left;
+.table th,
+.table td {
+  border: 1px solid #e0e0e0;
+  padding: 10px 15px;
+  text-align: left;
 }
-
 
 .question h3 {
-    margin: 0;
-    color: #333;
-    font-weight: 500;
+  margin: 0;
+  color: #333;
+  font-weight: 500;
 }
 
 /* Answer row styling */
 .answer {
-    color: #555;
-    font-weight: 400;
+  color: #555;
+  font-weight: 400;
 }
 
 .form-check-input {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-.comments{
-
-    margin-right: 20px;
-    margin-bottom: 900px;
+.comments {
+  margin-right: 20px;
+  margin-bottom: 900px;
 }
 textarea {
-    width: 60%;
+  width: 60%;
 
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
 }
-
 
 td[colspan="2"] {
-    text-align: center;
-    width: 30%;
+  text-align: center;
+  width: 30%;
 }
 
-
 .answer-text {
-    width: 80%;
-    padding-right: 10px;
+  width: 80%;
+  padding-right: 10px;
 }
 
 .answer-radio {
-    text-align: left;
-    width: 5%;
+  text-align: left;
+  width: 5%;
 }
 
 .form-check-input {
-    display: inline-block;
+  display: inline-block;
 }
 
-
-
-.btn-primary{
-    margin-bottom: 50px;
+.btn-primary {
+  margin-bottom: 50px;
 }
-.score{
-    text-align: center;
+.score {
+  text-align: center;
 }
-.date-input{
-    margin-left: 3rem;
+.date-input {
+  margin-left: 3rem;
 }
-.showResultBtn{
-    width: 200px;
+.showResultBtn {
+  width: 200px;
 }

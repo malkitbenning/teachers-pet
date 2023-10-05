@@ -6,32 +6,14 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-html,
-body {
-  height: 100%;
-}
-/* body{
-  display: grid;
-  place-items: center;
-  background: #dde1e7;
-  text-align: center;
-  align-items: center;
-} */
 .login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-
-        overflow: auto;
-
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 43px);
+  overflow: auto;
 }
-
-
-
 .content {
-
   width: 430px;
   padding: 40px 30px;
   background: #dde1e7;
