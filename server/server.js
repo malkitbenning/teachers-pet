@@ -34,3 +34,14 @@ app.post("/pupilRecord", (req, res) => {
     pupilName: reqPupilName,
   });
 });
+
+// endpoint to display login page
+app.get("/login", (req, res) => {
+  console.log("Hey there");
+  res.status(200).send("info sent to user");
+});
+
+// endpoint to validate user credentials
+app.post("/login", (req, res) => {
+  console.log(req.body);
+});
