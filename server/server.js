@@ -44,4 +44,14 @@ app.get("/login", (req, res) => {
 // endpoint to validate user credentials
 app.post("/login", (req, res) => {
   console.log(req.body);
+
+  const tempUsername = req.body.teacherUsername;
+  const tempPassword = req.body.teacherPassword;
+
+  // check if matches specific string
+  if (tempUsername === "benning123") {
+    res.status(200).json({ message: "login details correct", teacherID: "3" });
+  } else {
+    res.status(401).json({ error: "incorrect login details" });
+  }
 });
