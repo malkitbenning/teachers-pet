@@ -2,8 +2,6 @@ import React, { useState,useEffect } from "react";
 import questions from "./data/questions.json";
 import ShowResult from "./ShowResult";
 
-
-
 function Form() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
@@ -12,7 +10,6 @@ function Form() {
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
 
-  
   useEffect(() => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getFullYear()}-${(
