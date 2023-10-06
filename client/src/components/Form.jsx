@@ -10,7 +10,6 @@ function Form() {
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
 
-  
   useEffect(() => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getFullYear()}-${(
@@ -42,7 +41,7 @@ function Form() {
 
   return (
     <>
-      <table className="table">
+     <table className="table">
         <tbody>
           <tr>
             <td colSpan="6">Teacher Name:

@@ -55,18 +55,13 @@ function TeacherOverride({
 
   }, [totalScore, overrideScore,supportCategory]);
 
-
-
   return (
     <>
       <tr>
         <td colSpan="4">CYP Total</td>
         <td>
           <span className="span-spacer">{totalScore}</span>
-          {/* <input
-            value={totalScore}
-            onChange={(e) => setTotalScore(Number(e.target.value))}
-          /> */}
+          
         </td>
       </tr>
       <tr className="tr-spacer"></tr>
@@ -78,8 +73,7 @@ function TeacherOverride({
           <span className="comments">Override Comment</span>
           <textarea></textarea>
         </td>
-        <td>Teacher Override</td>
-
+        <td>Teacher Override Score</td>
         <td>
           <input
             value={overrideScore}

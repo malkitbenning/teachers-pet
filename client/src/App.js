@@ -1,7 +1,10 @@
 import "./App.css";
 import "./formStyle.css";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Form from "./components/Form";
+import LoginForm from "./components/LoginForm";
+import LandingPage from "./components/LandingPage";
+
 
 function App() {
   return (
@@ -9,8 +12,13 @@ function App() {
       <header className="App-header">
         <p>Teachers PET</p>
       </header>
-
-      <Form />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/landingPage" element={<LandingPage />} />
+          <Route path="/form" element={<Form />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
