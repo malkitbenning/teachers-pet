@@ -49,7 +49,7 @@ app.post("/login", (req, res) => {
   const tempPassword = req.body.teacherPassword;
 
   // check if matches specific string
-  if (tempUsername === "benning123") {
+  if (tempUsername === "benning123" && tempPassword === "abc123") {
     res.status(200).json({ message: "login details correct", teacherID: "3" });
   } else {
     res.status(401).json({ error: "incorrect login details" });
