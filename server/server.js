@@ -9,27 +9,20 @@ app.use(express.urlencoded({ extended: false }));
 
 const expressPort = process.env.PORT || 5000;
 
-app.listen(expressPort, () => console.log(`Listening on expressPort ${expressPort}`));
+app.listen(expressPort, () =>
+  console.log(`Listening on expressPort ${expressPort}`)
+);
 
-app.get("/", function (req, res) {
-  const testScore = Math.floor(Math.random() * 100);
-  res.status(200).json({
-    pupilName: "Thomas",
-    pupilScore: testScore,
-  });
-});
+const validateUser = (req, res) => {
+  const { teacherUsername, teacherPassword } = req.body;
 
-
-app.post("/pupilRecord", (req, res) => {
-  if (!req.body.pupilName || !req.body.pupilScore) {
-    res.status(400).json({
-      result: "failure",
-      message: "Pupil details could not be saved",
-    });
+  // check if matches specific string
+  if (teacherUsername === "benning123" && teacherPassword === "abc123") {
+    res.status(200).json({ message: "login details correct", teacherID: "3" });
+  } else {
+    res.status(401).json({ error: "incorrect login details" });
   }
-  let reqPupilName = req.body.pupilName;
-  console.log("pupil name", reqPupilName);
-  res.status(201).json({
-    pupilName: reqPupilName,
-  });
-});
+};
+
+// endpoint to validate user credentials
+app.get("/login", validateUser);
