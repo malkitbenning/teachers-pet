@@ -1,4 +1,4 @@
-CREATE TABLE selected_qa (
+CREATE TABLE selected_options (
     selected_qa_id             SERIAL PRIMARY KEY,
     question_id                INTEGER NOT NULL REFERENCES question(question_id),
     selected_answer_id         INTEGER NOT NULL REFERENCES answer(answer_id),
