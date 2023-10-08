@@ -6,9 +6,26 @@ function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const apiURL = "http://localhost:5000/login";
   const handleValidateUser = (event) => {
     event.preventDefault();
-    console.log(`validating ${username} ${password}`);
+
+    fetch(apiURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        teacherUsername: username,
+        teacherPassword: password,
+      }),
+    }).then((response) => {
+      if (response.ok) {
+        return console.log("Redirecting to Landing Page...");
+      } else {
+        console.error("Login failed, please try again");
+      }
+    });
   };
 
   return (

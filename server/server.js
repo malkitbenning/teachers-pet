@@ -29,4 +29,4 @@ const validateUser = (req, res) => {
 };
 
 // endpoint to validate user credentials
-app.get("/login", validateUser);
+app.post("/login", validateUser);
