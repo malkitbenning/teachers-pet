@@ -1,4 +1,5 @@
 import "../styles/login.css";
+import React, { useState } from "react";
 import LoginButton from "./LoginButton";
 
 function LoginForm() {
@@ -14,14 +15,14 @@ function LoginForm() {
           <div className="text">Login </div>
           <form className="loginForm" action="#" onSubmit={handleValidateUser}>
             <div className="field">
-              <input type="text" required />
+              <input type="text" required id="username" name="username" />
               <span className="fas fa-user"></span>
-              <label>User Name </label>
+              <label htmlFor="username">User Name </label>
             </div>
             <div className="field">
-              <input type="password" required />
+              <input type="password" required id="password" name="password" />
               <span className="fas fa-lock"></span>
-              <label>Password</label>
+              <label htmlFor="password">Password</label>
             </div>
             <div className="forgot-pass">
               {/*<a href="#">Forgot Password?</a> for future build*/}
