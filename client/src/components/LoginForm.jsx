@@ -6,10 +6,10 @@ function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleValidateUser(event) {
+  const handleValidateUser = (event) => {
     event.preventDefault();
-    console.log("validating user");
-  }
+    console.log(`validating ${username} ${password}`);
+  };
 
   return (
     <>
