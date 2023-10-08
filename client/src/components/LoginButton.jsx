@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 
-function LoginButton() {
+function LoginButton({ handleValidateUser }) {
   return (
     <div>
-      <Link to="/LandingPage">
-        <button>Sign in</button>
-      </Link>
+      <button onClick={handleValidateUser}>Sign in</button>
     </div>
   );
 }
