@@ -41,26 +41,24 @@ function Form() {
 
   return (
     <>
-     <table className="table">
+      <table className="table">
         <tbody>
           <tr>
-            <td colSpan="6">Teacher Name:
+            <td colSpan="6">
+              Teacher Name:
               <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="Enter your Name: " />
             </td>
           </tr>
           <tr>
-           <td colSpan="6">Pupil Name:
+            <td colSpan="6">
+              Pupil Name:
               <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="Enter your Name: " />
             </td>
           </tr>
           <tr>
-            <td colSpan="3">Date:
-              <input className="date-input"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                type="date"
-                placeholder="Select Date "
-              />
+            <td colSpan="3">
+              Date:
+              <input className="date-input" value={date} onChange={(e) => setDate(e.target.value)} type="date" placeholder="Select Date " />
             </td>
           </tr>
           {questions.map((que, index) => (
@@ -76,14 +74,7 @@ function Form() {
               {que.options.map((answer) => (
                 <tr key={answer.id}>
                   <td className="answer-radio">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name={"question_" + index}
-                      value={answer.id}
-                      checked={selectedAnswers[index] === answer.id}
-                      onChange={() => handleRadioChange(index, answer.id)}
-                    />
+                    <input className="form-check-input" type="radio" name={"question_" + index} value={answer.id} checked={selectedAnswers[index] === answer.id} onChange={() => handleRadioChange(index, answer.id)} />
                   </td>
                   <td colSpan="3" className="answer-text">
                     {answer.text}
@@ -94,11 +85,7 @@ function Form() {
               <tr>
                 <td colSpan="4" className="comment-section">
                   <span className="comments">comments</span>
-                  <textarea
-                    value={comments[index]}
-                    onChange={(e) => handleComment(index, e)}
-                    placeholder="Add a comment for this answer..."
-                  />
+                  <textarea maxlength="255" value={comments[index]} onChange={(e) => handleComment(index, e)} placeholder="Add a comment for this answer..." />
                 </td>
                 <td>CYP Score</td>
                 <td>{scores[index] || 0}</td>

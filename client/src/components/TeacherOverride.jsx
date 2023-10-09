@@ -61,7 +61,6 @@ function TeacherOverride({
         <td colSpan="4">CYP Total</td>
         <td>
           <span className="span-spacer">{totalScore}</span>
-          
         </td>
       </tr>
       <tr className="tr-spacer"></tr>
@@ -71,14 +70,11 @@ function TeacherOverride({
       <tr>
         <td colSpan="3" className="override-comment">
           <span className="comments">Override Comment</span>
-          <textarea></textarea>
+          <textarea maxlength="50"></textarea>
         </td>
         <td>Teacher Override Score</td>
         <td>
-          <input
-            value={overrideScore}
-            onChange={(e) => setOverrideScore(Number(e.target.value))}
-          />
+          <input value={overrideScore} onChange={(e) => setOverrideScore(Number(e.target.value))} />
         </td>
       </tr>
       <tr className="tr-spacer"></tr>
