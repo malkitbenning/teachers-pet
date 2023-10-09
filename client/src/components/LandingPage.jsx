@@ -3,7 +3,6 @@ import "../styles/LandingPage.css";
 import React, { useState, useEffect } from "react";
 
 
-
 function LandingPage() {
   const [pupils, setPupils] = useState([]);
   
@@ -16,13 +15,37 @@ function LandingPage() {
         return response.json();
       })
       .then((data) => {
-        setPupils(data); // Assuming data is an array of pupils
-        // setTeacherName(data.teacherName); // Assuming data contains teacher name
+        setPupils(data); 
+        
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
+  // Function to delete a pupil record
+  const deletePupil = (pupilId) => {
+    // Show a confirmation dialog
+    const confirmDelete = window.confirm("Are you sure you want to delete this pupil?");
+    
+    if (confirmDelete) {
+    // Send a DELETE request to the server
+    fetch(`http://localhost:5000/pupil/${pupilId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        // Remove the deleted pupil from the local state
+        setPupils((prevPupils) =>
+          prevPupils.filter((pupil) => pupil.pupil_id !== pupilId)
+        );
+      })
+      .catch((error) => {
+        console.error("Error deleting pupil:", error);
+      });
+  };
+  }
 
   return (
     <div>
@@ -60,7 +83,11 @@ function LandingPage() {
                 <td>
                   <button>Edit</button>
                 </td>
-               
+               <td>
+                  <button onClick={() => deletePupil(pupil.pupil_id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
