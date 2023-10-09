@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "../styles/LandingPage.css";
 import React, { useState, useEffect } from "react";
 
-
 function LandingPage() {
   const [pupils, setPupils] = useState([]);
   
