@@ -1,7 +1,46 @@
-.override-comment {
-  background-color: greenyellow;
+.summary{
+  background-color: #e1e9ea;
+  font-size: 2rem;
 }
 
 .tr-spacer {
   height: 1rem;
+}
+.inputField {
+  width: 100px;
+}
+.inputCell {
+  width: 10%;
+}
+.finalTable {
+  margin: 1em auto;
+  width: 95%;
+
+  background: #fff;
+  color: #024457;
+  border-radius: 10px;
+  border: 1px solid #167f92;
+}
+.finalTable th {
+  display: flex;
+  justify-content: center;
+}
+
+.finalTable td {
+  padding: 8px;
+}
+
+.finalTable textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.overRide {
+  width: 10%;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 0px auto;
+  color: black;
 }

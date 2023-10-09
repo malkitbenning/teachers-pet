@@ -1,0 +1,20 @@
+.appendixTable {
+  font-size: 14px;
+  border-collapse: collapse;
+  padding: 1px 1px;
+  margin: 4px auto;
+  color: #333;
+}
+.appendixTable th {
+  text-align: center !important;
+}
+
+.noteRow {
+  background-color: #f8f8f8; /* Light grey background */
+}
+
+.note {
+  
+  font-style: italic;
+  color: #333;
+}

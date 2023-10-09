@@ -34,50 +34,40 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
       </button>
       {showResults && (
         <table className="table">
-          <h2>Teacher Name: {teacherName}</h2>
-           <h2>Pupil Name: {pupilName}</h2>
-           <h2>Date: {date}</h2>
-          <tbody>
-            {Object.keys(selectedAnswers).map((questionIndex) => {
-              const que = questions[questionIndex];
-              const answer = que.options.find(
-                (ans) => ans.id === selectedAnswers[questionIndex]
-              );
-              const commentForAnswer = comments[questionIndex] || "";
+            <p className="resultHeader">Teacher Name: {teacherName}</p>
+            <p className="resultHeader">Pupil Name: {pupilName}</p>
+            <tbody>
+              {Object.keys(selectedAnswers).map((questionIndex) => {
+                const que = questions[questionIndex];
+                const answer = que.options.find(
+                  (ans) => ans.id === selectedAnswers[questionIndex]
+                );
+                const commentForAnswer = comments[questionIndex] || "";
 
-              return (
-                <React.Fragment key={questionIndex}>
-                  <tr className="question">
-                    <td colSpan="4">
-                      <h3>{que.Criterion}</h3>
-                    </td>
-                    <td colSpan="2">
-                      <h3>Score: {que.score}</h3>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan="4" className="answer-text">
-                      {answer.text}
-                    </td>
-                    <td colSpan="4" rowSpan="2">
-                      {answer.score}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan="4">Teacher comments: {commentForAnswer}</td>
-                  </tr>
-                </React.Fragment>
-              );
-            })}
-            {/*Display TeacherOverride Component at the end}*/}
-            <TeacherOverride
-              totalScore={totalScore}
-              setTotalScore={setTotalScore}
-              overrideScore={overrideScore}
-              setOverrideScore={setOverrideScore}
-            />
-          </tbody>
-        </table>
+                return (
+                  <React.Fragment key={questionIndex}>
+                    <tr className="question">
+                      <td colSpan="9"><h3>{que.Criterion}</h3></td>
+                      <td className="score" colSpan="1"><h3 className="title" >Score {que.score}</h3></td>
+                    </tr>
+                    <tr>
+                      <td colSpan="9" className="answer-text">{answer.text}</td>
+                      <td  className="score"  rowSpan="2" ><span className="title">{answer.score}</span></td>
+                    </tr>
+                    <tr>
+                      <td colSpan="9">Teacher comments: {commentForAnswer}</td>
+                    </tr>
+                  </React.Fragment>
+                );
+              })}
+              <TeacherOverride
+                totalScore={totalScore}
+                setTotalScore={setTotalScore}
+                overrideScore={overrideScore}
+                setOverrideScore={setOverrideScore}
+              />
+            </tbody>
+          </table>
       )}
     </div>
   );
