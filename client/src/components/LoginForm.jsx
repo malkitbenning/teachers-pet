@@ -1,17 +1,32 @@
-import "../styles/login.css";
-import React, { useState } from "react";
+import "../styles/LoginForm.css";
+import React, { useState, useEffect } from "react";
 import LoginButton from "./LoginButton";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const navigate = useNavigate();
 
   const apiURL = "http://localhost:5000/login";
+
   const handleValidateUser = (event) => {
     event.preventDefault();
+
+    // Reset error messages
+    setUsernameError("");
+    setPasswordError("");
+
+    if (!username.trim()) {
+      setUsernameError("Username is required");
+    }
+
+    if (!password.trim()) {
+      setPasswordError("Password is required");
+    }
 
     fetch(apiURL, {
       method: "POST",
@@ -28,7 +43,6 @@ function LoginForm() {
           return response.json();
         } else {
           console.error("Login failed, please try again");
-          // Next - Add code to stay on page and produce red text under input
         }
       })
       .then((data) => {
@@ -49,9 +63,10 @@ function LoginForm() {
     <>
       <div className="login-container">
         <div className="content">
-          <div className="text">Login </div>
+          <div className="text">Login</div>
           <form className="loginForm" action="#" onSubmit={handleValidateUser}>
-            <div className="field">
+            <div className="login--field">
+              <label htmlFor="username">Username</label>
               <input
                 type="text"
                 required
@@ -59,13 +74,15 @@ function LoginForm() {
                 name="username"
                 onChange={(event) => {
                   setUsername(event.target.value);
+                  setUsernameError("");
                   console.log(event.target.value);
                 }}
               />
+              <span className="login--invalid">{usernameError}</span>
               <span className="fas fa-user"></span>
-              <label htmlFor="username">User Name </label>
             </div>
-            <div className="field">
+            <div className="login--field">
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 required
@@ -73,15 +90,14 @@ function LoginForm() {
                 name="password"
                 onChange={(event) => {
                   setPassword(event.target.value);
+                  setPasswordError("");
                   console.log(event.target.value);
                 }}
               />
+              <span className="login--invalid">{passwordError}</span>
               <span className="fas fa-lock"></span>
-              <label htmlFor="password">Password</label>
             </div>
-            <div className="forgot-pass">
-              {/*<a href="#">Forgot Password?</a> for future build*/}
-            </div>
+            <div className="forgot-pass"></div>
             <LoginButton handleValidateUser={handleValidateUser} />
           </form>
         </div>
