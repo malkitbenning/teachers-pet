@@ -20,9 +20,7 @@ app.listen(expressPort, () =>
 const validateUser = (req, res) => {
   const { teacherUsername, teacherPassword } = req.body;
 
-  // check if matches specific string
-  // Here we can add queries to search the DB
-  // need to install dotenv and connect to DB
+  // Here we can add queries to search the DB once it's connected
   if (teacherUsername === "dbenning" && teacherPassword === "password") {
     res.status(200).json({ message: "Login successful.", teacherID: "3" });
   } else {

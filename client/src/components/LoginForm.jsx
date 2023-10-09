@@ -41,7 +41,6 @@ function LoginForm() {
         }
       })
       .catch((error) => {
-        // Create an error page when an error reached.
         console.error("Error:", error);
       });
   };
