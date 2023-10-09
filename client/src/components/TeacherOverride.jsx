@@ -70,7 +70,7 @@ function TeacherOverride({
       <tr>
         <td colSpan="3" className="override-comment">
           <span className="comments">Override Comment</span>
-          <textarea maxlength="50"></textarea>
+          <textarea maxlength="255"></textarea>
         </td>
         <td>Teacher Override Score</td>
         <td>
