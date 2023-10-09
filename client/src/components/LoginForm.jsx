@@ -1,10 +1,13 @@
 import "../styles/login.css";
 import React, { useState } from "react";
 import LoginButton from "./LoginButton";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const apiURL = "http://localhost:5000/login";
   const handleValidateUser = (event) => {
@@ -31,6 +34,7 @@ function LoginForm() {
       .then((data) => {
         if (data && data.teacherID) {
           console.log("Teacher ID:", data.teacherID);
+          navigate("/landingPage");
           return data.teacherID;
         } else {
           console.error("ID could not be found.");
