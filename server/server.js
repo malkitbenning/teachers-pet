@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+
 const app = express();
 
 let cors = require("cors");
@@ -25,31 +26,7 @@ client.connect(function (err) {
   if (err) throw err;
 });
 
-const deletePupil = (req, res) => {
-  const pupilID = Number(req.body.pupilID);
-  client
-    .query("DELETE FROM pupil WHERE pupil_id = $1", [pupilID])
-    .then((result) => {
-      if (result.rowCount > 0) {
-        res.status(200).json({
-          pupilID: pupilID,
-        });
-      } else {
-        res.status(404).json({
-          result: "failure",
-          message: "Pupil could not be deleted",
-        });
-      }
-    })
-    .catch((error) => {
-      console.log(error.message);
-      res.status(404).json({
-        result: "failure",
-        message: "Error deleting pupil",
-      });
-      client.end();
-    });
-};
+const deletePupil = require("./delete-pupil");
 
 const restorePupil = (req, res) => {
   const { pupilID, pupilNickname, teacherID, overrideScore, overrideComment } = req.body;
@@ -69,7 +46,7 @@ const restorePupil = (req, res) => {
     })
     .catch((error) => {
       console.log(error.message);
-      res.status(404).json({
+      res.status(502).json({
         result: "failure",
         message: "Error inserting pupil",
       });
@@ -77,6 +54,7 @@ const restorePupil = (req, res) => {
       client.end();
     });
 };
+
 
 const validateUser = (req, res) => {
   const { teacherUsername, teacherPassword } = req.body;
