@@ -29,13 +29,15 @@ function LoginForm() {
         }
       })
       .then((data) => {
-        // next get the ID from the backend
-        // add an if statement to check there is an id found and return error if none
-        console.log("Teacher ID:", data.teacherID);
-        return data.teacherID;
+        if (data && data.teacherID) {
+          console.log("Teacher ID:", data.teacherID);
+          return data.teacherID;
+        } else {
+          console.error("ID could not be found.");
+        }
       })
       .catch((error) => {
-        // Revisit this part
+        // Create an error page when an error reached.
         console.error("Error:", error);
       });
   };
