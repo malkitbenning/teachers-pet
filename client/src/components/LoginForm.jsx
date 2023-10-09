@@ -19,13 +19,25 @@ function LoginForm() {
         teacherUsername: username,
         teacherPassword: password,
       }),
-    }).then((response) => {
-      if (response.ok) {
-        return console.log("Redirecting to Landing Page...");
-      } else {
-        console.error("Login failed, please try again");
-      }
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error("Login failed, please try again");
+          // Next - Add code to stay on page and produce red text under input
+        }
+      })
+      .then((data) => {
+        // next get the ID from the backend
+        // add an if statement to check there is an id found and return error if none
+        console.log("Teacher ID:", data.teacherID);
+        return data.teacherID;
+      })
+      .catch((error) => {
+        // Revisit this part
+        console.error("Error:", error);
+      });
   };
 
   return (
