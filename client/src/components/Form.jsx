@@ -100,6 +100,7 @@ function Form() {
                 <td colSpan="4" className="comment-section">
                   <span className="comments">comments</span>
                   <textarea
+                    maxlength="255"
                     value={comments[index]}
                     onChange={(e) => handleComment(index, e)}
                     placeholder="Add a comment for this answer..."
