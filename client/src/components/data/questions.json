@@ -1,5 +1,31 @@
 [
   {
+    "appendix": {
+      "type": "Distance vision",
+      "details": [
+        {
+          "id": 1,
+          "description": "Mild vision loss",
+          "measurement": "Within the range 6/12 - 6/18 Snellen/Kay (LogMAR 0.3 – 0.48)"
+        },
+        {
+          "id": 2,
+          "description": "Moderate vision loss",
+          "measurement": " Less than 6/19 - 6/36 Snellen/Kay (LogMAR 0.5 – 0.78)"
+        },
+        {
+          "id": 3,
+          "description": " Severe vision loss",
+          "measurement": "Less than 6/36 - 6/120 Snellen/Kay (LogMAR 0.8 – 1.3)"
+        },
+        {
+          "id": 4,
+          "description": "Profound vision loss",
+          "measurement": "Less than 6/120 Snellen/Kay (LogMAR 1.32+)"
+        }
+      ]
+    },
+
     "Criterion": "Criterion 1.1: Degree of VI - distance (corrected vision with both eyes open – see Vision loss reference table above)",
     "options": [
       { "id": 1, "text": "Does not have a vision impairment", "score": 0 },
@@ -26,6 +52,32 @@
     ]
   },
   {
+    "appendix": {
+      "type": "Near vision",
+      "details": [
+        {
+          "id": 1,
+          "description": "Mild vision loss",
+          "measurement": "N14-18"
+        },
+        {
+          "id": 2,
+          "description": "Moderate vision loss",
+          "measurement": " N18-24"
+        },
+        {
+          "id": 3,
+          "description": " Severe vision loss",
+          "measurement": "N24-36"
+        },
+        {
+          "id": 4,
+          "description": "Profound vision loss",
+          "measurement": "Educationally blind/Braille user/can access small quantities of print larger than N36"
+        }
+      ]
+    },
+
     "Criterion": "Criterion 1.2: Degree of VI - near (corrected vision with both eyes open - see Vision loss reference table above )",
     "options": [
       { "id": 1, "text": "Does not have a vision impairment", "score": 0 },
@@ -217,6 +269,41 @@
     ]
   },
   {
+
+      "appendix": {
+        "type": "2.4 Appendix: Learning Environment continued",
+        "details": [
+          {
+            "subsection": "Visual environment",
+            "title": "General principles in the provision of an inclusive visual learning environment",
+            "considerations": [
+              "Signage - clear and well positioned, easily visible, including tactile symbols or Braille",
+              "Steps, edges, pillars and other transition points highlighted with yellow paint",
+              "Handrails to help with mobility",
+              "Clear panels on doors so people can be seen approaching from the other side",
+              "Attention to lighting – provision of blinds to reduce glare",
+              "Good classroom management – walkways clear, layout of classroom consistent, resources kept in the same place and appropriately marked with print or tactile markers",
+              "Cloakrooms and corridors free of clutter",
+              "A distinction between quiet and active areas in the playground and shaded areas for learners with light sensitivity",
+              "Well-maintained grounds, free of obstructions"
+            ]
+          },
+          {
+            "subsection": "Tactile environment",
+            "title": "General principles in the provision of an inclusive tactile learning environment",
+            "considerations": [
+              "'Tactile trails’ – dado rails or other textured material at hand height that learners can follow to find the route to a particular location in the school i.e. toilets, dining hall.",
+              "Differentiation of floor coverings and areas within the school to indicate a change of environment",
+              "Wall displays accessible to touch at child height"
+            ]
+          }
+        ]
+      },
+
+
+
+
+
     "Criterion": "Criterion 7: Physical learning environment. NB factors affecting the quality of the acoustic and visual environment are outlined in the Appendix at 2.4",
     "options": [
       {
