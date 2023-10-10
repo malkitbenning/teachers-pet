@@ -8,7 +8,7 @@ function LandingPage() {
   const [pupils, setPupils] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/PupilWithTotalScoreAndSupportAllocation")
+    fetch("http://localhost:5000/api/fetch-pupil-data")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -44,7 +44,6 @@ function LandingPage() {
         });
     }
   };
-
   return (
     <div>
       <h1>Welcome to Landing page</h1>
