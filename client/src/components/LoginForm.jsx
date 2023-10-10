@@ -12,7 +12,7 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  const apiURL = "http://localhost:5000/login";
+  const apiURL = "https://teacher-server-9cir.onrender.com";
 
   const handleValidateUser = (event) => {
     event.preventDefault();
@@ -29,7 +29,7 @@ function LoginForm() {
       setPasswordError("Password is required");
     }
 
-    fetch(apiURL, {
+    fetch(`${apiURL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

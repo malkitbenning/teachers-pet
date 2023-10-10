@@ -27,5 +27,4 @@ const validateUser = (req, res) => {
   }
 };
 
-// endpoint to validate user credentials
 app.post("/login", validateUser);
