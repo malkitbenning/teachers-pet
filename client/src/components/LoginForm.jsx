@@ -88,7 +88,7 @@ function LoginForm() {
                 onChange={(event) => {
                   setUsername(event.target.value);
                   setUsernameError("");
-                  console.log(event.target.value);
+                  setValidationError("");
                 }}
               />
               <span className="login--invalid">{usernameError}</span>
@@ -104,7 +104,7 @@ function LoginForm() {
                 onChange={(event) => {
                   setPassword(event.target.value);
                   setPasswordError("");
-                  console.log(event.target.value);
+                  setValidationError("");
                 }}
               />
               <span className="login--invalid">{passwordError}</span>
