@@ -1,3 +1,5 @@
+const client = require("./db-client");
+
 function deletePupil(req, res) {
   const pupilID = Number(req.body.pupilID);
   client
