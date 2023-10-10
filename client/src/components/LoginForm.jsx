@@ -1,5 +1,5 @@
 import "../styles/LoginForm.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import LoginButton from "./LoginButton";
 import { useNavigate } from "react-router-dom";
 
