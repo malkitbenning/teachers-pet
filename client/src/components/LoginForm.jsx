@@ -42,7 +42,15 @@ function LoginForm() {
         if (response.ok) {
           return response.json();
         } else {
-          console.error("Login failed, please try again");
+          return response.json().then((data) => {
+            if (data && data.error) {
+              setUsernameError(data.error);
+            } else {
+              setUsernameError(
+                "An error occurred while processing your request."
+              );
+            }
+          });
         }
       })
       .then((data) => {
