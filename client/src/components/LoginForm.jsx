@@ -8,6 +8,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [validationError, setValidationError] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,6 +20,7 @@ function LoginForm() {
     // Reset error messages
     setUsernameError("");
     setPasswordError("");
+    setValidationError("");
 
     if (!username.trim()) {
       setUsernameError("Username is required");
@@ -44,9 +46,9 @@ function LoginForm() {
         } else {
           return response.json().then((data) => {
             if (data && data.error) {
-              setUsernameError(data.error);
+              setValidationError(data.error);
             } else {
-              setUsernameError(
+              setValidationError(
                 "An error occurred while processing your request."
               );
             }
@@ -73,6 +75,9 @@ function LoginForm() {
         <div className="content">
           <div className="text">Login</div>
           <form className="loginForm" action="#" onSubmit={handleValidateUser}>
+            <div>
+              <span className="login--invalid">{validationError}</span>
+            </div>
             <div className="login--field">
               <label htmlFor="username">Username</label>
               <input
