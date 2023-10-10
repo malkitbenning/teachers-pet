@@ -1,6 +1,7 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import questions from "./data/questions.json";
 import ShowResult from "./ShowResult";
+import Appendices from "./Appendices";
 
 function Form() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
@@ -12,15 +13,13 @@ function Form() {
 
   useEffect(() => {
     const currentDate = new Date();
-    const formattedDate = `${currentDate.getFullYear()}-${(
-      currentDate.getMonth() + 1
-    )
+    const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
       .toString()
       .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`;
     setDate(formattedDate);
-  }, []); 
+  }, []);
 
-   const handleRadioChange = (questionIndex, answerId) => {
+  const handleRadioChange = (questionIndex, answerId) => {
     const answer = questions[questionIndex].options.find((ans) => ans.id === answerId);
     setSelectedAnswers((prevSelected) => ({
       ...prevSelected,
@@ -43,38 +42,38 @@ function Form() {
     <>
       <table className="table">
         <tbody>
-          <tr>
-            <td colSpan="6">
-              Teacher Name:
-              <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="Enter your Name: " />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="6">
-              Pupil Name:
-              <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="Enter your Name: " />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="3">
-              Date:
-              <input
-                className="date-input"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                type="date"
-                placeholder="Select Date "
-              />
-            </td>
-          </tr>
+          <div className="inputField">
+            <tr className="textField">
+              <td>
+                <label>Teacher Name</label>
+                <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="enter your name " />
+              </td>
+            </tr>
+            <tr className="textField">
+              <td>
+                <label>Pupil Name</label>
+                <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="enter pupil name" />
+              </td>
+            </tr>
+            <tr className="textField">
+              <td>
+                <label>Date</label>
+                <input value={date} onChange={(e) => setDate(e.target.value)} type="date" placeholder="select date " />
+              </td>
+            </tr>
+          </div>
           {questions.map((que, index) => (
             <React.Fragment key={index}>
+              <div>
+                <Appendices questions={questions} questionIndex={index} />
+              </div>
+
               <tr className="question">
                 <td colSpan="4">
                   <h3>{que.Criterion}</h3>
                 </td>
                 <td colSpan="2">
-                  <h3>Score: {que.options.score}</h3>
+                  <h3>Score {que.options.score}</h3>
                 </td>
               </tr>
               {que.options.map((answer) => (
@@ -92,7 +91,9 @@ function Form() {
                   <td colSpan="3" className="answer-text">
                     {answer.text}
                   </td>
-                  <td colSpan="2">{answer.score}</td>
+                  <td className="score" colSpan="2">
+                    {answer.score}
+                  </td>
                 </tr>
               ))}
               <tr>
@@ -105,7 +106,7 @@ function Form() {
                     placeholder="Add a comment for this answer..."
                   />
                 </td>
-                <td>CYP Score</td>
+                <td style={{ width: "8%" }}>CYP Score</td>
                 <td>{scores[index] || 0}</td>
               </tr>
             </React.Fragment>
