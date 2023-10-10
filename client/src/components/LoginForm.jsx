@@ -17,7 +17,6 @@ function LoginForm() {
   const handleValidateUser = (event) => {
     event.preventDefault();
 
-    // Reset error messages
     setUsernameError("");
     setPasswordError("");
     setValidationError("");
@@ -57,7 +56,6 @@ function LoginForm() {
       })
       .then((data) => {
         if (data && data.teacherID) {
-          console.log("Teacher ID:", data.teacherID);
           navigate("/landingPage");
           return data.teacherID;
         } else {
