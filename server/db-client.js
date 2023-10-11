@@ -1,22 +1,17 @@
 const { Client } = require("pg");
 
-
 const client = new Client({
-  user: process.env.DBUSER,
   host: process.env.DBHOST,
-  database: process.env.DBDATABASE,
-  password: process.env.DBPASSWORD,
+  user: process.env.DBUSER,
   port: process.env.DBPORT,
+  password: process.env.DBPASSWORD,
+  database: process.env.DBDATABASE,
   ssl: true,
 });
 
-async function connectDatabase() {
-  try {
-    await client.connect();
-    console.log("Connected to the PostgreSQL database");
-  } catch (err) {
-    console.error("Error connecting to the database:", err);
-  }
-}
+client.connect(function (err) {
+  if (err) throw err;
+});
 
-module.exports = { client, connectDatabase };
+module.exports = client;
+
