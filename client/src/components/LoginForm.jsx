@@ -12,7 +12,8 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  const apiURL = "https://teacher-server-9cir.onrender.com";
+  // const apiURL = "https://teacher-server-9cir.onrender.com";
+  const apiURL = "http://localhost:5000";
 
   const handleValidateUser = (event) => {
     event.preventDefault();
@@ -47,16 +48,14 @@ function LoginForm() {
             if (data && data.error) {
               setValidationError(data.error);
             } else {
-              setValidationError(
-                "An error occurred while processing your request."
-              );
+              setValidationError("An error occurred while processing your request.");
             }
           });
         }
       })
       .then((data) => {
         if (data && data.teacherID) {
-          navigate("/landingPage");
+          navigate("/landingPage", { state: { teacherName: "Mandy" } });
           return data.teacherID;
         } else {
           console.error("ID could not be found.");

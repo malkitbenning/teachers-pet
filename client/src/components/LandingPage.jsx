@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/LandingPage.css";
 
-function LandingPage() {
+function LandingPage(props) {
+  const location = useLocation();
+  const teacherName = location.state.teacherName;
   return (
     <div>
-      <h1>Welcome, Diljit</h1>
-      <Link to="/form">
+      <h1>Welcome, {teacherName}</h1>
+      <Link to="/form" state={{ teacherName }}>
         <h2 className="new-form-title">New Form</h2>
       </Link>
 

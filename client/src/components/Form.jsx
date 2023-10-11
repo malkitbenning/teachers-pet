@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import questions from "./data/questions.json";
 import ShowResult from "./ShowResult";
 import Appendices from "./Appendices";
 
-function Form() {
+function Form(props) {
+  const location = useLocation();
+  const teacherTitle = location.state.teacherName;
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
@@ -46,7 +49,7 @@ function Form() {
             <tr className="textField">
               <td>
                 <label>Teacher Name</label>
-                <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="enter your name " />
+                <input onChange={(e) => setTeacherName(e.target.value)} type="text" defaultValue={teacherTitle} />
               </td>
             </tr>
             <tr className="textField">
