@@ -12,7 +12,8 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  const apiURL = "https://teacher-server-9cir.onrender.com";
+  const apiURL = "http://127.0.0.1:5000";
+  // const apiURL = "https://teacher-server-9cir.onrender.com";
 
   const handleValidateUser = (event) => {
     event.preventDefault();
@@ -40,27 +41,32 @@ function LoginForm() {
       }),
     })
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.json().then((data) => {
-            if (data && data.error) {
-              setValidationError(data.error);
-            } else {
-              setValidationError(
-                "An error occurred while processing your request."
-              );
-            }
-          });
-        }
+        console.log(response);
+        return response.json();
+        // if (response.ok) {
+
+        //   return response.json();
+        // }
+        // else {
+        //   return response.json().then((data) => {
+        //     if (data && data.error) {
+        //       setValidationError(data.error);
+        //     } else {
+        //       setValidationError(
+        //         "An error occurred while processing your request."
+        //       );
+        //     }
+        //   });
+        // }
       })
       .then((data) => {
-        if (data && data.teacherID) {
-          navigate("/landingPage");
-          return data.teacherID;
-        } else {
-          console.error("ID could not be found.");
-        }
+        console.log(data);
+        // if (data && data.teacherID) {
+        //   navigate("/landingPage");
+        //   return data.teacherID;
+        // } else {
+        //   console.error("ID could not be found.");
+        // }
       })
       .catch((error) => {
         console.error("Error:", error);
