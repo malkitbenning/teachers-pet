@@ -7,8 +7,6 @@ const app = express();
 let cors = require("cors");
 app.use(cors());
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -23,17 +21,7 @@ const fetchPupilData = require("./fetchPupilData");
 const deletePupil = require("./delete-pupil");
 const restorePupil = require("./restore-pupil");
 const getQandA = require("./getQandA");
-
-const validateUser = (req, res) => {
-  const { teacherUsername, teacherPassword } = req.body;
-
-  if (teacherUsername === "dbenning" && teacherPassword === "password") {
-    res.status(200).json({ message: "Login successful.", teacherID: "3" });
-  } else {
-    res.status(401).json({ error: "Login failed, please try again." });
-  }
-};
-
+const validateUser = require("./validate-user");
 
 app.get("/getQandA", getQandA);
 app.get("/fetch-pupil-data", fetchPupilData);
