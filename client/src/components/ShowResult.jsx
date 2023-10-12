@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TeacherOverride from "./TeacherOverride";
 
-function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pupilName,date }) {
+function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pupilName, date }) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [overrideScore, setOverrideScore] = useState("");
@@ -13,11 +13,9 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
   useEffect(() => {
     let score = 0;
     for (let questionIndex in selectedAnswers) {
-      const answer = questions[questionIndex].options.find(
-        (ans) => ans.id === selectedAnswers[questionIndex]
-      );
-      if (answer && answer.score) {
-        score += answer.score;
+      const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === selectedAnswers[questionIndex]);
+      if (answer && answer.answer_score) {
+        score += answer.answer_score;
       }
     }
     setTotalScore(score);
@@ -25,49 +23,60 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
 
   return (
     <div>
-      <button
-         type="button"
-        className="btn btn-primary showResultBtn"
-        onClick={handleShowResults}
-      >
+      <button type="button" className="btn btn-primary showResultBtn" onClick={handleShowResults}>
         Show Result
       </button>
       {showResults && (
         <table className="table">
-            <p className="resultHeader">Teacher Name: {teacherName}</p>
-            <p className="resultHeader">Pupil Name: {pupilName}</p>
-            <tbody>
-              {Object.keys(selectedAnswers).map((questionIndex) => {
-                const que = questions[questionIndex];
-                const answer = que.options.find(
-                  (ans) => ans.id === selectedAnswers[questionIndex]
-                );
-                const commentForAnswer = comments[questionIndex] || "";
+          <p className="resultHeader">Teacher Name: {teacherName}</p>
+          <p className="resultHeader">Pupil Name: {pupilName}</p>
+          <tbody>
+            {Object.keys(selectedAnswers).map((questionIndex) => {
+              const que = questions[questionIndex];
 
-                return (
-                  <React.Fragment key={questionIndex}>
-                    <tr className="question">
-                      <td colSpan="9"><h3>{que.Criterion}</h3></td>
-                      <td className="score" colSpan="1"><h3 className="title" >Score {que.score}</h3></td>
-                    </tr>
-                    <tr>
-                      <td colSpan="9" className="answer-text">{answer.text}</td>
-                      <td  className="score"  rowSpan="2" ><span className="title">{answer.score}</span></td>
-                    </tr>
-                    <tr>
-                      <td colSpan="9">Teacher comments: {commentForAnswer}</td>
-                    </tr>
-                  </React.Fragment>
-                );
-              })}
-              <TeacherOverride
-                totalScore={totalScore}
-                setTotalScore={setTotalScore}
-                overrideScore={overrideScore}
-                setOverrideScore={setOverrideScore}
-              />
-            </tbody>
-          </table>
+              const answer = que.answers.find((ans) => ans.answer_id === selectedAnswers[questionIndex]);
+              if (answer) {
+                console.log(answer.answer_text);
+              } else {
+                console.log("Answer not found!");
+              }
+              console.log("questions answers:", answer);
+              const commentForAnswer = comments[questionIndex] || "";
+
+              return (
+                <React.Fragment key={questionIndex}>
+                  <tr className="question">
+                    <td colSpan="9">
+                      <h3>
+                        Criterion{que.criterion_code}: {que.question_text}
+                      </h3>
+                    </td>
+                    <td className="score" colSpan="1">
+                      <h3 className="title">Score {que.answer_score}</h3>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="9" className="answer-text">
+                      {answer.answer_text}
+                    </td>
+                    <td className="score" rowSpan="2">
+                      <span className="title">{answer.answer_score}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="9">Teacher comments: {commentForAnswer}</td>
+                  </tr>
+                </React.Fragment>
+              );
+            })}
+            <TeacherOverride
+              totalScore={totalScore}
+              setTotalScore={setTotalScore}
+              overrideScore={overrideScore}
+              setOverrideScore={setOverrideScore}
+            />
+          </tbody>
+        </table>
       )}
     </div>
   );
