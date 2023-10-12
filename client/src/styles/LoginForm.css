@@ -131,3 +131,8 @@ button:active {
 button:hover {
   color: #3498db;
 }
+
+button:focus,
+input:focus {
+  outline: 2px solid #3498db;
+}

@@ -117,7 +117,6 @@ function LoginForm() {
             <div className="left-align">
               <span className="login--invalid">{passwordError}</span>
             </div>
-            <div className="forgot-pass"></div>
             <LoginButton handleValidateUser={handleValidateUser} />
           </form>
         </div>
