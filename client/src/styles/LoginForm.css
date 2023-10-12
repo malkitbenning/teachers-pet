@@ -9,13 +9,14 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 .login-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 43px);
+  height: calc(100vh - 10em);
   overflow: auto;
 }
 
@@ -26,11 +27,21 @@ body {
   border-radius: 10px;
   box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
 }
-.content .text {
-  font-size: 33px;
-  font-weight: 600;
-  margin-bottom: 35px;
+.content .login--header {
+  margin-bottom: 1rem;
   color: #595959;
+}
+
+.login--header h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.login--header h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 0.8rem;
 }
 
 .login--invalid {
@@ -52,6 +63,7 @@ body {
   width: 100%;
   display: flex;
   position: relative;
+  margin-top: 1rem;
 }
 
 .field:nth-child(2) {

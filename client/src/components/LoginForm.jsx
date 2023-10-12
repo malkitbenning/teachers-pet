@@ -12,10 +12,7 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  ////// REMEMBER TO REMOVE THE LOCAL HOST URL
-  const apiURL = "http://localhost:5000";
-
-  // const apiURL = "https://teacher-server-9cir.onrender.com";
+  const apiURL = "https://teacher-server-9cir.onrender.com";
 
   const handleValidateUser = (event) => {
     event.preventDefault();
@@ -74,7 +71,7 @@ function LoginForm() {
     <>
       <div className="login-container">
         <div className="content">
-          <div className="text">
+          <div className="login--header">
             <h2>Login</h2>
             <h3>Support Allocation Form</h3>
           </div>
