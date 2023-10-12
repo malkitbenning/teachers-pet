@@ -33,13 +33,18 @@ body {
   color: #595959;
 }
 
-/* .login--field {
-  display: flex;
-  flex-direction: column;
-} */
-
 .login--invalid {
   color: red;
+}
+
+.left-align {
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.center-align {
+  text-align: center;
+  margin-inline: 1rem;
 }
 
 .field {
@@ -48,13 +53,15 @@ body {
   display: flex;
   position: relative;
 }
+
 .field:nth-child(2) {
   margin-top: 20px;
 }
+
 .field input {
   height: 100%;
   width: 100%;
-  padding-left: 45px;
+  padding-left: 2rem;
   outline: none;
   border: none;
   font-size: 18px;
@@ -63,15 +70,18 @@ body {
   border-radius: 25px;
   box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;
 }
+
 .field input:focus {
   box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #ffffff73;
 }
+
 .field span {
   position: absolute;
   color: #595959;
   width: 50px;
   line-height: 50px;
 }
+
 .field label {
   position: absolute;
   top: 50%;
@@ -80,6 +90,7 @@ body {
   pointer-events: none;
   color: #666666;
 }
+
 .field input:valid ~ label {
   opacity: 0;
 }
@@ -99,6 +110,7 @@ button {
   color: #595959;
   box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;
 }
+
 button:focus {
   color: #3498db;
   box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;

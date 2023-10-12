@@ -79,10 +79,10 @@ function LoginForm() {
             <h3>Support Allocation Form</h3>
           </div>
           <form className="loginForm" action="#" onSubmit={handleValidateUser}>
-            <div>
+            <div className="center-align">
               <span className="login--invalid">{validationError}</span>
             </div>
-            <div className="login--field field">
+            <div className="field login--field">
               <label htmlFor="username"></label>
               <input
                 type="text"
@@ -96,11 +96,12 @@ function LoginForm() {
                 }}
                 placeholder="Username"
               />
-
               <span className="fas fa-user"></span>
             </div>
-            <span className="login--invalid">{usernameError}</span>
-            <div className="login--field field">
+            <div className="left-align">
+              <span className="login--invalid">{usernameError}</span>
+            </div>
+            <div className="field login--field">
               <label htmlFor="password"></label>
               <input
                 type="password"
@@ -116,7 +117,9 @@ function LoginForm() {
               />
               <span className="fas fa-lock"></span>
             </div>
-            <span className="login--invalid">{passwordError}</span>
+            <div className="left-align">
+              <span className="login--invalid">{passwordError}</span>
+            </div>
             <div className="forgot-pass"></div>
             <LoginButton handleValidateUser={handleValidateUser} />
           </form>
