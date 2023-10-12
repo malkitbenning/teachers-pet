@@ -19,8 +19,6 @@ app.listen(expressPort, () =>
   console.log(`Listening on expressPort ${expressPort}`)
 );
 
-const client = require("./db-client");
-
 const deletePupil = require("./delete-pupil");
 const restorePupil = require("./restore-pupil");
 const validateUser = require("./validate-user");

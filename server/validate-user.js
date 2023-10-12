@@ -3,24 +3,31 @@ const client = require("./db-client");
 const validateUser = (req, res) => {
   const { teacherUsername, teacherPassword } = req.body;
 
-  client.query("SELECT * FROM teacher").then((result) => {
-    console.log(result.rows);
-    const teacherID = result.rows.teacher_id;
-    res.status(200).json(result.rows);
-
-    // if (teacherPassword && teacherUsername) {
-    //   console.log(result.rows);
-    //   res.status(200).json(result.rows);
-    // }
-
-    // if (result) {
-    //   res
-    //     .status(200)
-    //     .json({ message: "Login successful.", teacherID: result });
-    // } else {
-    //   res.status(401).json({ error: "Login failed, please try again." });
-    // }
-  });
+  client
+    .query(
+      "SELECT teacher_id FROM teacher WHERE teacher_username = $1 AND teacher_password = $2",
+      [teacherUsername, teacherPassword]
+    )
+    .then((result) => {
+      if (result.rowCount > 0) {
+        res.status(200).json({
+          teacherID: result.rows[0].teacher_id,
+        });
+      } else {
+        res.status(404).json({
+          result: "failure",
+          message: "Login failed, user not found.",
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error.message);
+      res.status(502).json({
+        result: "failure",
+        message: "Failed to login",
+      });
+      client.end();
+    });
 };
 
 module.exports = validateUser;
