@@ -55,9 +55,8 @@ function LoginForm() {
         }
       })
       .then((data) => {
-        console.log(data.teacherID);
         if (data && data.teacherID) {
-          navigate("/landingPage");
+          navigate("/landingPage", { state: { teacherID: data.teacherID } });
           return data.teacherID;
         } else {
           console.error("ID could not be found.");
