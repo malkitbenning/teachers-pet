@@ -44,6 +44,7 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
                 );
                 const commentForAnswer = comments[questionIndex] || "";
 
+<<<<<<< Updated upstream
                 return (
                   <React.Fragment key={questionIndex}>
                     <tr className="question">
@@ -68,6 +69,49 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
               />
             </tbody>
           </table>
+=======
+              const answer = que.answers.find((ans) => ans.answer_id === selectedAnswers[questionIndex]);
+              if (answer) {
+                console.log(answer.answer_text);
+              } else {
+              }
+              const commentForAnswer = comments[questionIndex] || "";
+
+              return (
+                <React.Fragment key={questionIndex}>
+                  <tr className="question">
+                    <td colSpan="9">
+                      <h3>
+                        Criterion{que.criterion_code}: {que.question_text}
+                      </h3>
+                    </td>
+                    <td className="score" colSpan="1">
+                      <h3 className="title">Score {que.answer_score}</h3>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="9" className="answer-text">
+                      {answer.answer_text}
+                    </td>
+                    <td className="score" rowSpan="2">
+                      <span className="title">{answer.answer_score}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="9">Teacher comments: {commentForAnswer}</td>
+                  </tr>
+                </React.Fragment>
+              );
+            })}
+            <TeacherOverride
+              totalScore={totalScore}
+              setTotalScore={setTotalScore}
+              overrideScore={overrideScore}
+              setOverrideScore={setOverrideScore}
+            />
+          </tbody>
+        </table>
+>>>>>>> Stashed changes
       )}
     </div>
   );

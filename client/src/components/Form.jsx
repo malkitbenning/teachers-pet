@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import questions from "./data/questions.json";
 import ShowResult from "./ShowResult";
-import Appendices from "./Appendices";
+
 
 function Form() {
+  const dataUrl = "http://localhost:5000/getQandA";
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
@@ -62,55 +63,59 @@ function Form() {
               </td>
             </tr>
           </div>
-          {questions.map((que, index) => (
-            <React.Fragment key={index}>
-              <div>
-                <Appendices questions={questions} questionIndex={index} />
-              </div>
 
-              <tr className="question">
-                <td colSpan="4">
-                  <h3>{que.Criterion}</h3>
-                </td>
-                <td colSpan="2">
-                  <h3>Score {que.options.score}</h3>
-                </td>
-              </tr>
-              {que.options.map((answer) => (
-                <tr key={answer.id}>
-                  <td className="answer-radio">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name={"question_" + index}
-                      value={answer.id}
-                      checked={selectedAnswers[index] === answer.id}
-                      onChange={() => handleRadioChange(index, answer.id)}
-                    />
+          {questions.length === 0 ? (
+            <tr>Loading...</tr>
+          ) : (
+            questions.map((que, index) => (
+              <React.Fragment key={index}>
+                <tr className="question">
+                  <td colSpan="4">
+                    <h3>
+                      Criterion{que.criterion_code}: {que.question_text}
+                    </h3>
                   </td>
-                  <td colSpan="3" className="answer-text">
-                    {answer.text}
-                  </td>
-                  <td className="score" colSpan="2">
-                    {answer.score}
+                  <td colSpan="2">
+                    <h3>Score </h3>
                   </td>
                 </tr>
-              ))}
-              <tr>
-                <td colSpan="4" className="comment-section">
-                  <span className="comments">comments</span>
-                  <textarea
-                    maxlength="255"
-                    value={comments[index]}
-                    onChange={(e) => handleComment(index, e)}
-                    placeholder="Add a comment for this answer..."
-                  />
-                </td>
-                <td style={{ width: "8%" }}>CYP Score</td>
-                <td>{scores[index] || 0}</td>
-              </tr>
-            </React.Fragment>
-          ))}
+                {que.answers &&
+                  que.answers.map((answer) => (
+                    <tr key={answer.answer_id}>
+                      <td className="answer-radio">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name={"question_" + index}
+                          value={answer.answer_id}
+                          checked={selectedAnswers[index] === answer.answer_id}
+                          onChange={() => handleRadioChange(index, answer.answer_id)}
+                        />
+                      </td>
+                      <td colSpan="3" className="answer-text">
+                        {answer.answer_text}
+                      </td>
+                      <td className="score" colSpan="2">
+                        {answer.answer_score}
+                      </td>
+                    </tr>
+                  ))}
+                <tr>
+                  <td colSpan="4" className="comment-section">
+                    <span className="comments">comments</span>
+                    <textarea
+                      maxLength="255"
+                      value={comments[index]}
+                      onChange={(e) => handleComment(index, e)}
+                      placeholder="Add a comment for this answer..."
+                    />
+                  </td>
+                  <td style={{ width: "8%" }}>CYP Score</td>
+                  <td>{scores[index] || 0}</td>
+                </tr>
+              </React.Fragment>
+            ))
+          )}
         </tbody>
       </table>
       <ShowResult

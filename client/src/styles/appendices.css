@@ -14,7 +14,11 @@
 }
 
 .note {
-  
+
   font-style: italic;
   color: #333;
+}
+
+.appendixTitle{
+  text-align: center;
 }

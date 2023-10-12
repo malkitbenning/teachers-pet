@@ -11,6 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>Teachers PET</p>
+        <h3 className="formTitle">Support Allocation Form</h3>
       </header>
       <BrowserRouter>
         <Routes>
