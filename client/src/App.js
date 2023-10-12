@@ -5,7 +5,6 @@ import Form from "./components/Form";
 import LoginForm from "./components/LoginForm";
 import LandingPage from "./components/LandingPage";
 
-
 function App() {
   return (
     <div className="App">

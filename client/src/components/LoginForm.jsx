@@ -12,7 +12,10 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  const apiURL = "https://teacher-server-9cir.onrender.com";
+  ////// REMEMBER TO REMOVE THE LOCAL HOST URL
+  const apiURL = "http://localhost:5000";
+
+  // const apiURL = "https://teacher-server-9cir.onrender.com";
 
   const handleValidateUser = (event) => {
     event.preventDefault();
@@ -22,11 +25,11 @@ function LoginForm() {
     setValidationError("");
 
     if (!username.trim()) {
-      setUsernameError("Username is required");
+      setUsernameError("Enter a username");
     }
 
     if (!password.trim()) {
-      setPasswordError("Password is required");
+      setPasswordError("Enter a password");
     }
 
     fetch(`${apiURL}/login`, {
@@ -71,13 +74,16 @@ function LoginForm() {
     <>
       <div className="login-container">
         <div className="content">
-          <div className="text">Login</div>
+          <div className="text">
+            <h2>Login</h2>
+            <h3>Support Allocation Form</h3>
+          </div>
           <form className="loginForm" action="#" onSubmit={handleValidateUser}>
             <div>
               <span className="login--invalid">{validationError}</span>
             </div>
-            <div className="login--field">
-              <label htmlFor="username">Username</label>
+            <div className="login--field field">
+              <label htmlFor="username"></label>
               <input
                 type="text"
                 required
@@ -88,12 +94,13 @@ function LoginForm() {
                   setUsernameError("");
                   setValidationError("");
                 }}
+                placeholder="Username"
               />
               <span className="login--invalid">{usernameError}</span>
               <span className="fas fa-user"></span>
             </div>
-            <div className="login--field">
-              <label htmlFor="password">Password</label>
+            <div className="login--field field">
+              <label htmlFor="password"></label>
               <input
                 type="password"
                 required
@@ -104,9 +111,10 @@ function LoginForm() {
                   setPasswordError("");
                   setValidationError("");
                 }}
+                placeholder="Password"
               />
-              <span className="login--invalid">{passwordError}</span>
               <span className="fas fa-lock"></span>
+              <span className="login--invalid">{passwordError}</span>
             </div>
             <div className="forgot-pass"></div>
             <LoginButton handleValidateUser={handleValidateUser} />
