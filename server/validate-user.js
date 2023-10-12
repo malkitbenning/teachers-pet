@@ -21,7 +21,6 @@ const validateUser = (req, res) => {
       }
     })
     .catch((error) => {
-      console.log(error.message);
       res.status(502).json({
         result: "failure",
         message: "Failed to login",
