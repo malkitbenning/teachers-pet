@@ -26,7 +26,7 @@ const restorePupil = require("./restore-pupil");
 
 const validateUser = (req, res) => {
   const { teacherUsername, teacherPassword } = req.body;
-  console.log(teacherUsername, teacherPassword);
+
   client.query("SELECT * FROM teacher").then((result) => {
     console.log(result.rows);
     const teacherID = result.rows.teacher_id;
