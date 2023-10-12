@@ -2,7 +2,6 @@ import React from "react";
 import "../styles/appendices.css";
 function Appendices({ appendixData }) {
   if (!appendixData?.details) {
-    console.log("No appendices data found");
     return null;
   }
 
