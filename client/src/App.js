@@ -9,7 +9,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="header--text">Teachers PET</h1>
+        <h1 className="header--title">Teacher's P.E.T.</h1>
+        <p className="header--text">Pupil Evaluation Tool</p>
       </header>
       <BrowserRouter>
         <Routes>
