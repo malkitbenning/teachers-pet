@@ -1,4 +1,5 @@
 const { Client } = require("pg");
+
 const client = new Client({
   host: process.env.DBHOST,
   user: process.env.DBUSER,
@@ -13,3 +14,4 @@ client.connect(function (err) {
 });
 
 module.exports = client;
+
