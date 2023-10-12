@@ -44,8 +44,8 @@ function LoginForm() {
           return response.json();
         } else {
           return response.json().then((data) => {
-            if (data && data.error) {
-              setValidationError(data.error);
+            if (data) {
+              setValidationError(data.message);
             } else {
               setValidationError(
                 "An error occurred while processing your request."
@@ -56,7 +56,7 @@ function LoginForm() {
       })
       .then((data) => {
         if (data && data.teacherID) {
-          navigate("/landingPage");
+          navigate("/landingPage", { state: { teacherID: data.teacherID } });
           return data.teacherID;
         } else {
           console.error("ID could not be found.");
