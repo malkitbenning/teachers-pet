@@ -96,9 +96,10 @@ function LoginForm() {
                 }}
                 placeholder="Username"
               />
-              <span className="login--invalid">{usernameError}</span>
+
               <span className="fas fa-user"></span>
             </div>
+            <span className="login--invalid">{usernameError}</span>
             <div className="login--field field">
               <label htmlFor="password"></label>
               <input
@@ -114,8 +115,8 @@ function LoginForm() {
                 placeholder="Password"
               />
               <span className="fas fa-lock"></span>
-              <span className="login--invalid">{passwordError}</span>
             </div>
+            <span className="login--invalid">{passwordError}</span>
             <div className="forgot-pass"></div>
             <LoginButton handleValidateUser={handleValidateUser} />
           </form>
