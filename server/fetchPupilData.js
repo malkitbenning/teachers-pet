@@ -1,44 +1,33 @@
-const { client } = require("./db-client");
+const client = require("./db-client");
 
-async function fetchPupilData(req, res) {
-  try {
-    const query = `
-      SELECT
-        p.pupil_id,
-        p.pupil_nickname,
-        p.last_update,
-        p.override_score,
-        COALESCE(SUM(a.answer_score), 0) AS total_score,
-        CONCAT(
-          matrix.support_category,
-          ' | ',
-          matrix.support_allocation_text
-        ) AS final_support_allocation
-      FROM
-        pupil p
-      LEFT JOIN
-        selected_option AS so
-      ON
-        p.pupil_id = so.pupil_id
-      LEFT JOIN
-        answer AS a
-      ON
-        so.answer_id = a.answer_id
-      LEFT JOIN
-        support_allocation_matrix AS matrix
-      ON
-        p.override_score >= matrix.range_minimum
-        AND p.override_score <= matrix.range_maximum
-      GROUP BY
-        p.pupil_id, p.pupil_nickname, p.last_update, p.override_score, matrix.support_category, matrix.support_allocation_text;
-    `;
-    const result = await client.query(query);
-
-    res.json(result.rows);
-  } catch (error) {
-    console.error("Error fetching pupil data:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
+function fetchPupilData(req, res) {
+  const reqTeacherID = req.body.teacherID;
+  client
+      .query(
+        "select pv.pupil_id, pv.pupil_nickname, pv.last_update_date, pv.override_score, pv.calculated_score, case when pv.override_score is null then sam.support_category else pv.override_support_category end as final_support_category, case when pv.override_score is null then sam.support_allocation_text else pv.override_support_allocation_text end as final_support_allocation from pupil_view pv left join support_allocation_matrix sam on (pv.calculated_score >= sam.range_minimum and pv.calculated_score <= range_maximum) where pv.teacher_id = $1", [reqTeacherID]
+      )
+      .then((result) => {
+        if (result.rowCount > 0) {
+          res.status(200).json(result.rows);
+        } else {
+          res.status(404).json({
+            result: "failure",
+            message: "Pupil summary list could not be found",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+        res
+          .status(502)
+          .json({
+            result: "failure",
+            message: "Error fetching pupil data",
+          })
+          .finally(() => {
+            client.end();
+          });
+      });
 }
 
 module.exports = fetchPupilData;

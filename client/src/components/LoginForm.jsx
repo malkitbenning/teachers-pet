@@ -13,7 +13,6 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const apiURL = "https://teacher-server-9cir.onrender.com";
-
   const handleValidateUser = (event) => {
     event.preventDefault();
 
@@ -62,6 +61,7 @@ function LoginForm() {
           console.error("ID could not be found.");
         }
       })
+  
       .catch((error) => {
         console.error("Error:", error);
       });
