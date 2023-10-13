@@ -70,10 +70,12 @@ function LoginForm() {
   return (
     <>
       <div className="login-container">
+        <div>
+          <h2 className="subheading">Support Allocation Form</h2>
+        </div>
         <div className="content">
           <div className="login--header">
             <h2>Login</h2>
-            <h3>Support Allocation Form</h3>
           </div>
           <form className="loginForm" action="#" onSubmit={handleValidateUser}>
             <div className="center-align">

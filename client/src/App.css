@@ -3,7 +3,8 @@
 }
 
 .App-header {
-  margin-top: 2rem;
+  width: 100vh;
+  margin: auto;
   font-size: calc(10px + 2vmin);
 }
 

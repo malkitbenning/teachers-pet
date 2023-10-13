@@ -14,9 +14,10 @@ body {
 
 .login-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 13em);
+  height: calc(100vh - 8rem);
   overflow: auto;
 }
 
@@ -32,16 +33,17 @@ body {
   color: #595959;
 }
 
-.login--header h2 {
-  font-size: 2.15rem;
-  font-weight: 600;
+.subheading {
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: 500;
+  /* margin-top: 5rem; */
+  margin-bottom: 3rem;
 }
 
-.login--header h3 {
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin-top: 0.8rem;
+.login--header h2 {
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .login--invalid {
