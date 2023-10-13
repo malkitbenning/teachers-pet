@@ -10,7 +10,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Teachers PET</p>
+        <h1 className="teacherpet-header">Teachers PET</h1>
+        <p className="pet-header"> (Pupil Evaluation tool)</p>
       </header>
       <BrowserRouter>
         <Routes>
