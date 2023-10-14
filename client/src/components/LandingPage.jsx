@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useLocation} from "react-router-dom";
 import  "../styles/LandingPage.css";
 import PupilRow from "./PupilRow";
 import TableHeaderRow from "./TeacherHeaderRow";
 
 function LandingPage() {
+  const location = useLocation();
+  const teacherID = location.state.teacherID;
+
   const [pupils, setPupils] = useState([]);
+  const apiURL = "https://teacher-server-9cir.onrender.com";
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/fetch-pupil-data")
-      .then((response) => {
+    fetch(`${apiURL}/fetch-pupil-data`, {
+    method: "POST", 
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ teacherID }),
+  })
+     .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -22,13 +32,13 @@ function LandingPage() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [teacherID]);
   const deletePupil = (pupilId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this pupil?"
     );
     if (confirmDelete) {
-      fetch(`http://localhost:5000/pupil/${pupilId}`, {
+      fetch(`${apiURL}/pupil/${pupilId}`, {
         method: "DELETE",
       })
         .then((response) => {
@@ -46,7 +56,7 @@ function LandingPage() {
   };
   return (
     <div>
-      <h1>Welcome to Landing page</h1>
+      <h1>Pupil Records</h1>
       <Link to="/form">Add New Pupil</Link>
       {pupils.length === 0 ? (
         <p>No pupils data available.</p>

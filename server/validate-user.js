@@ -16,11 +16,12 @@ const validateUser = (req, res) => {
       } else {
         res.status(404).json({
           result: "failure",
-          message: "Login failed, user not found.",
+          message: "Login failed, wrong username or password.",
         });
       }
     })
-    .catch((error) => {
+
+   .catch((error) => {
       res.status(502).json({
         result: "failure",
         message: "Failed to login",
