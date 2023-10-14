@@ -37,7 +37,6 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
               const que = questions[questionIndex];
               const answer = que.answers.find((ans) => ans.answer_id === selectedAnswers[questionIndex]);
               const commentForAnswer = comments[questionIndex] || "";
-
               return (
                 <React.Fragment key={questionIndex}>
                   <tr className="question">
