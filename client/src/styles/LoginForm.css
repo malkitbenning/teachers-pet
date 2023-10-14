@@ -9,9 +9,7 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
 }
-
 .login-container {
   display: flex;
   flex-direction: column;
@@ -20,7 +18,6 @@ body {
   height: calc(100vh - 8rem);
   overflow: auto;
 }
-
 .content {
   width: 430px;
   padding: 40px 30px;
