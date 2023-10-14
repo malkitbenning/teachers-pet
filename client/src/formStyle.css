@@ -1,11 +1,23 @@
-/*
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+html,
+body {
+  height: 100%;
+}
 
  /* General styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
 }
-
+.formTitle{
+  text-align: center;
+}
 .table {
   margin: 50px auto;
   width: 80%;
@@ -40,6 +52,7 @@ h3 {
 .table td {
   border: 1px solid #dee2e6;
   padding: 10px;
+  align-items: flex-start;
 }
 
 /* Styling for questions */
@@ -71,7 +84,7 @@ td:last-child {
 .table td {
   border: 1px solid #e0e0e0;
   padding: 10px 15px;
-  text-align: left ;
+  text-align: left;
 }
 
 .question h3 {
@@ -120,9 +133,7 @@ td[colspan="2"] {
   display: inline-block;
 }
 
-.btn-primary {
-  margin-bottom: 50px;
-}
+
 .score {
   text-align: center !important;
 }
@@ -131,27 +142,76 @@ td[colspan="2"] {
 }
 .showResultBtn {
   width: 200px;
+  display: flex;
+  justify-content: center;
+
+  margin: 70px auto;
 }
 
-.inputField td{
+.inputField td {
   border: 0;
 }
-.inputField{
+
+.inputField {
   display: flex;
-  border-bottom:3px solid gray ;
-  background-color: #ede9e9;
+  flex-direction: column;
+  border-bottom: 3px solid gray;
+  background-color: #e9ecef;
   margin: 0px auto;
-  padding: 4px;
+  padding: 15px;
   box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+  width: 100%;
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
+
+.textField label {
+  width: 100%;
+  padding: 0 5px;
+  font-size: 16px;
 
 }
-.textField label{
-  width: 130px;
-}
-.textField input{
-  width: 240px;
-  padding: 5px;
+
+.textField input {
+  width: 100%;
+  padding: 10px;
   border: 1px solid gray;
   border-radius: 8px;
-
+  margin-top: 10px;
+  transition: border-color 0.3s ease;
 }
+
+.textField input:focus {
+  border-color: #333;
+}
+
+/* Responsive for tablets */
+@media (min-width: 576px) and (max-width: 767px) {
+  .textField label {
+    font-size: 18px;
+    margin-left: 0px;
+    display: block;
+  }
+
+  .textField input {
+    padding: 5px;
+  }
+}
+
+/* Responsive for larger screens */
+@media (min-width: 970px) {
+  .inputField {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .textField label {
+    width: 150px;
+    font-size: 20px;
+  }
+
+  .textField input {
+    width: 260px;
+  }
+}
+
