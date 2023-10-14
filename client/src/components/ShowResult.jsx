@@ -30,14 +30,12 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
         <table className="table">
           <p className="resultHeader">Teacher Name: {teacherName}</p>
           <p className="resultHeader">Pupil Name: {pupilName}</p>
+          <p className="resultHeader">Date: {date}</p>
           <tbody>
             {Object.keys(selectedAnswers).map((questionIndex) => {
-              const que = questions[questionIndex];
 
+              const que = questions[questionIndex];
               const answer = que.answers.find((ans) => ans.answer_id === selectedAnswers[questionIndex]);
-              if (answer) {
-              } else {
-              }
               const commentForAnswer = comments[questionIndex] || "";
 
               return (

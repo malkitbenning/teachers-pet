@@ -25,7 +25,7 @@ function Form() {
     fetch(dataUrl)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("There are no data to display");
+          throw new Error("There is no data to display");
         }
         return response.json();
       })
