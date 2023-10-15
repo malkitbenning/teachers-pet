@@ -1,12 +1,12 @@
 import React from "react";
 import "../styles/appendices.css";
-
-function Appendices({ questionIndex, questions }) {
-  const que = questions[questionIndex];
-  if (!que?.appendix) {
+function Appendices({ appendixData }) {
+  if (!appendixData?.details) {
     return null;
   }
-  const { type, details } = que.appendix;
+
+  const { type, details } = appendixData;
+
   return (
     <div>
       <table className="table appendixTable">
@@ -18,11 +18,11 @@ function Appendices({ questionIndex, questions }) {
           </tr>
           {details.map((detail, detailIndex) => (
             <React.Fragment key={detailIndex}>
-              <tr>
+              <tr className="appendixTitle">
                 <h4>{detail.subsection}</h4>
               </tr>
               <tr>
-                <h4>{detail.title}</h4>
+                <h4 className="appendixTitle">{detail.title}</h4>
               </tr>
               <tr>
                 {detail.description && <td colSpan="2">{detail.description}</td>}

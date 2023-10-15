@@ -24,7 +24,7 @@ const getQandA = require("./getQandA");
 const validateUser = require("./validate-user");
 
 app.get("/getQandA", getQandA);
-app.get("/fetch-pupil-data", fetchPupilData);
+app.post("/fetch-pupil-data", fetchPupilData);
 app.post("/login", validateUser);
 app.delete("/delete-pupil", deletePupil);
 app.post("/restore-pupil", restorePupil);

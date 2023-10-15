@@ -5,12 +5,12 @@ import Form from "./components/Form";
 import LoginForm from "./components/LoginForm";
 import LandingPage from "./components/LandingPage";
 
-
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Teachers PET</p>
+        <h1 className="header--title">Teacher's P.E.T.</h1>
+        <p className="header--text">Pupil Evaluation Tool</p>
       </header>
       <BrowserRouter>
         <Routes>

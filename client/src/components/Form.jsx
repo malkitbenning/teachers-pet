@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ShowResult from "./ShowResult";
-
+import appendices from "./data/appendices.json";
+import Appendices from "./Appendices";
 
 function Form() {
-  const dataUrl = "http://localhost:5000/getQandA";
+  const dataUrl = "https://teacher-server-9cir.onrender.com/getQandA";
+  const [questions, setQuestions] = useState([]);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [questions, setQuestions] = useState([]);
@@ -24,7 +26,7 @@ function Form() {
     fetch(dataUrl)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("There are no data to display");
+          throw new Error("There is no data to display");
         }
         return response.json();
       })
@@ -77,6 +79,14 @@ function Form() {
           ) : (
             questions.map((que, index) => (
               <React.Fragment key={index}>
+                {
+                  <div>
+                    {que.criterion_code === "1.1" || que.criterion_code === "1.2" || que.criterion_code === "7" ? (
+                      <Appendices appendixData={appendices.appendices[index]} />
+                    ) : null}
+                    {que.criterion_code === "7" && <Appendices appendixData={appendices.appendices[2]} />}
+                  </div>
+                }
                 <tr className="question">
                   <td colSpan="4">
                     <h3>
