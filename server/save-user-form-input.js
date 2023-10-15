@@ -2,9 +2,35 @@ const client = require("./db-client");
 const deletePupil = require("./delete-pupil");
 
 const saveUserFormInput = (req, res) => {
+
+  function addAnAnswer(pupilID, anAnswer) {
+    client
+      .query("INSERT INTO selected_option (pupil_id, answer_id, teacher_comment) VALUES ($1,$2,$3)", [
+        pupilID,
+        anAnswer.answerID,
+        anAnswer.teacherComment,
+      ])
+      .then((result) => {
+        if (result.rowCount > 0) {
+        } else {
+          res.status(404).json({
+            result: "failure",
+            message: "teacher answer could not be inserted",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        res.status(502).json({
+          result: "failure",
+          message: "Error saving teacher answers",
+        });
+        client.end();
+      });
+  }
+
   const { formSubmission } = req.body;
-  const { teacherID, pupilID, pupilName, updateDate, overrideScore, overrideComment, questionsAnswers } =
-    formSubmission;
+  const { teacherID, pupilID, pupilName, updateDate, overrideScore, overrideComment, teacherAnswers } = formSubmission;
 
   // delete existing pupil record before inserting new version
   if (pupilID) {
@@ -54,6 +80,10 @@ const saveUserFormInput = (req, res) => {
         )
         .then((result) => {
           if (result.rowCount > 0) {
+            for (let i = 0; i < teacherAnswers.length; i++) {
+              const anAnswer = teacherAnswers[i];
+              addAnAnswer(nextPupilID, anAnswer);
+            }
             res.status(200).json({
               pupilID: nextPupilID,
             });
