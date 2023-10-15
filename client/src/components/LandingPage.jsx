@@ -57,7 +57,7 @@ function LandingPage() {
   return (
     <div>
       <h1>Pupil Records</h1>
-      <Link to="/form">Add New Pupil</Link>
+      <Link to="/form">New Support Allocation Form</Link>
       {pupils.length === 0 ? (
         <p>No pupils data available.</p>
       ) : (

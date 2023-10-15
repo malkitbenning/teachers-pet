@@ -16,7 +16,7 @@ const validateUser = (req, res) => {
       } else {
         res.status(404).json({
           result: "failure",
-          message: "Login failed, user not found.",
+          message: "Login failed, wrong username or password.",
         });
       }
     })

@@ -2,8 +2,13 @@
   text-align: center;
 }
 
-
 .App-header {
+  width: 100%;
+  margin: auto;
   font-size: calc(10px + 2vmin);
+  text-align: center;
 }
 
+.header--text {
+  font-size: 1.5rem;
+}

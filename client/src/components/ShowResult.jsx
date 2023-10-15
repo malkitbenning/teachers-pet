@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TeacherOverride from "./TeacherOverride";
 import "../styles/ShowResult.css";
 
-function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pupilName,date }) {
+function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pupilName, date }) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [overrideScore, setOverrideScore] = useState("");
@@ -23,11 +23,9 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
   useEffect(() => {
     let score = 0;
     for (let questionIndex in selectedAnswers) {
-      const answer = questions[questionIndex].options.find(
-        (ans) => ans.id === selectedAnswers[questionIndex]
-      );
-      if (answer && answer.score) {
-        score += answer.score;
+      const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === selectedAnswers[questionIndex]);
+      if (answer && answer.answer_score) {
+        score += answer.answer_score;
       }
     }
     setTotalScore(score);
@@ -88,6 +86,7 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
               />
             </tbody>
           </table>
+
       )}
     </div>
   );

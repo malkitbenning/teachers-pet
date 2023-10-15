@@ -21,11 +21,11 @@ function LoginForm() {
     setValidationError("");
 
     if (!username.trim()) {
-      setUsernameError("Username is required");
+      setUsernameError("Enter a username");
     }
 
     if (!password.trim()) {
-      setPasswordError("Password is required");
+      setPasswordError("Enter a password");
     }
 
     fetch(`${apiURL}/login`, {
@@ -70,14 +70,19 @@ function LoginForm() {
   return (
     <>
       <div className="login-container">
+        <div>
+          <h2 className="subheading">Support Allocation Form</h2>
+        </div>
         <div className="content">
-          <div className="text">Login</div>
+          <div className="login--header">
+            <h2>Login</h2>
+          </div>
           <form className="loginForm" action="#" onSubmit={handleValidateUser}>
-            <div>
+            <div className="center-align">
               <span className="login--invalid">{validationError}</span>
             </div>
-            <div className="login--field">
-              <label htmlFor="username">Username</label>
+            <div className="field login--field">
+              <label htmlFor="username"></label>
               <input
                 type="text"
                 required
@@ -88,12 +93,15 @@ function LoginForm() {
                   setUsernameError("");
                   setValidationError("");
                 }}
+                placeholder="Username"
               />
-              <span className="login--invalid">{usernameError}</span>
               <span className="fas fa-user"></span>
             </div>
-            <div className="login--field">
-              <label htmlFor="password">Password</label>
+            <div className="left-align">
+              <span className="login--invalid">{usernameError}</span>
+            </div>
+            <div className="field login--field">
+              <label htmlFor="password"></label>
               <input
                 type="password"
                 required
@@ -104,11 +112,13 @@ function LoginForm() {
                   setPasswordError("");
                   setValidationError("");
                 }}
+                placeholder="Password"
               />
-              <span className="login--invalid">{passwordError}</span>
               <span className="fas fa-lock"></span>
             </div>
-            <div className="forgot-pass"></div>
+            <div className="left-align">
+              <span className="login--invalid">{passwordError}</span>
+            </div>
             <LoginButton handleValidateUser={handleValidateUser} />
           </form>
         </div>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import questions from "./data/questions.json";
 import ShowResult from "./ShowResult";
+import appendices from "./data/appendices.json";
 import Appendices from "./Appendices";
 
 function Form() {
+  const dataUrl = "https://teacher-server-9cir.onrender.com/getQandA";
+  const [questions, setQuestions] = useState([]);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
@@ -19,16 +21,30 @@ function Form() {
     setDate(formattedDate);
   }, []);
 
-  const handleRadioChange = (questionIndex, answerId) => {
-    const answer = questions[questionIndex].options.find((ans) => ans.id === answerId);
+  useEffect(() => {
+    fetch(dataUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("There is no data to display");
+        }
+        return response.json();
+      })
+      .then((data) => setQuestions(data))
+      .catch((err) => {
+        console.error("Error fetching questions:", err.message);
+      });
+  }, []);
+
+  const handleRadioChange = (questionIndex, answer_id) => {
+    const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === answer_id);
     setSelectedAnswers((prevSelected) => ({
       ...prevSelected,
-      [questionIndex]: answerId,
+      [questionIndex]: answer_id,
     }));
 
     setScores((prevScores) => ({
       ...prevScores,
-      [questionIndex]: answer ? answer.score : 0,
+      [questionIndex]: answer ? answer.answer_score : 0,
     }));
   };
 
@@ -43,74 +59,80 @@ function Form() {
       <table className="table">
         <tbody>
           <div className="inputField">
-            <tr className="textField">
-              <td>
-                <label>Teacher Name</label>
-                <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="enter your name " />
-              </td>
-            </tr>
-            <tr className="textField">
-              <td>
-                <label>Pupil Name</label>
-                <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="enter pupil name" />
-              </td>
-            </tr>
-            <tr className="textField">
-              <td>
-                <label>Date</label>
-                <input value={date} onChange={(e) => setDate(e.target.value)} type="date" placeholder="select date " />
-              </td>
-            </tr>
+            <div className="textField">
+              <label>Teacher Name</label>
+              <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="enter your name " />
+            </div>
+            <div className="textField">
+              <label>Pupil Name</label>
+              <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="enter pupil name" />
+            </div>
+            <div className="textField">
+              <label>Date</label>
+              <input value={date} onChange={(e) => setDate(e.target.value)} type="date" placeholder="select date " />
+            </div>
           </div>
-          {questions.map((que, index) => (
-            <React.Fragment key={index}>
-              <div>
-                <Appendices questions={questions} questionIndex={index} />
-              </div>
 
-              <tr className="question">
-                <td colSpan="4">
-                  <h3>{que.Criterion}</h3>
-                </td>
-                <td colSpan="2">
-                  <h3>Score {que.options.score}</h3>
-                </td>
-              </tr>
-              {que.options.map((answer) => (
-                <tr key={answer.id}>
-                  <td className="answer-radio">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name={"question_" + index}
-                      value={answer.id}
-                      checked={selectedAnswers[index] === answer.id}
-                      onChange={() => handleRadioChange(index, answer.id)}
-                    />
+          {questions.length === 0 ? (
+            <tr>Loading...</tr>
+          ) : (
+            questions.map((que, index) => (
+              <React.Fragment key={index}>
+                {
+                  <div>
+                    {que.criterion_code === "1.1" || que.criterion_code === "1.2" || que.criterion_code === "7" ? (
+                      <Appendices appendixData={appendices.appendices[index]} />
+                    ) : null}
+                    {que.criterion_code === "7" && <Appendices appendixData={appendices.appendices[2]} />}
+                  </div>
+                }
+                <tr className="question">
+                  <td colSpan="4">
+                    <h3>
+                      Criterion{que.criterion_code}: {que.question_text}
+                    </h3>
                   </td>
-                  <td colSpan="3" className="answer-text">
-                    {answer.text}
-                  </td>
-                  <td className="score" colSpan="2">
-                    {answer.score}
+                  <td colSpan="2">
+                    <h3>Score </h3>
                   </td>
                 </tr>
-              ))}
-              <tr>
-                <td colSpan="4" className="comment-section">
-                  <span className="comments">comments</span>
-                  <textarea
-                    maxlength="255"
-                    value={comments[index]}
-                    onChange={(e) => handleComment(index, e)}
-                    placeholder="Add a comment for this answer..."
-                  />
-                </td>
-                <td style={{ width: "8%" }}>CYP Score</td>
-                <td>{scores[index] || 0}</td>
-              </tr>
-            </React.Fragment>
-          ))}
+                {que.answers &&
+                  que.answers.map((answer) => (
+                    <tr key={answer.answer_id}>
+                      <td className="answer-radio">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name={"question_" + index}
+                          value={answer.answer_id}
+                          checked={selectedAnswers[index] === answer.answer_id}
+                          onChange={() => handleRadioChange(index, answer.answer_id)}
+                        />
+                      </td>
+                      <td colSpan="3" className="answer-text">
+                        {answer.answer_text}
+                      </td>
+                      <td className="score" colSpan="2">
+                        {answer.answer_score}
+                      </td>
+                    </tr>
+                  ))}
+                <tr>
+                  <td colSpan="4" className="comment-section">
+                    <span className="comments">comments</span>
+                    <textarea
+                      maxLength="255"
+                      value={comments[index]}
+                      onChange={(e) => handleComment(index, e)}
+                      placeholder="Add a comment for this answer..."
+                    />
+                  </td>
+                  <td style={{ width: "8%" }}>CYP Score</td>
+                  <td>{scores[index] || 0}</td>
+                </tr>
+              </React.Fragment>
+            ))
+          )}
         </tbody>
       </table>
       <ShowResult
