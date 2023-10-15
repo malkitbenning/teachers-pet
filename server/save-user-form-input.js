@@ -30,7 +30,8 @@ const saveUserFormInput = (req, res) => {
   }
 
   const { formSubmission } = req.body;
-  const { teacherID, pupilID, pupilName, updateDate, overrideScore, overrideComment, teacherAnswers } = formSubmission;
+  const { teacherID, pupilID, pupilName, updateDate, overrideScore, overrideComment, teacherSelectedAnswers } =
+    formSubmission;
 
   // delete existing pupil record before inserting new version
   if (pupilID) {
@@ -80,8 +81,8 @@ const saveUserFormInput = (req, res) => {
         )
         .then((result) => {
           if (result.rowCount > 0) {
-            for (let i = 0; i < teacherAnswers.length; i++) {
-              const anAnswer = teacherAnswers[i];
+            for (let i = 0; i < teacherSelectedAnswers.length; i++) {
+              const anAnswer = teacherSelectedAnswers[i];
               addAnAnswer(nextPupilID, anAnswer);
             }
             res.status(200).json({
