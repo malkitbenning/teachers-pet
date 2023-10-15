@@ -7,7 +7,6 @@ import TableHeaderRow from "./TeacherHeaderRow";
 function LandingPage() {
   const location = useLocation();
   const teacherID = location.state.teacherID;
-
   const [pupils, setPupils] = useState([]);
   const apiURL = "https://teacher-server-9cir.onrender.com";
 
@@ -38,10 +37,14 @@ function LandingPage() {
       "Are you sure you want to delete this pupil?"
     );
     if (confirmDelete) {
-      fetch(`${apiURL}/pupil/${pupilId}`, {
-        method: "DELETE",
-      })
-        .then((response) => {
+      fetch(`${apiURL}/delete-pupil`, {
+       method: "DELETE",
+       body: JSON.stringify({ pupilID: pupilId }),
+       headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+       .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
