@@ -9,23 +9,17 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
   const [incompleteQuestionIndex, setIncompleteQuestionIndex] = useState(-1);
 
   const handleShowResults = () => {
-    let incompleteIndex = -1;
-    for (let i = 0; i < questions.length; i++) {
+    const incompleteIndex = questions.findIndex((_, i) => {
       const answerId = selectedAnswers[i];
-      const comment = comments[i];
-      if (!answerId || !comment.trim()) {
-        incompleteIndex = i;
-        break;
-      }
-    }
+      return !answerId;
+    });
     if (incompleteIndex === -1) {
       setShowResults(true);
-      setIncompleteQuestionIndex(-1); 
+      setIncompleteQuestionIndex(-1);
     } else {
       setIncompleteQuestionIndex(incompleteIndex);
     }
   };
-
   useEffect(() => {
     let score = 0;
     for (let questionIndex in selectedAnswers) {
@@ -43,7 +37,7 @@ function ShowResult({ selectedAnswers, questions, comments = [],teacherName, pup
     <div>
     {incompleteQuestionIndex !== -1 && (
         <div className="error-msg">
-          Please answer all questions and provide comments.......
+          Please answer all questions.......
         </div>
       )}
       {!showResults && ( 
