@@ -8,7 +8,6 @@ function Form() {
   const [questions, setQuestions] = useState([]);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
-  const [questions, setQuestions] = useState([]);
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
   const [teacherName, setTeacherName] = useState("");
   const [pupilName, setPupilName] = useState("");
