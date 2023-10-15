@@ -106,7 +106,7 @@ function Form() {
                           name={"question_" + index}
                           value={answer.answer_id}
                           checked={selectedAnswers[index] === answer.answer_id}
-                          onChange={() => handleRadioChange(index, answer.answer_id)}
+                          onChange={() => handleRadioChange(index, answer.answer_id)} 
                         />
                       </td>
                       <td colSpan="3" className="answer-text">

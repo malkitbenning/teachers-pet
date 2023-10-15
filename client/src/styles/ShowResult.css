@@ -5,3 +5,7 @@
     justify-content: center;
 
 }
+.error-msg{
+    color: red;
+    /* margin-bottom: 5px; */
+}
