@@ -14,11 +14,11 @@ function SupportAllocationTable() {
         </tr>
       </thead>
       <tbody>
-        {supportAllocationTable.map((allocation, index) => (
+        {supportAllocationTable.map((data, index) => (
           <tr key={index}>
-            <td colSpan="2">{allocation.totalScoreRange}</td>
-            <td colSpan="2">row 1</td>
-            <td colSpan="2">row 1</td>
+            <td colSpan="2">{data.totalScoreRange}</td>
+            <td colSpan="2">{data.supportCategory}</td>
+            <td colSpan="2">{data.supportAllocation}</td>
           </tr>
         ))}
       </tbody>
