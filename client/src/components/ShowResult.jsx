@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import TeacherOverride from "./TeacherOverride";
+import "../styles/ShowResult.css";
 
 function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pupilName, date }) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [overrideScore, setOverrideScore] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // New state for error message
-  const handleShowResults = () => {
-    const unansweredQuestions = Object.keys(selectedAnswers).filter((questionIndex) => !selectedAnswers[questionIndex]);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    if (unansweredQuestions.length > 0) {
-      setErrorMessage("Please answer all questions before showing the results.");
+  const handleShowResults = () => {
+    const unansweredQuestions = questions.map((_, index) => selectedAnswers[index]).some((answerId) => !answerId);
+
+    if (unansweredQuestions) {
+      setShowErrorMessage(true);
     } else {
+      setShowErrorMessage(false);
       setShowResults(true);
-      setErrorMessage(""); // Clear the error message
     }
   };
 
-  // Use useEffect to calculate the total score when selectedAnswers changes
   useEffect(() => {
     let score = 0;
     for (let questionIndex in selectedAnswers) {
@@ -35,15 +36,15 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
 
   return (
     <div>
+      {showErrorMessage && <div className="error-msg">Please answer all questions.......</div>}
       <button type="button" className="btn btn-primary showResultBtn" onClick={handleShowResults}>
         Show Result
       </button>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error message */}
       {showResults && (
         <table className="table">
           <p className="resultHeader">Teacher Name: {teacherName}</p>
           <p className="resultHeader">Pupil Name: {pupilName}</p>
-          <p className="resultHeader">Date: {date}</p>
+           <p className="resultHeader">Date: {date}</p>
           <tbody>
             {Object.keys(selectedAnswers).map((questionIndex) => {
               const question = questions[questionIndex];
@@ -58,10 +59,7 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
                       </h3>
                     </td>
                     <td className="score" colSpan="1">
-                      <h3 className="title">
-                        Score{" "}
-                        {answerId ? question.answers.find((ans) => ans.answer_id === answerId).answer_score : "N/A"}
-                      </h3>
+                      <h3 className="title">Score {question.answer_score}</h3>
                     </td>
                   </tr>
                   <tr>

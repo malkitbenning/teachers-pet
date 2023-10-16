@@ -3,6 +3,7 @@ import ShowResult from "./ShowResult";
 import appendices from "./data/appendices.json";
 import Appendices from "./Appendices";
 
+
 function Form() {
   const dataUrl = "https://teacher-server-9cir.onrender.com/getQandA";
   const [questions, setQuestions] = useState([]);
@@ -12,7 +13,7 @@ function Form() {
   const [teacherName, setTeacherName] = useState("");
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
-
+  
   useEffect(() => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
@@ -53,7 +54,6 @@ function Form() {
     updatedComments[index] = e.target.value;
     setComments(updatedComments);
   };
-
   return (
     <>
       <table className="table">
@@ -66,6 +66,7 @@ function Form() {
             <div className="textField">
               <label>Pupil Name</label>
               <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="enter pupil name" />
+              
             </div>
             <div className="textField">
               <label>Date</label>
@@ -148,3 +149,4 @@ function Form() {
 }
 
 export default Form;
+
