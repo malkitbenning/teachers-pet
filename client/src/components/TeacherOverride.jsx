@@ -76,17 +76,17 @@ function TeacherOverride({
           <tr>
             <td colSpan="9">
               <h2 className="title ">Teacher Adjustment</h2>
-              <span className="title">
-                Evidence underpinning any professional adjustment made to the
-                CYP’s matrix support allocation
-              </span>
+              <div>
+                <SupportAllocationTable />
+              </div>
             </td>
           </tr>
           <tr>
             <td colSpan="9">
-              <div>
-                <SupportAllocationTable />
-              </div>
+              <span className="title">
+                Evidence underpinning any professional adjustment made to the
+                CYP’s matrix support allocation:
+              </span>
             </td>
           </tr>
           <tr>
