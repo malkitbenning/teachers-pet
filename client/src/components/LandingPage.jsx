@@ -9,7 +9,7 @@ function LandingPage() {
   const teacherID = location.state.teacherID;
 
   const [pupils, setPupils] = useState([]);
-  const apiURL = "https://teacher-server-9cir.onrender.com";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
 
   useEffect(() => {
     fetch(`${apiURL}/fetch-pupil-data`, {

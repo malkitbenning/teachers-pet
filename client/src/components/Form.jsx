@@ -4,12 +4,16 @@ import appendices from "./data/appendices.json";
 import Appendices from "./Appendices";
 
 function Form() {
-  const dataUrl = "https://teacher-server-9cir.onrender.com/getQandA";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const endPoint = "/getQandA";
+  const dataUrl = `${apiURL}${endPoint}`;
   const [questions, setQuestions] = useState([]);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
+  const [teacherID, setTeacherID] = useState("");
   const [teacherName, setTeacherName] = useState("");
+  const [pupilID, setPupilID] = useState("");
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
 
@@ -139,7 +143,9 @@ function Form() {
         selectedAnswers={selectedAnswers}
         questions={questions}
         comments={comments}
+        teacherID={teacherID}
         teacherName={teacherName}
+        pupilID={pupilID}
         pupilName={pupilName}
         date={date}
       />

@@ -4,6 +4,8 @@ import LoginButton from "./LoginButton";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
+
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
@@ -12,7 +14,6 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  const apiURL = "https://teacher-server-9cir.onrender.com";
   const handleValidateUser = (event) => {
     event.preventDefault();
 
