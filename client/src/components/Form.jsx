@@ -11,9 +11,9 @@ function Form() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
-  const [teacherID, setTeacherID] = useState("");
+  const [teacherID] = useState("");
   const [teacherName, setTeacherName] = useState("");
-  const [pupilID, setPupilID] = useState("");
+  const [pupilID] = useState("");
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
 
@@ -37,7 +37,7 @@ function Form() {
       .catch((err) => {
         console.error("Error fetching questions:", err.message);
       });
-  }, []);
+  }, [dataUrl]);
 
   const handleRadioChange = (questionIndex, answer_id) => {
     const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === answer_id);

@@ -13,26 +13,25 @@ function LandingPage() {
 
   useEffect(() => {
     fetch(`${apiURL}/fetch-pupil-data`, {
-    method: "POST", 
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ teacherID }),
-  })
-     .then((response) => {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ teacherID }),
+    })
+      .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         return response.json();
       })
       .then((data) => {
-        setPupils(data); 
-        
+        setPupils(data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [teacherID]);
+  }, [teacherID, apiURL]);
   const deletePupil = (pupilId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this pupil?"
