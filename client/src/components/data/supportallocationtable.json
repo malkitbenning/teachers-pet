@@ -1,0 +1,19 @@
+{
+  "supportAllocationTable": [
+    {
+      "totalScoreRange": "70% and above",
+      "supportCategory": "A1",
+      "supportAllocation": "2 or more visits per week"
+    },
+    {
+      "totalScoreRange": "50 - 69%",
+      "supportCategory": "A2",
+      "supportAllocation": "Weekly"
+    },
+    {
+      "totalScoreRange": "40 - 49%",
+      "supportCategory": "A3",
+      "supportAllocation": "Fortnightly"
+    }
+  ]
+}

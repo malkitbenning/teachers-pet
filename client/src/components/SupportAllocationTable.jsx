@@ -5,9 +5,9 @@ function SupportAllocationTable() {
     <table className="support-allocation-table finalTable">
       <thead className="sa-thead ">
         <tr>
-          <th colSpan="2">heading 1</th>
-          <th colSpan="2">heading 2</th>
-          <th colSpan="2">heading 3</th>
+          <th colSpan="2">Total Score Range</th>
+          <th colSpan="2">Support Category</th>
+          <th colSpan="2">Support Allocation</th>
         </tr>
       </thead>
       <tbody>
