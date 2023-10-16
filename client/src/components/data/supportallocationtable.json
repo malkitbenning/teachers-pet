@@ -14,6 +14,36 @@
       "totalScoreRange": "40 - 49%",
       "supportCategory": "A3",
       "supportAllocation": "Fortnightly"
+    },
+    {
+      "totalScoreRange": "30 - 39%",
+      "supportCategory": "B1",
+      "supportAllocation": "Monthly"
+    },
+    {
+      "totalScoreRange": "25 - 29%",
+      "supportCategory": "B2",
+      "supportAllocation": "Twice termly (3 term year)"
+    },
+    {
+      "totalScoreRange": "20 - 24%",
+      "supportCategory": "C1",
+      "supportAllocation": "Termly (3 term year)"
+    },
+    {
+      "totalScoreRange": "15 - 19%",
+      "supportCategory": "C2",
+      "supportAllocation": "Twice yearly visit"
+    },
+    {
+      "totalScoreRange": "5 - 14%",
+      "supportCategory": "C3",
+      "supportAllocation": "Annual check or visit"
+    },
+    {
+      "totalScoreRange": "Less than 5%",
+      "supportCategory": "NFA",
+      "supportAllocation": "Off caseload"
     }
   ]
 }
