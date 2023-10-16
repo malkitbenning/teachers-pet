@@ -1,0 +1,87 @@
+@media print {
+  /* Hide elements that you don't want to print */
+  body * {
+    padding: 0px 5px;
+    margin: 0;
+  }
+  .App-header {
+    display: none;
+  }
+  .table,
+  .showResultBtn,
+  .printBtn {
+    display: none;
+  }
+
+  .question {
+    font-size: 0.5rem;
+  }
+
+  td,
+  tr {
+    padding: 1px !important;
+    margin: 0 !important;
+    border: 0.5px solid rgb(95, 95, 101);
+    height: 0.2% !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  /* Display the result table */
+  .result {
+    display: table;
+    font-size: 0.7rem;
+    width: 100%;
+    margin: 1px;
+  }
+
+  #tableAndContentToPrint {
+    display: table;
+  }
+  .result-title {
+    display: inline !important;
+    padding-top: 0px;
+  }
+
+
+  .tableAndContentToPrint {
+    width: 100%;
+  }
+
+  /* Set the page size to A4 */
+  @page {
+    size: A4;
+    margin: 1cm 1cm;
+  }
+
+  .question-container {
+    page-break-inside: avoid;
+    display: table;
+    align-items: center !important;
+
+
+  }
+  .answer-text {
+    padding: 1px 10px !important;
+  }
+
+  .question {
+    font-size: 0.6rem;
+    padding: 1px 1px !important;
+  }
+  .finalTable {
+    margin-left: 20px !important ;
+    page-break-after: always;
+  }
+  .question:last-child {
+    page-break-after: always;
+  }
+
+  .close-after-last-question {
+    page-break-after: always;
+  }
+  .summary,
+  .summary td {
+    font-size: 1rem;
+  }
+}

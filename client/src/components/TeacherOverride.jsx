@@ -1,5 +1,6 @@
 import "../styles/TeacherOverride.css";
 import { useEffect, useState } from "react";
+import "../styles/print.css"
 
 function TeacherOverride({ totalScore, setTotalScore, overrideScore, setOverrideScore }) {
   const [supportAllocation, setSupportAllocation] = useState("");

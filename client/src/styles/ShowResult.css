@@ -1,7 +1,26 @@
-.resultHeader{
-    font-size: 70px;
-    display: flex;
-    color: blue;
-    justify-content: center;
+.resultHeader {
+  font-size: 1rem;
+  display: flex !important;
+  width: 100%;
+  justify-content: space-around;
+  color: rgb(95, 95, 101);
+  padding: 10px;
+}
+.result-title {
+  display: none;
+}
+.printBtn {
+  width: 200px;
 
+  margin: 0 auto;
+}
+.resultsBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.score-n{
+    
+    align-items: center ;
 }
