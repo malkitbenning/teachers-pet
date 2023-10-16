@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/SupportAllocationTable.css";
 
 function SupportAllocationTable() {
   return (
