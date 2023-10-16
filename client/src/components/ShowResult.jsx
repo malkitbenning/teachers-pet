@@ -7,9 +7,7 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
   const [overrideScore, setOverrideScore] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // New state for error message
   const handleShowResults = () => {
-    const unansweredQuestions = Object.keys(selectedAnswers).filter(
-      (questionIndex) => !selectedAnswers[questionIndex]
-    );
+    const unansweredQuestions = Object.keys(selectedAnswers).filter((questionIndex) => !selectedAnswers[questionIndex]);
 
     if (unansweredQuestions.length > 0) {
       setErrorMessage("Please answer all questions before showing the results.");
@@ -60,7 +58,10 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
                       </h3>
                     </td>
                     <td className="score" colSpan="1">
-                      <h3 className="title">Score {answerId ? question.answers.find((ans) => ans.answer_id === answerId).answer_score : "N/A"}</h3>
+                      <h3 className="title">
+                        Score{" "}
+                        {answerId ? question.answers.find((ans) => ans.answer_id === answerId).answer_score : "N/A"}
+                      </h3>
                     </td>
                   </tr>
                   <tr>
@@ -68,7 +69,9 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
                       {answerId ? question.answers.find((ans) => ans.answer_id === answerId).answer_text : "N/A"}
                     </td>
                     <td className="score" rowSpan="2">
-                      <span className="title">{answerId ? question.answers.find((ans) => ans.answer_id === answerId).answer_score : "N/A"}</span>
+                      <span className="title">
+                        {answerId ? question.answers.find((ans) => ans.answer_id === answerId).answer_score : "N/A"}
+                      </span>
                     </td>
                   </tr>
                   <tr>
