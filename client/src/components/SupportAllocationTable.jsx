@@ -1,11 +1,12 @@
 import React from "react";
 import supportAllocationData from "./data/supportallocationtable.json";
+import "../styles/SupportAllocationTable.css";
 
 function SupportAllocationTable() {
   const { supportAllocationTable } = supportAllocationData;
 
   return (
-    <table className="finalTable">
+    <table className="finalTable support-allocation-table">
       <thead>
         <tr>
           <th colSpan="2">Total Score Range</th>
