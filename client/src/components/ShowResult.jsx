@@ -3,10 +3,11 @@ import TeacherOverride from "./TeacherOverride";
 import SaveFormButton from "./SaveFormButton";
 import "../styles/ShowResult.css";
 
-function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pupilName, date }) {
+function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teacherName, pupilID, pupilName, date }) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [overrideScore, setOverrideScore] = useState("");
+  const [overrideComment, setOverrideComment] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const handleShowResults = () => {
