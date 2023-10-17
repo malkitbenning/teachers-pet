@@ -120,17 +120,19 @@ function ShowResult({
               />
             </tbody>
           </table>
-          <SaveFormButton
-            selectedAnswers={selectedAnswers}
-            comments={comments}
-            teacherID={teacherID}
-            pupilID={""}
-            pupilName={pupilName}
-            date={date}
-            overrideScore={overrideScore}
-            overrideComment={overrideComment}
-          />
-          <BackToLandingPageButton />
+          <div className="buttons-after-summary">
+            <SaveFormButton
+              selectedAnswers={selectedAnswers}
+              comments={comments}
+              teacherID={teacherID}
+              pupilID={""}
+              pupilName={pupilName}
+              date={date}
+              overrideScore={overrideScore}
+              overrideComment={overrideComment}
+            />
+            <BackToLandingPageButton />
+          </div>
         </div>
       )}
     </div>
