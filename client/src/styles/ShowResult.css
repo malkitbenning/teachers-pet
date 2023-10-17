@@ -9,7 +9,7 @@
 .result-title {
   display: none;
 }
-.printBtn ,.saveBtn{
+.printBtn ,.saveBtn, .backBtn {
   width: 200px;
   margin: 0 auto;
 }
@@ -30,8 +30,17 @@
 }
 
 .error-msg {
-    color: red;
-    padding: 10px;
-    text-align: center;
+  color: red;
+  padding: 10px;
+  text-align: center;
 }
 
+.buttons-after-summary {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5rem;
+}
+
+.buttons-after-summary button {
+  margin: 2rem;
+}
