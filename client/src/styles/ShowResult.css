@@ -9,13 +9,12 @@
 .result-title {
   display: none;
 }
-.printBtn {
+.printBtn ,.saveBtn{
   width: 200px;
-
   margin: 0 auto;
 }
-.resultsBtn {
-  display: flex;
+.resultsBtn  {
+  display: block;
   justify-content: center;
   align-items: center;
   width: 100%;
