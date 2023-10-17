@@ -1,10 +1,17 @@
 .resultHeader{
-    font-size: 70px;
-    display: flex;
+    font-size: 20px;
     color: blue;
-    justify-content: center;
-
 }
-.error-msg{
+.error-msg {
     color: red;
+    padding: 10px;
+    text-align: center;
+}
+.btn-primary {
+    margin-bottom: 50px;
+    margin-top: 2rem;
+    color: blue;
+    padding: 10px;
+    width: 13rem;
+    border-radius: 5px;
 }
