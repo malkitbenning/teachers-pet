@@ -17,14 +17,16 @@ const expressPort = process.env.PORT || 5000;
 
 app.listen(expressPort, () => console.log(`Listening on expressPort ${expressPort}`));
 
+const getQandA = require("./getQandA");
 const fetchPupilData = require("./fetchPupilData");
 const deletePupil = require("./delete-pupil");
 const restorePupil = require("./restore-pupil");
-const getQandA = require("./getQandA");
 const validateUser = require("./validate-user");
+const saveUserFormInput = require("./save-user-form-input");
 
 app.get("/getQandA", getQandA);
 app.post("/fetch-pupil-data", fetchPupilData);
-app.post("/login", validateUser);
 app.delete("/delete-pupil", deletePupil);
 app.post("/restore-pupil", restorePupil);
+app.post("/login", validateUser);
+app.post("/save-user-form-input", saveUserFormInput);

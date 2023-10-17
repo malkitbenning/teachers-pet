@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ShowResult from "./ShowResult";
 import appendices from "./data/appendices.json";
 import Appendices from "./Appendices";
 
 
 function Form() {
-  const dataUrl = "https://teacher-server-9cir.onrender.com/getQandA";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const endPoint = "/getQandA";
+  const dataUrl = `${apiURL}${endPoint}`;
+  const location = useLocation();
+  const teacherUsername = location.state.teacherUsername;
   const [questions, setQuestions] = useState([]);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
+  const teacherID = location.state.teacherID;
+
   const [teacherName, setTeacherName] = useState("");
+  const [pupilID] = useState("");
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
   
@@ -34,7 +42,7 @@ function Form() {
       .catch((err) => {
         console.error("Error fetching questions:", err.message);
       });
-  }, []);
+  }, [dataUrl]);
 
   const handleRadioChange = (questionIndex, answer_id) => {
     const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === answer_id);
@@ -61,7 +69,7 @@ function Form() {
           <div className="inputField">
             <div className="textField">
               <label>Teacher Name</label>
-              <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder="enter your name " />
+              <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder={teacherUsername} />
             </div>
             <div className="textField">
               <label>Pupil Name</label>
@@ -140,7 +148,9 @@ function Form() {
         selectedAnswers={selectedAnswers}
         questions={questions}
         comments={comments}
+        teacherID={teacherID}
         teacherName={teacherName}
+        pupilID={pupilID}
         pupilName={pupilName}
         date={date}
       />

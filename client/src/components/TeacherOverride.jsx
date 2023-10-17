@@ -1,7 +1,15 @@
 import "../styles/TeacherOverride.css";
 import { useEffect, useState } from "react";
+import SupportAllocationTable from "./SupportAllocationTable";
 
-function TeacherOverride({ totalScore, setTotalScore, overrideScore, setOverrideScore }) {
+function TeacherOverride({
+  totalScore,
+  setTotalScore,
+  overrideScore,
+  setOverrideScore,
+  overrideComment,
+  setOverrideComment,
+}) {
   const [supportAllocation, setSupportAllocation] = useState("");
   const [supportCategory, setSupportCategory] = useState("");
 
@@ -60,19 +68,40 @@ function TeacherOverride({ totalScore, setTotalScore, overrideScore, setOverride
         </thead>
         <tbody>
           <tr>
-            <td colSpan="8"><h3>CYP calculated score</h3></td>
-            <td><span className="title">{totalScore}</span></td>
+            <td colSpan="8">
+              <h3>CYP calculated score</h3>
+            </td>
+            <td>
+              <span className="title">{totalScore}</span>
+            </td>
           </tr>
           <tr>
-            <td colSpan="9"><h2 className="title ">Teacher Adjustment</h2 ><span className="title">Evidence underpinning any professional adjustment made to the CYP’s matrix support allocation</span></td>
+            <td colSpan="9">
+              <h2 className="title ">Teacher Adjustment</h2>
+              <div>
+                <SupportAllocationTable />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="9">
+              <span className="title">
+                Evidence underpinning any professional adjustment made to the
+                CYP’s matrix support allocation:
+              </span>
+            </td>
           </tr>
           <tr>
             <td colSpan="7" className="override-comment">
               <span className="comments title">Teacher Adjustment Comment</span>
-              <textarea maxlength="255"></textarea>
+              <textarea
+                maxLength="255"
+                value={overrideComment}
+                onChange={(e) => setOverrideComment(e.target.value)}
+              ></textarea>
             </td>
             <td colSpan="1" className=" overRide">
-            Teacher adjusted CYP total
+              Teacher adjusted CYP total
             </td>
             <td colSpan="1" className="inputCell">
               <input
@@ -83,10 +112,12 @@ function TeacherOverride({ totalScore, setTotalScore, overrideScore, setOverride
             </td>
           </tr>
           <tr>
-            <td colSpan="9"><h2 className="title ">Support Allocation</h2></td>
+            <td colSpan="9">
+              <h2 className="title ">Support Allocation</h2>
+            </td>
           </tr>
           <tr>
-            <td colSpan="6" className="override-comment">
+            <td colSpan="6" className="support-category">
               <span className="comments"> Support Category</span>
             </td>
             <td colSpan="3">
@@ -94,9 +125,11 @@ function TeacherOverride({ totalScore, setTotalScore, overrideScore, setOverride
             </td>
           </tr>
           <tr>
-            <td colSpan="6"><h3>Support</h3></td>
+            <td colSpan="6">
+              <h3>Support</h3>
+            </td>
             <td colSpan="3">
-            <span className="title">{supportAllocation}</span>
+              <span className="title">{supportAllocation}</span>
             </td>
           </tr>
         </tbody>
