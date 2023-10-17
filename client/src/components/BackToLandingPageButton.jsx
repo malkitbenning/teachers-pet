@@ -5,7 +5,9 @@ function BackToLandingPageButton() {
 
   return (
     <div>
-      <button onClick={handleClick}>Back to Caseload</button>
+      <button className="btn-primary" onClick={handleClick}>
+        Back to Caseload
+      </button>
     </div>
   );
 }

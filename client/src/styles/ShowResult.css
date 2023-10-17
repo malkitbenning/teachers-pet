@@ -19,4 +19,9 @@
 .buttons-after-summary {
   display: flex;
   justify-content: center;
+  padding-bottom: 5rem;
+}
+
+.buttons-after-summary button {
+  margin: 2rem;
 }

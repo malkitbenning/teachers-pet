@@ -8,7 +8,8 @@ function SaveFormButton({
   overrideScore,
   overrideComment,
 }) {
-  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const apiURL =
+    process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
   const endPoint = "/save-user-form-input";
   const formSubmission = {};
 
@@ -20,12 +21,14 @@ function SaveFormButton({
     formSubmission.overrideScore = overrideScore;
     formSubmission.overrideComment = overrideComment;
     const teacherAnswerIDs = Object.values(selectedAnswers);
-    formSubmission.teacherSelectedAnswers = teacherAnswerIDs.map((answer, index) => {
-      return {
-        answerID: answer,
-        teacherComment: comments[index],
-      };
-    });
+    formSubmission.teacherSelectedAnswers = teacherAnswerIDs.map(
+      (answer, index) => {
+        return {
+          answerID: answer,
+          teacherComment: comments[index],
+        };
+      }
+    );
 
     fetch(`${apiURL}${endPoint}`, {
       method: "POST",
@@ -51,7 +54,9 @@ function SaveFormButton({
 
   return (
     <div>
-      <button onClick={saveUserInput}>Save</button>
+      <button className="btn-primary" onClick={saveUserInput}>
+        Save
+      </button>
     </div>
   );
 }
