@@ -9,7 +9,7 @@ function BackToLandingPageButton({ teacherID }) {
 
   return (
     <div>
-      <button className="btn-primary" onClick={handleClick}>
+      <button className="backBtn" onClick={handleClick}>
         Back to Caseload
       </button>
     </div>
