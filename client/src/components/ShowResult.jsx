@@ -50,9 +50,7 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
           Show Result
         </button>
         {showErrorMessage && <div className="error-msg">Please answer all questions.......</div>}
-        <button className="printBtn" onClick={handlePrint}>
-          Print
-        </button>
+        
       </div>
 
 {showResults && (
@@ -81,6 +79,9 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
       overrideScore={overrideScore}
       overrideComment={overrideComment}
     />
+    <button className="printBtn" onClick={handlePrint}>
+          Print
+        </button>
   </div>
 )}
     
