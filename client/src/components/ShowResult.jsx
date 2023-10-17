@@ -44,6 +44,7 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
   };
 
   return (
+    <>
     <div>
       <div className="resultsBtn">
         <button type="button" className="btn btn-primary showResultBtn" onClick={handleShowResults}>
@@ -82,6 +83,7 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
       )}
     
     </div>
+    </>
   );
 }
 
