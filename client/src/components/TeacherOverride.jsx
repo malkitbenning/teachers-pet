@@ -7,6 +7,8 @@ function TeacherOverride({
   setTotalScore,
   overrideScore,
   setOverrideScore,
+  overrideComment,
+  setOverrideComment,
 }) {
   const [supportAllocation, setSupportAllocation] = useState("");
   const [supportCategory, setSupportCategory] = useState("");
@@ -92,7 +94,11 @@ function TeacherOverride({
           <tr>
             <td colSpan="7" className="override-comment">
               <span className="comments title">Teacher Adjustment Comment</span>
-              <textarea maxlength="255"></textarea>
+              <textarea
+                maxLength="255"
+                value={overrideComment}
+                onChange={(e) => setOverrideComment(e.target.value)}
+              ></textarea>
             </td>
             <td colSpan="1" className=" overRide">
               Teacher adjusted CYP total
@@ -111,7 +117,7 @@ function TeacherOverride({
             </td>
           </tr>
           <tr>
-            <td colSpan="6" className="override-comment">
+            <td colSpan="6" className="support-category">
               <span className="comments"> Support Category</span>
             </td>
             <td colSpan="3">

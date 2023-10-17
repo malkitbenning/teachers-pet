@@ -2,7 +2,11 @@ const client = require("./db-client");
 const deletePupil = require("./delete-pupil");
 
 const saveUserFormInput = (req, res) => {
+  const { formSubmission } = req.body;
+  const { teacherID, pupilID, pupilName, updateDate, overrideScore, overrideComment, teacherSelectedAnswers } =
+    formSubmission;
 
+  // this function will add an individual answer to the table
   function addAnAnswer(pupilID, anAnswer) {
     client
       .query("INSERT INTO selected_option (pupil_id, answer_id, teacher_comment) VALUES ($1,$2,$3)", [
@@ -28,10 +32,6 @@ const saveUserFormInput = (req, res) => {
         client.end();
       });
   }
-
-  const { formSubmission } = req.body;
-  const { teacherID, pupilID, pupilName, updateDate, overrideScore, overrideComment, teacherSelectedAnswers } =
-    formSubmission;
 
   // delete existing pupil record before inserting new version
   if (pupilID) {
@@ -73,11 +73,13 @@ const saveUserFormInput = (req, res) => {
     .query("SELECT MAX(pupil_id)+1 as next_id FROM pupil")
     .then((result) => {
       let nextPupilID = result.rows[0].next_id;
+      // convert updateDate into a timestamp for storing on db
+      const updateTimestamp = updateDate + " 00:00:00";
 
       client
         .query(
           "INSERT INTO pupil (pupil_id, teacher_id, pupil_nickname, last_update, override_score,override_comment) VALUES ($1,$2,$3,$4,$5,$6)",
-          [nextPupilID, teacherID, pupilName, updateDate, overrideScore, overrideComment]
+          [nextPupilID, teacherID, pupilName, updateTimestamp, overrideScore, overrideComment]
         )
         .then((result) => {
           if (result.rowCount > 0) {
