@@ -1,5 +1,6 @@
 import "../styles/TeacherOverride.css";
 import { useEffect, useState } from "react";
+import SupportAllocationTable from "./SupportAllocationTable";
 
 function TeacherOverride({
   totalScore,
@@ -77,8 +78,16 @@ function TeacherOverride({
           <tr>
             <td colSpan="9">
               <h2 className="title ">Teacher Adjustment</h2>
+              <div>
+                <SupportAllocationTable />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="9">
               <span className="title">
-                Evidence underpinning any professional adjustment made to the CYP’s matrix support allocation
+                Evidence underpinning any professional adjustment made to the
+                CYP’s matrix support allocation:
               </span>
             </td>
           </tr>
