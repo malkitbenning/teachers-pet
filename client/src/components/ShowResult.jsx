@@ -131,7 +131,7 @@ function ShowResult({
               overrideScore={overrideScore}
               overrideComment={overrideComment}
             />
-            <BackToLandingPageButton />
+            <BackToLandingPageButton teacherID={teacherID} />
           </div>
         </div>
       )}

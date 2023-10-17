@@ -1,6 +1,6 @@
-function BackToLandingPageButton() {
+function BackToLandingPageButton({ teacherID }) {
   function handleClick() {
-    console.log("back button clicked");
+    console.log(teacherID);
   }
 
   return (
