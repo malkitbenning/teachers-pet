@@ -1,17 +1,37 @@
-.resultHeader{
-    font-size: 20px;
-    color: blue;
+.resultHeader {
+  font-size: 1rem;
+  display: flex !important;
+  width: 100%;
+  justify-content: space-around;
+  color: rgb(95, 95, 101);
+  padding: 10px;
 }
+.result-title {
+  display: none;
+}
+.printBtn ,.saveBtn{
+  width: 200px;
+  margin: 0 auto;
+}
+.resultsBtn  {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.score-n {
+  text-align: center !important;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.title-score {
+  display: inline-block;
+}
+
 .error-msg {
     color: red;
     padding: 10px;
     text-align: center;
 }
-.btn-primary {
-    margin-bottom: 50px;
-    margin-top: 2rem;
-    color: blue;
-    padding: 10px;
-    width: 13rem;
-    border-radius: 5px;
-}
+

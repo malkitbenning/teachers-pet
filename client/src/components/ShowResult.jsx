@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TeacherOverride from "./TeacherOverride";
+import PrintResult from "./PrintResult";
 import SaveFormButton from "./SaveFormButton";
 import "../styles/ShowResult.css";
 
@@ -36,74 +36,57 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
     setTotalScore(score);
   }, [selectedAnswers, questions]);
 
+
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
+    <>
     <div>
-      {showErrorMessage && <div className="error-msg">Please answer all questions.......</div>}
-      <button type="button" className="btn btn-primary showResultBtn" onClick={handleShowResults}>
-        Show Result
-      </button>
-      {showResults && (
-        <div>
-          <table className="table">
-          <p className="resultHeader">Teacher Name: {teacherName}</p>
-          <p className="resultHeader">Pupil Name: {pupilName}</p>
-           <p className="resultHeader">Date: {date}</p>
-          <tbody>
-            {Object.keys(selectedAnswers).map((questionIndex) => {
-              const question = questions[questionIndex];
-              const answerId = selectedAnswers[questionIndex];
-              const commentForAnswer = comments[questionIndex] || "";
-              return (
-                <React.Fragment key={questionIndex}>
-                  <tr className={`question`}>
-                    <td colSpan="9">
-                      <h3>
-                        Criterion {question.criterion_code}: {question.question_text}
-                      </h3>
-                    </td>
-                    <td className="score" colSpan="1">
-                      <h3 className="title">Score {question.answer_score}</h3>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan="9" className="answer-text">
-                      {answerId ? question.answers.find((ans) => ans.answer_id === answerId).answer_text : "N/A"}
-                    </td>
-                    <td className="score" rowSpan="2">
-                      <span className="title">
-                        {answerId ? question.answers.find((ans) => ans.answer_id === answerId).answer_score : "N/A"}
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan="9">Teacher comments: {commentForAnswer}</td>
-                  </tr>
-                </React.Fragment>
-              );
-            })}
-            <TeacherOverride
-              totalScore={totalScore}
-              setTotalScore={setTotalScore}
-              overrideScore={overrideScore}
-              setOverrideScore={setOverrideScore}
-              overrideComment={overrideComment}
-              setOverrideComment={setOverrideComment}              
-            />
-          </tbody>
-        </table>
-       <SaveFormButton
-            selectedAnswers={selectedAnswers}
-            comments={comments}
-            teacherID={teacherID}
-            pupilID={""}
-            pupilName={pupilName}
-            date={date}
-            overrideScore={overrideScore}
-            overrideComment={overrideComment}
-          />
-        </div>
-      )}
+      <div className="resultsBtn">
+        
+        <button type="button" className="btn btn-primary showResultBtn" onClick={handleShowResults}>
+          Show Result
+        </button>
+        {showErrorMessage && <div className="error-msg">Please answer all questions.......</div>}
+        
+      </div>
+
+{showResults && (
+  <div id="print-content">
+    <PrintResult
+      selectedAnswers={selectedAnswers}
+      questions={questions}
+      comments={comments}
+      teacherName={teacherName}
+      pupilName={pupilName}
+      date={date}
+      totalScore={totalScore}
+      setTotalScore={setTotalScore}
+      overrideScore={overrideScore}
+      setOverrideScore={setOverrideScore}
+      overrideComment={overrideComment}
+      setOverrideComment={setOverrideComment}
+    />
+    <SaveFormButton
+      selectedAnswers={selectedAnswers}
+      comments={comments}
+      teacherID={teacherID}
+      pupilID={""}
+      pupilName={pupilName}
+      date={date}
+      overrideScore={overrideScore}
+      overrideComment={overrideComment}
+    />
+    <button className="printBtn" onClick={handlePrint}>
+          Print
+        </button>
+  </div>
+)}
+    
     </div>
+    </>
   );
 }
 
