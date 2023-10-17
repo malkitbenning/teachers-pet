@@ -78,7 +78,7 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
           <SaveFormButton
             selectedAnswers={selectedAnswers}
             comments={comments}
-            teacherID={"5"}
+            teacherID={teacherID}
             pupilID={""}
             pupilName={pupilName}
             date={date}

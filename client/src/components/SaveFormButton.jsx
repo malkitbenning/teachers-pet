@@ -20,8 +20,6 @@ function SaveFormButton({
     formSubmission.overrideScore = overrideScore;
     formSubmission.overrideComment = overrideComment;
     const teacherAnswerIDs = Object.values(selectedAnswers);
-    console.log(selectedAnswers, comments, teacherID, pupilID, pupilName, date, overrideScore, overrideComment);
-    console.log(teacherAnswerIDs);
     formSubmission.teacherSelectedAnswers = teacherAnswerIDs.map((answer, index) => {
       return {
         answerID: answer,

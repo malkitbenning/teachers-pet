@@ -56,7 +56,7 @@ function LoginForm() {
       })
       .then((data) => {
         if (data && data.teacherID) {
-          navigate("/landingPage", { state: { teacherID: data.teacherID } });
+          navigate("/landingPage", { state: { teacherID: data.teacherID, teacherUsername: username } });
           return data.teacherID;
         } else {
           console.error("ID could not be found.");

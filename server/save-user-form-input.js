@@ -3,10 +3,8 @@ const deletePupil = require("./delete-pupil");
 
 const saveUserFormInput = (req, res) => {
   const { formSubmission } = req.body;
-  console.log(formSubmission);
   const { teacherID, pupilID, pupilName, updateDate, overrideScore, overrideComment, teacherSelectedAnswers } =
     formSubmission;
-  console.log("update date is ", updateDate);
 
   // this function will add an individual answer to the table
   function addAnAnswer(pupilID, anAnswer) {
@@ -77,11 +75,6 @@ const saveUserFormInput = (req, res) => {
       let nextPupilID = result.rows[0].next_id;
       // convert updateDate into a timestamp for storing on db
       const updateTimestamp = updateDate + " 00:00:00";
-      console.log("updateTimestamp", updateTimestamp);
-      console.log("teacherID", teacherID);
-      console.log("pupilName", pupilName);
-      console.log("overrideScore", overrideScore);
-      console.log("overrideComment", overrideComment);
 
       client
         .query(
