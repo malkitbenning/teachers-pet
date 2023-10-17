@@ -35,10 +35,14 @@ function LandingPage() {
   const deletePupil = (pupilId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this pupil?");
     if (confirmDelete) {
-      fetch(`${apiURL}/pupil/${pupilId}`, {
-        method: "DELETE",
-      })
-        .then((response) => {
+      fetch(`${apiURL}/delete-pupil`, {
+       method: "DELETE",
+       body: JSON.stringify({ pupilID: pupilId }),
+       headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+       .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }

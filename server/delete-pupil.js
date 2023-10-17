@@ -1,9 +1,8 @@
 const client = require("./db-client");
 
 const deletePupil = (req, res) => {
-  const pupilID = Number(req.body.pupilID);
-
-  client
+  const pupilID = req.body.pupilID;
+   client
     .query("DELETE FROM selected_option WHERE pupil_id = $1", [pupilID])
     .then((result) => {
       client
