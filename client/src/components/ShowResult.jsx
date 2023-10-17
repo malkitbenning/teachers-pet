@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TeacherOverride from "./TeacherOverride";
+import SaveFormButton from "./SaveFormButton";
 import "../styles/ShowResult.css";
 
 function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pupilName, date }) {
@@ -41,7 +42,8 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
         Show Result
       </button>
       {showResults && (
-        <table className="table">
+        <div>
+          <table className="table">
           <p className="resultHeader">Teacher Name: {teacherName}</p>
           <p className="resultHeader">Pupil Name: {pupilName}</p>
            <p className="resultHeader">Date: {date}</p>
@@ -83,9 +85,22 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
               setTotalScore={setTotalScore}
               overrideScore={overrideScore}
               setOverrideScore={setOverrideScore}
+              overrideComment={overrideComment}
+              setOverrideComment={setOverrideComment}              
             />
           </tbody>
         </table>
+       <SaveFormButton
+            selectedAnswers={selectedAnswers}
+            comments={comments}
+            teacherID={teacherID}
+            pupilID={""}
+            pupilName={pupilName}
+            date={date}
+            overrideScore={overrideScore}
+            overrideComment={overrideComment}
+          />
+        </div>
       )}
     </div>
   );
