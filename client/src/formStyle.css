@@ -10,12 +10,12 @@ body {
   height: 100%;
 }
 
- /* General styling */
+/* General styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
 }
-.formTitle{
+.formTitle {
   text-align: center;
 }
 .table {
@@ -130,7 +130,6 @@ td[colspan="2"] {
   display: inline-block;
 }
 
-
 .score {
   text-align: center !important;
   width: 1%;
@@ -167,7 +166,6 @@ td[colspan="2"] {
   width: 100%;
   padding: 0 5px;
   font-size: 16px;
-
 }
 
 .textField input {
@@ -212,4 +210,3 @@ td[colspan="2"] {
     width: 260px;
   }
 }
-

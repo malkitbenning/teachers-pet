@@ -1,27 +1,43 @@
 import React, { useState, useEffect } from "react";
 import PrintResult from "./PrintResult";
+import TeacherOverride from "./TeacherOverride";
 import SaveFormButton from "./SaveFormButton";
 import "../styles/ShowResult.css";
 
-function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pupilName, date }) {
+function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teacherName, pupilID, pupilName, date }) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [overrideScore, setOverrideScore] = useState("");
 
+  const [overrideComment, setOverrideComment] = useState("");
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+  const handleShowResults = () => {
+    const unansweredQuestions = questions.map((_, index) => selectedAnswers[index]).some((answerId) => !answerId);
+
+    if (unansweredQuestions) {
+      setShowErrorMessage(true);
+    } else {
+      setShowErrorMessage(false);
+      setShowResults(true);
+    }
+  };
+
   useEffect(() => {
     let score = 0;
     for (let questionIndex in selectedAnswers) {
-      const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === selectedAnswers[questionIndex]);
-      if (answer && answer.answer_score) {
-        score += answer.answer_score;
+      const answerId = selectedAnswers[questionIndex];
+      if (answerId) {
+        const question = questions[questionIndex];
+        const answer = question.answers.find((ans) => ans.answer_id === answerId);
+        if (answer && answer.answer_score) {
+          score += answer.answer_score;
+        }
       }
     }
     setTotalScore(score);
   }, [selectedAnswers, questions]);
 
-  const handleShowResults = () => {
-    setShowResults(true);
-  };
 
   const handlePrint = () => {
     window.print();
@@ -62,9 +78,9 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
             date={date}
             overrideScore={overrideScore}
             overrideComment={overrideComment}
-        />
+          />
       )}
-      
+    
     </div>
   );
 }
