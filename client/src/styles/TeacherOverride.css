@@ -27,6 +27,7 @@
 }
 
 .finalTable textarea {
+
   width: 100%;
   box-sizing: border-box;
 }
@@ -35,8 +36,8 @@
   width: 10%;
 }
 .title {
-  display: flex;
-  justify-content: center;
+  text-align: center ;
+  display: block;
   margin: 0px auto;
   color: black;
 }

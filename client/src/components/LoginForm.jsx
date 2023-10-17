@@ -62,7 +62,7 @@ function LoginForm() {
           console.error("ID could not be found.");
         }
       })
-  
+
       .catch((error) => {
         console.error("Error:", error);
       });

@@ -49,11 +49,7 @@ h3 {
 }
 
 /* Styling for table cells */
-.table td {
-  border: 1px solid #dee2e6;
-  padding: 10px;
-  align-items: flex-start;
-}
+
 
 /* Styling for questions */
 .question {
@@ -83,8 +79,9 @@ td:last-child {
 .table th,
 .table td {
   border: 1px solid #e0e0e0;
-  padding: 10px 15px;
+  padding: 5px 15px;
   text-align: left;
+
 }
 
 .question h3 {
@@ -135,6 +132,7 @@ td[colspan="2"] {
 
 .score {
   text-align: center !important;
+  width: 1%;
 }
 .date-input {
   margin-left: 3rem;

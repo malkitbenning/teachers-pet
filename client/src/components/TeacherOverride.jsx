@@ -1,5 +1,6 @@
 import "../styles/TeacherOverride.css";
 import { useEffect, useState } from "react";
+import "../styles/print.css";
 import SupportAllocationTable from "./SupportAllocationTable";
 
 function TeacherOverride({
@@ -68,10 +69,10 @@ function TeacherOverride({
         </thead>
         <tbody>
           <tr>
-            <td colSpan="8">
+            <td colSpan="6">
               <h3>CYP calculated score</h3>
             </td>
-            <td>
+            <td colSpan="4">
               <span className="title">{totalScore}</span>
             </td>
           </tr>
@@ -84,21 +85,19 @@ function TeacherOverride({
             </td>
           </tr>
           <tr>
-            <td colSpan="9">
-              <span className="title">
-                Evidence underpinning any professional adjustment made to the
-                CYP’s matrix support allocation:
-              </span>
-            </td>
-          </tr>
-          <tr>
             <td colSpan="7" className="override-comment">
               <span className="comments title">Teacher Adjustment Comment</span>
+
+              <span className="title">
+                Evidence underpinning any professional adjustment made to the CYP’s matrix support allocation
+              </span>
+
               <textarea
                 maxLength="255"
                 value={overrideComment}
                 onChange={(e) => setOverrideComment(e.target.value)}
               ></textarea>
+
             </td>
             <td colSpan="1" className=" overRide">
               Teacher adjusted CYP total

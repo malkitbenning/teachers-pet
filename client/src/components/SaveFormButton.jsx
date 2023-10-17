@@ -54,9 +54,7 @@ function SaveFormButton({
 
   return (
     <div>
-      <button className="btn-primary" onClick={saveUserInput}>
-        Save
-      </button>
+      <button className="saveBtn" onClick={saveUserInput}>Save</button>
     </div>
   );
 }
