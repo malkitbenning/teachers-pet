@@ -68,6 +68,8 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
       setTotalScore={setTotalScore}
       overrideScore={overrideScore}
       setOverrideScore={setOverrideScore}
+      overrideComment={overrideComment}
+      setOverrideComment={setOverrideComment}
     />
     <SaveFormButton
       selectedAnswers={selectedAnswers}
