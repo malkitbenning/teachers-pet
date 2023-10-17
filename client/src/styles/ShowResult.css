@@ -21,6 +21,7 @@
   width: 100%;
 }
 .score-n{
-    
-    align-items: center ;
+  vertical-align: middle;
+  align-items: center ;
+  
 }

@@ -17,11 +17,12 @@
     font-size: 0.5rem;
   }
 
+
   td,
   tr {
     padding: 1px !important;
     margin: 0 !important;
-    border: 0.5px solid rgb(95, 95, 101);
+    border: 0.5px solid rgb(95, 95, 101); 
     height: 0.2% !important;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -33,16 +34,36 @@
     font-size: 0.7rem;
     width: 100%;
     margin: 1px;
+    border: none;
   }
 
   #tableAndContentToPrint {
-    display: table;
+    display: block;
   }
   .result-title {
     display: inline !important;
     padding-top: 0px;
   }
 
+
+  #tableToPrint {
+    width: 100%;
+    display: table;
+    border: none;
+    box-shadow:none;
+    text-shadow: none;
+    outline: none;
+  }
+
+   #pageBorder {
+      position:fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border: 2px solid #024457;
+      border-radius: 10px;
+    }
 
   .tableAndContentToPrint {
     width: 100%;
@@ -56,7 +77,8 @@
 
   .question-container {
     page-break-inside: avoid;
-    display: table;
+    display: block;
+    border: none;
     align-items: center !important;
 
 
