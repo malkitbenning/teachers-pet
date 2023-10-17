@@ -13,7 +13,7 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
   const handleShowResults = () => {
     const unansweredQuestions = questions.map((_, index) => selectedAnswers[index]).some((answerId) => !answerId);
 
-    if (unansweredQuestions) {
+    if (unansweredQuestions || pupilName === "" || date === "") {
       setShowErrorMessage(true);
     } else {
       setShowErrorMessage(false);
