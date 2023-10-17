@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PrintResult from "./PrintResult";
-import TeacherOverride from "./TeacherOverride";
 import SaveFormButton from "./SaveFormButton";
 import "../styles/ShowResult.css";
 
@@ -8,8 +7,6 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [overrideScore, setOverrideScore] = useState("");
-
-  const [overrideComment, setOverrideComment] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const handleShowResults = () => {
@@ -47,9 +44,11 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
     <>
     <div>
       <div className="resultsBtn">
+        
         <button type="button" className="btn btn-primary showResultBtn" onClick={handleShowResults}>
           Show Result
         </button>
+        {showErrorMessage && <div className="error-msg">Please answer all questions.......</div>}
         <button className="printBtn" onClick={handlePrint}>
           Print
         </button>
