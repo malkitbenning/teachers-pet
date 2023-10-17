@@ -79,9 +79,9 @@ td:last-child {
 .table th,
 .table td {
   border: 1px solid #e0e0e0;
-  padding: 10px 15px;
+  padding: 5px 15px;
   text-align: left;
- 
+
 }
 
 .question h3 {

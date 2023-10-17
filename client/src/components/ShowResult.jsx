@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PrintResult from "./PrintResult";
 import "../styles/ShowResult.css";
 
@@ -6,6 +6,18 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [overrideScore, setOverrideScore] = useState("");
+
+  useEffect(() => {
+    let score = 0;
+    for (let questionIndex in selectedAnswers) {
+      const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === selectedAnswers[questionIndex]);
+      if (answer && answer.answer_score) {
+        score += answer.answer_score;
+      }
+    }
+    setTotalScore(score);
+  }, [selectedAnswers, questions]);
+
   const handleShowResults = () => {
     setShowResults(true);
   };

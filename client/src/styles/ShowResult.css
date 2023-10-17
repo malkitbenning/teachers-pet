@@ -20,7 +20,12 @@
   align-items: center;
   width: 100%;
 }
-.score-n{
-    
-    align-items: center ;
+.score-n {
+  text-align: center !important;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.title-score {
+  display: inline-block;
 }
