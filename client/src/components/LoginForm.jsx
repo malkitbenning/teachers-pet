@@ -4,18 +4,21 @@ import LoginButton from "./LoginButton";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
-
-  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const apiURL =
+    process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [validationError, setValidationError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleValidateUser = (event) => {
     event.preventDefault();
+
+    setIsLoading(true);
 
     setUsernameError("");
     setPasswordError("");
@@ -43,6 +46,7 @@ function LoginForm() {
         if (response.ok) {
           return response.json();
         } else {
+          setIsLoading(false);
           return response.json().then((data) => {
             if (data) {
               setValidationError(data.message);
@@ -55,8 +59,11 @@ function LoginForm() {
         }
       })
       .then((data) => {
+        setIsLoading(false);
         if (data && data.teacherID) {
-          navigate("/landingPage", { state: { teacherID: data.teacherID, teacherUsername: username } });
+          navigate("/landingPage", {
+            state: { teacherID: data.teacherID, teacherUsername: username },
+          });
           return data.teacherID;
         } else {
           console.error("ID could not be found.");
@@ -64,6 +71,7 @@ function LoginForm() {
       })
 
       .catch((error) => {
+        setIsLoading(false);
         console.error("Error:", error);
       });
   };
@@ -121,6 +129,7 @@ function LoginForm() {
               <span className="login--invalid">{passwordError}</span>
             </div>
             <LoginButton handleValidateUser={handleValidateUser} />
+            <div> {isLoading ? <p>Loading... Please Wait</p> : null}</div>
           </form>
         </div>
       </div>
