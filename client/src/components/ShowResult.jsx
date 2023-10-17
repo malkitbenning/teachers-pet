@@ -55,32 +55,32 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherID, teac
         </button>
       </div>
 
-      {showResults && (
-        <div id="print-content">
-          <PrintResult
-            selectedAnswers={selectedAnswers}
-            questions={questions}
-            comments={comments}
-            teacherName={teacherName}
-            pupilName={pupilName}
-            date={date}
-            totalScore={totalScore}
-            setTotalScore={setTotalScore}
-            overrideScore={overrideScore}
-            setOverrideScore={setOverrideScore}
-          />
-        </div>
-        <SaveFormButton
-            selectedAnswers={selectedAnswers}
-            comments={comments}
-            teacherID={teacherID}
-            pupilID={""}
-            pupilName={pupilName}
-            date={date}
-            overrideScore={overrideScore}
-            overrideComment={overrideComment}
-          />
-      )}
+{showResults && (
+  <div id="print-content">
+    <PrintResult
+      selectedAnswers={selectedAnswers}
+      questions={questions}
+      comments={comments}
+      teacherName={teacherName}
+      pupilName={pupilName}
+      date={date}
+      totalScore={totalScore}
+      setTotalScore={setTotalScore}
+      overrideScore={overrideScore}
+      setOverrideScore={setOverrideScore}
+    />
+    <SaveFormButton
+      selectedAnswers={selectedAnswers}
+      comments={comments}
+      teacherID={teacherID}
+      pupilID={""}
+      pupilName={pupilName}
+      date={date}
+      overrideScore={overrideScore}
+      overrideComment={overrideComment}
+    />
+  </div>
+)}
     
     </div>
     </>
