@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PrintResult from "./PrintResult";
+import SaveFormButton from "./SaveFormButton";
 import "../styles/ShowResult.css";
 
 function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pupilName, date }) {
@@ -52,7 +53,18 @@ function ShowResult({ selectedAnswers, questions, comments = [], teacherName, pu
             setOverrideScore={setOverrideScore}
           />
         </div>
+        <SaveFormButton
+            selectedAnswers={selectedAnswers}
+            comments={comments}
+            teacherID={teacherID}
+            pupilID={""}
+            pupilName={pupilName}
+            date={date}
+            overrideScore={overrideScore}
+            overrideComment={overrideComment}
+        />
       )}
+      
     </div>
   );
 }
