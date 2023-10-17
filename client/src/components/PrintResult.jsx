@@ -13,6 +13,8 @@ function PrintResult({
   setTotalScore,
   overrideScore,
   setOverrideScore,
+  overrideComment,
+  setOverrideComment
 }) {
   return (
     <div id="tableAndContentToPrint">
