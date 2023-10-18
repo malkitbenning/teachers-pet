@@ -97,18 +97,17 @@ function TeacherOverride({
                 value={overrideComment}
                 onChange={(e) => setOverrideComment(e.target.value)}
               ></textarea>
-
             </td>
             <td colSpan="1" className=" overRide">
               Teacher adjusted CYP total
             </td>
             <td colSpan="1" className="inputCell">
               <input
-                className="inputField"
+                className="inputOverrideScore"
                 value={overrideScore}
                 onChange={(e) => {
-                  const inputValue = Number(e.target.value);
-                  if ( inputValue <= 100) {
+                  const inputValue = e.target.value;
+                  if (inputValue <= 100 || inputValue === "") {
                     setOverrideScore(inputValue);
                   }
                 }}
