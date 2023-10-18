@@ -106,7 +106,12 @@ function TeacherOverride({
               <input
                 className="inputField"
                 value={overrideScore}
-                onChange={(e) => setOverrideScore(Number(e.target.value))}
+                onChange={(e) => {
+                  const inputValue = Number(e.target.value);
+                  if ( inputValue <= 100) {
+                    setOverrideScore(inputValue);
+                  }
+                }}
               />
             </td>
           </tr>
