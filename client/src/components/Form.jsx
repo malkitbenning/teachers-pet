@@ -50,9 +50,15 @@ function Form() {
         body: JSON.stringify({ PupilID: editPupilID }),
       })
         .then((response) => {
+          if (!response.ok) {
+            throw new Error("Unable to find existing Pupil Form");
+          }
           return response.json();
         })
-        .then((data) => console.log(`Pupil Data: ${data}`));
+        .then((data) => console.log(`Form Submission Data: ${data}`))
+        .catch((err) => {
+          console.error("Error fetching existing Pupil Form:", err.message);
+        });
     }
 
     fetch(dataUrl)
