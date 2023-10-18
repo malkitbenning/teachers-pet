@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link , useLocation} from "react-router-dom";
-import  "../styles/LandingPage.css";
+import { Link, useLocation } from "react-router-dom";
+import "../styles/LandingPage.css";
 import PupilRow from "./PupilRow";
 import TableHeaderRow from "./TeacherHeaderRow";
 
@@ -32,17 +32,18 @@ function LandingPage() {
         console.error("Error fetching data:", error);
       });
   }, [teacherID, apiURL]);
+
   const deletePupil = (pupilId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this pupil?");
     if (confirmDelete) {
       fetch(`${apiURL}/delete-pupil`, {
-       method: "DELETE",
-       body: JSON.stringify({ pupilID: pupilId }),
-       headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-       .then((response) => {
+        method: "DELETE",
+        body: JSON.stringify({ pupilID: pupilId }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
@@ -57,7 +58,7 @@ function LandingPage() {
     <div>
       <h1>Pupil Records</h1>
       <Link to="/form" state={{ teacherUsername: teacherUsername, teacherID: teacherID }}>
-        New Support Allocation Form
+       New Support Allocation Form
       </Link>
       {pupils.length === 0 ? (
         <p>No pupils data available.</p>
@@ -68,7 +69,13 @@ function LandingPage() {
           </thead>
           <tbody>
             {pupils.map((pupil) => (
-              <PupilRow key={pupil.pupil_id} pupil={pupil} onDelete={deletePupil} />
+              <PupilRow
+                key={pupil.pupil_id}
+                pupil={pupil}
+                onDelete={deletePupil}
+                teacherUsername={teacherUsername}
+                teacherID={teacherID}
+              />
             ))}
           </tbody>
         </table>
@@ -78,5 +85,3 @@ function LandingPage() {
 }
 
 export default LandingPage;
-
-

@@ -74,7 +74,6 @@ function Form() {
             <div className="textField">
               <label>Pupil Name</label>
               <input onChange={(e) => setPupilName(e.target.value)} type="text" placeholder="enter pupil name" />
-              
             </div>
             <div className="textField">
               <label>Date</label>
@@ -159,4 +158,3 @@ function Form() {
 }
 
 export default Form;
-

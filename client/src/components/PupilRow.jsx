@@ -1,6 +1,13 @@
-import React from "react";
 
-function PupilRow({ pupil, onDelete }) {
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+function PupilRow({ pupil, onDelete, teacherUsername, teacherID }) {
+  const navigate = useNavigate();
+
+  const onEdit = (pupilId) => {
+    navigate(`/form`, { state: { teacherUsername, teacherID, pupilId } });
+  };
   return (
     <tr key={pupil.pupil_id}>
       <td>{pupil.pupil_nickname}</td>
@@ -13,7 +20,7 @@ function PupilRow({ pupil, onDelete }) {
         <button>Print</button>
       </td>
       <td>
-        <button>Edit</button>
+        <button onClick={() => onEdit(pupil.pupil_id)}>Edit</button>
       </td>
       <td>
         <button onClick={() => onDelete(pupil.pupil_id)}>Delete</button>
@@ -23,3 +30,4 @@ function PupilRow({ pupil, onDelete }) {
 }
 
 export default PupilRow;
+
