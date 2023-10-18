@@ -8,10 +8,11 @@ function PupilRow({ pupil, onDelete, teacherUsername, teacherID }) {
   const onEdit = (pupilId) => {
     navigate(`/form`, { state: { teacherUsername, teacherID, pupilId } });
   };
+  const shortDate = pupil.last_update_date.substring(0, 10);
   return (
     <tr key={pupil.pupil_id}>
       <td>{pupil.pupil_nickname}</td>
-      <td>{pupil.last_update_date}</td>
+      <td>{shortDate}</td>
       <td>{pupil.calculated_score}</td>
       <td>{pupil.override_score}</td>
       <td>{pupil.final_support_category}</td>
