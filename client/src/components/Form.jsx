@@ -25,8 +25,8 @@ function Form() {
   const [date, setDate] = useState("");
 
   const editPupilID = location.state.pupilId;
-  const editEndPoint = "/getPupilRecord";
-  const editDataURL = `${apiURL}${editEndPoint}`;
+  const pupilRecordEndPoint = "/get-pupil-record";
+  const pupilRecordURL = `${apiURL}${pupilRecordEndPoint}`;
 
   useEffect(() => {
     const currentDate = new Date();
@@ -42,7 +42,7 @@ function Form() {
     if (editPupilID) {
       console.log(`PupilID: ${editPupilID}`);
 
-      fetch(editDataURL, {
+      fetch(pupilRecordURL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ function Form() {
       .catch((err) => {
         console.error("Error fetching questions:", err.message);
       });
-  }, [dataUrl, editDataURL, editPupilID]);
+  }, [dataUrl, pupilRecordURL, editPupilID]);
 
   const handleRadioChange = (questionIndex, answer_id) => {
     const answer = questions[questionIndex].answers.find(
