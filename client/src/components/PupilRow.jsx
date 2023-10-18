@@ -6,7 +6,7 @@ function PupilRow({ pupil, onDelete, teacherUsername, teacherID }) {
   const navigate = useNavigate();
 
   const onEdit = (pupilId) => {
-    navigate(`/form/${pupilId}`, { state: { teacherUsername, teacherID, pupilId } });
+    navigate(`/form`, { state: { teacherUsername, teacherID, pupilId } });
   };
   return (
     <tr key={pupil.pupil_id}>
