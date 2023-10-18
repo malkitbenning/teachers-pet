@@ -15,7 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const expressPort = process.env.PORT || 5000;
 
-app.listen(expressPort, () => console.log(`Listening on expressPort ${expressPort}`));
+app.listen(expressPort, () =>
+  console.log(`Listening on expressPort ${expressPort}`)
+);
 
 const getQandA = require("./getQandA");
 const fetchPupilData = require("./fetchPupilData");

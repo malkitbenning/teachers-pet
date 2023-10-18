@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,9 +17,6 @@ function PupilRow({ pupil, onDelete, teacherUsername, teacherID }) {
       <td>{pupil.final_support_category}</td>
       <td>{pupil.final_support_allocation}</td>
       <td>
-        <button>Print</button>
-      </td>
-      <td>
         <button onClick={() => onEdit(pupil.pupil_id)}>Edit</button>
       </td>
       <td>
@@ -31,4 +27,3 @@ function PupilRow({ pupil, onDelete, teacherUsername, teacherID }) {
 }
 
 export default PupilRow;
-
