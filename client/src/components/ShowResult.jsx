@@ -25,7 +25,7 @@ function ShowResult({
       .map((_, index) => selectedAnswers[index])
       .some((answerId) => !answerId);
 
-    if (unansweredQuestions) {
+    if (unansweredQuestions || pupilName === "") {
       setShowErrorMessage(true);
     } else {
       setShowErrorMessage(false);
