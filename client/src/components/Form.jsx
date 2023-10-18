@@ -24,7 +24,7 @@ function Form() {
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
 
-  const editPupilID = 30;
+  const editPupilID = location.state.pupilId;
   const editEndPoint = "/getPupilRecord";
   const editDataURL = `${apiURL}${editEndPoint}`;
 
@@ -52,7 +52,7 @@ function Form() {
         .then((response) => {
           return response.json();
         })
-        .then((data) => console.log(data));
+        .then((data) => console.log(`Pupil Data: ${data}`));
     }
 
     fetch(dataUrl)
@@ -66,7 +66,7 @@ function Form() {
       .catch((err) => {
         console.error("Error fetching questions:", err.message);
       });
-  }, [dataUrl, editDataURL]);
+  }, [dataUrl, editDataURL, editPupilID]);
 
   const handleRadioChange = (questionIndex, answer_id) => {
     const answer = questions[questionIndex].answers.find(
