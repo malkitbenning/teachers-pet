@@ -25,7 +25,7 @@ function Form() {
   const [date, setDate] = useState("");
 
   const editPupilID = 30;
-  const editEndPoint = "/getpupilrecord";
+  const editEndPoint = "/getPupilRecord";
   const editDataURL = `${apiURL}${editEndPoint}`;
 
   useEffect(() => {
@@ -40,12 +40,21 @@ function Form() {
 
   useEffect(() => {
     if (editPupilID) {
-      console.log(`PupilID: ${editEndPoint}`);
       console.log(`PupilID: ${editPupilID}`);
 
-      //fetch call to editEndPoint
-      //then render questions, Malkit will setSelectedAnswers with data
+      fetch(editDataURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ PupilID: editPupilID }),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => console.log(data));
     }
+
     fetch(dataUrl)
       .then((response) => {
         if (!response.ok) {
