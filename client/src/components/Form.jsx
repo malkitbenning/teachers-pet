@@ -66,7 +66,7 @@ function Form() {
       .catch((err) => {
         console.error("Error fetching questions:", err.message);
       });
-  }, [dataUrl]);
+  }, [dataUrl, editDataURL]);
 
   const handleRadioChange = (questionIndex, answer_id) => {
     const answer = questions[questionIndex].answers.find(
