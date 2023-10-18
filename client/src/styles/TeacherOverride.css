@@ -41,3 +41,10 @@
   margin: 0px auto;
   color: black;
 }
+.inputOverrideScore{
+  border: 0px;
+  width: 100px;
+  height: 50px;
+  background-color: #f7f7f8;
+  text-align: center;
+}

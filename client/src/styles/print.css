@@ -13,7 +13,10 @@
   }
   .table,
   .showResultBtn,
-  .printBtn {
+  .printBtn,
+  .support-allocation-table,
+  .saveBtn,
+  .backBtn {
     display: none;
   }
 
