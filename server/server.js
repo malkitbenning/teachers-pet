@@ -25,6 +25,8 @@ const deletePupil = require("./delete-pupil");
 const restorePupil = require("./restore-pupil");
 const validateUser = require("./validate-user");
 const saveUserFormInput = require("./save-user-form-input");
+const getPupilRecord = require("./get-pupil-record");
+const getPupilAnswers = require("./get-pupil-answers");
 
 app.get("/getQandA", getQandA);
 app.post("/fetch-pupil-data", fetchPupilData);
@@ -32,3 +34,5 @@ app.delete("/delete-pupil", deletePupil);
 app.post("/restore-pupil", restorePupil);
 app.post("/login", validateUser);
 app.post("/save-user-form-input", saveUserFormInput);
+app.get("/get-pupil-record", getPupilRecord);
+app.get("/get-pupil-answers", getPupilAnswers);
