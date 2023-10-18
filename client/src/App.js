@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginForm />} />
           <Route path="/landingPage" element={<LandingPage />} />
-          <Route path="/form/:pupilId" element={<Form />} />
+          <Route path="/form" element={<Form />} />
           
         </Routes>
       </BrowserRouter>
