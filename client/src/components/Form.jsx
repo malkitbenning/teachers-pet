@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import ShowResult from "./ShowResult";
 import appendices from "./data/appendices.json";
 import Appendices from "./Appendices";
 
 function Form() {
-  const apiURL =
-    process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
   const endPoint = "/getQandA";
   const dataUrl = `${apiURL}${endPoint}`;
   const location = useLocation();
@@ -14,14 +13,13 @@ function Form() {
   const [questions, setQuestions] = useState([]);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [scores, setScores] = useState({});
-  const [comments, setComments] = useState(() =>
-    Array(questions.length).fill("")
-  );
+  const [comments, setComments] = useState(() => Array(questions.length).fill(""));
   const teacherID = location.state.teacherID;
 
-  const [pupilID] = useState("");
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
+  const [overrideComment, setOverrideComment] = useState("");
+  const [overrideScore, setOverrideScore] = useState("");
 
   const editPupilID = location.state.pupilId;
   const pupilRecordEndPoint = "/get-pupil-record";
@@ -33,9 +31,7 @@ function Form() {
 
   useEffect(() => {
     const currentDate = new Date();
-    const formattedDate = `${currentDate.getFullYear()}-${(
-      currentDate.getMonth() + 1
-    )
+    const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
       .toString()
       .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`;
     setDate(formattedDate);
@@ -59,69 +55,88 @@ function Form() {
     }
   }, [dataUrl, editPupilID, setPopulator]);
 
+  const handleRadioChange = useCallback(
+    (questionIndex, answer_id) => {
+      const answer = questions[questionIndex].answers.find((ans) => ans.answer_id === answer_id);
+      setSelectedAnswers((prevSelected) => ({
+        ...prevSelected,
+        [questionIndex]: answer_id,
+      }));
+
+      setScores((prevScores) => ({
+        ...prevScores,
+        [questionIndex]: answer ? answer.answer_score : 0,
+      }));
+    },
+    [questions]
+  );
+
   useEffect(() => {
-    fetch(pupilRecordURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ pupilID: editPupilID }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Unable to find existing Pupil Form");
-        }
-        return response.json();
+    if (populator) {
+      fetch(pupilRecordURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pupilID: editPupilID }),
       })
-      .then((recordData) => {
-        console.log(recordData[0].pupil_nickname);
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Unable to find existing Pupil Form");
+          }
+          return response.json();
+        })
+        .then((recordData) => {
+          setPupilName(recordData[0].pupil_nickname);
+          setOverrideComment(recordData[0].override_comment);
+          setOverrideScore(recordData[0].override_score);
+        })
+        .catch((err) => {
+          console.error("Error fetching existing Pupil Form:", err.message);
+        });
+
+      fetch(pupilAnswersURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pupilID: editPupilID }),
       })
-      .catch((err) => {
-        console.error("Error fetching existing Pupil Form:", err.message);
-      });
-
-    fetch(pupilAnswersURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ pupilID: editPupilID }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Unable to find existing Pupil Form Answers");
-        }
-        return response.json();
-      })
-      .then((answerData) => console.log(answerData))
-      .catch((err) => {
-        console.error(
-          "Error fetching existing Pupil Form Answers:",
-          err.message
-        );
-      });
-  }, [editPupilID, populator, pupilRecordURL, pupilAnswersURL]);
-
-  const handleRadioChange = (questionIndex, answer_id) => {
-    const answer = questions[questionIndex].answers.find(
-      (ans) => ans.answer_id === answer_id
-    );
-    setSelectedAnswers((prevSelected) => ({
-      ...prevSelected,
-      [questionIndex]: answer_id,
-    }));
-
-    setScores((prevScores) => ({
-      ...prevScores,
-      [questionIndex]: answer ? answer.answer_score : 0,
-    }));
-  };
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Unable to find existing Pupil Form Answers");
+          }
+          return response.json();
+        })
+        .then((answerData) => {
+          for (let i = 0; i < answerData.length; i++) {
+            handleRadioChange(i, answerData[i].answer_id);
+            const editComment = answerData.map((oneCase) => {
+              return oneCase.teacher_comment;
+            });
+            setComments(editComment);
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching existing Pupil Form Answers:", err.message);
+        });
+    }
+  }, [
+    populator,
+    editPupilID,
+    pupilRecordURL,
+    pupilAnswersURL,
+    handleRadioChange,
+    setOverrideComment,
+    setOverrideScore,
+  ]);
 
   const handleComment = (index, e) => {
     const updatedComments = [...comments];
     updatedComments[index] = e.target.value;
     setComments(updatedComments);
   };
+
   return (
     <>
       <table className="table">
@@ -144,16 +159,12 @@ function Form() {
                 onChange={(e) => setPupilName(e.target.value)}
                 type="text"
                 placeholder="enter pupil name"
+                value={pupilName}
               />
             </div>
             <div className="textField">
               <label>Date</label>
-              <input
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                type="date"
-                placeholder="select date "
-              />
+              <input value={date} onChange={(e) => setDate(e.target.value)} type="date" placeholder="select date " />
             </div>
           </div>
 
@@ -164,14 +175,10 @@ function Form() {
               <React.Fragment key={index}>
                 {
                   <div>
-                    {que.criterion_code === "1.1" ||
-                    que.criterion_code === "1.2" ||
-                    que.criterion_code === "7" ? (
+                    {que.criterion_code === "1.1" || que.criterion_code === "1.2" || que.criterion_code === "7" ? (
                       <Appendices appendixData={appendices.appendices[index]} />
                     ) : null}
-                    {que.criterion_code === "7" && (
-                      <Appendices appendixData={appendices.appendices[2]} />
-                    )}
+                    {que.criterion_code === "7" && <Appendices appendixData={appendices.appendices[2]} />}
                   </div>
                 }
                 <tr className="question">
@@ -194,9 +201,7 @@ function Form() {
                           name={"question_" + index}
                           value={answer.answer_id}
                           checked={selectedAnswers[index] === answer.answer_id}
-                          onChange={() =>
-                            handleRadioChange(index, answer.answer_id)
-                          }
+                          onChange={() => handleRadioChange(index, answer.answer_id)}
                         />
                       </td>
                       <td colSpan="3" className="answer-text">
@@ -231,9 +236,13 @@ function Form() {
         comments={comments}
         teacherID={teacherID}
         teacherName={teacherUsername}
-        pupilID={pupilID}
+        pupilID={editPupilID}
         pupilName={pupilName}
         date={date}
+        overrideComment={overrideComment}
+        setOverrideComment={setOverrideComment}
+        overrideScore={overrideScore}
+        setOverrideScore={setOverrideScore}
       />
     </>
   );

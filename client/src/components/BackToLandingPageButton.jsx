@@ -4,9 +4,8 @@ function BackToLandingPageButton({ teacherID, teacherUsername ,setSaveMessage })
   const navigate = useNavigate();
 
   function handleClick() {
-    console.log("backtolanding username", teacherUsername);
     navigate("/landingPage", { state: { teacherID, teacherUsername } });
-    setSaveMessage('');
+    setSaveMessage("");
   }
 
   return (

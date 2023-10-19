@@ -48,8 +48,6 @@ function SaveFormButton({
         return response.json();
       })
       .then((data) => {
-        // setReturnedPupilID(data);
-        console.log("the new pupil id is", data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
