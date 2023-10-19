@@ -16,7 +16,6 @@ function Form() {
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
   const teacherID = location.state.teacherID;
 
-  const [pupilID] = useState("");
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
   const [overrideComment, setOverrideComment] = useState("");
@@ -73,59 +72,64 @@ function Form() {
   );
 
   useEffect(() => {
-    fetch(pupilRecordURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ pupilID: editPupilID }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Unable to find existing Pupil Form");
-        }
-        return response.json();
+    if (populator) {
+      fetch(pupilRecordURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pupilID: editPupilID }),
       })
-      .then((recordData) => {
-        setPupilName(recordData[0].pupil_nickname);
-        setOverrideComment(recordData[0].override_comment);
-        setOverrideScore(recordData[0].override_score);
-      })
-      .catch((err) => {
-        console.error("Error fetching existing Pupil Form:", err.message);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Unable to find existing Pupil Form");
+          }
+          return response.json();
+        })
+        .then((recordData) => {
+          setPupilName(recordData[0].pupil_nickname);
+          setOverrideComment(recordData[0].override_comment);
+          setOverrideScore(recordData[0].override_score);
+        })
+        .catch((err) => {
+          console.error("Error fetching existing Pupil Form:", err.message);
+        });
 
-    fetch(pupilAnswersURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ pupilID: editPupilID }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Unable to find existing Pupil Form Answers");
-        }
-        return response.json();
+      fetch(pupilAnswersURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pupilID: editPupilID }),
       })
-      .then((answerData) => {
-        console.log("hi", answerData[0].answer_id);
-
-        for (let i = 0; i < answerData.length; i++) {
-          console.log("hi", answerData[i].answer_id);
-          handleRadioChange(i, answerData[i].answer_id);
-          console.log("comments ", answerData[i].teacher_comment);
-          const editComment = answerData.map((oneCase) => {
-            return oneCase.teacher_comment;
-          });
-          console.log(editComment);
-          setComments(editComment);
-        }
-      })
-      .catch((err) => {
-        console.error("Error fetching existing Pupil Form Answers:", err.message);
-      });
-  }, [editPupilID, pupilRecordURL, pupilAnswersURL, handleRadioChange, setOverrideComment, setOverrideScore]);
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Unable to find existing Pupil Form Answers");
+          }
+          return response.json();
+        })
+        .then((answerData) => {
+          for (let i = 0; i < answerData.length; i++) {
+            handleRadioChange(i, answerData[i].answer_id);
+            const editComment = answerData.map((oneCase) => {
+              return oneCase.teacher_comment;
+            });
+            setComments(editComment);
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching existing Pupil Form Answers:", err.message);
+        });
+    }
+  }, [
+    populator,
+    editPupilID,
+    pupilRecordURL,
+    pupilAnswersURL,
+    handleRadioChange,
+    setOverrideComment,
+    setOverrideScore,
+  ]);
 
   const handleComment = (index, e) => {
     const updatedComments = [...comments];
@@ -232,7 +236,7 @@ function Form() {
         comments={comments}
         teacherID={teacherID}
         teacherName={teacherUsername}
-        pupilID={pupilID}
+        pupilID={editPupilID}
         pupilName={pupilName}
         date={date}
         overrideComment={overrideComment}

@@ -37,8 +37,8 @@ function PrintResult({
             const answerId = selectedAnswers[questionIndex];
             const commentForAnswer = comments[questionIndex] || "";
             return (
-              <React.Fragment key={questionIndex} >
-                <div className={ `${questionIndex / 5 === 0 && "pageBreak"} question-container`}>
+              <React.Fragment key={questionIndex}>
+                <div className={`${questionIndex / 5 === 0 && "pageBreak"} question-container`}>
                   <tr className={`question`}>
                     <td colSpan="12">
                       <h3>
@@ -60,7 +60,7 @@ function PrintResult({
                     </td>
                   </tr>
                   <tr>
-                    <td colSpan="12">Teacher comments: {commentForAnswer}</td>
+                    <td colSpan="12">Teacher comment: {commentForAnswer}</td>
                   </tr>
                 </div>
               </React.Fragment>
