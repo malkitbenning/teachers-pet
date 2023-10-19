@@ -25,7 +25,11 @@ function Form() {
 
   const editPupilID = location.state.pupilId;
   const pupilRecordEndPoint = "/get-pupil-record";
+  const pupilAnswersEndPoint = "/get-pupil-answers";
   const pupilRecordURL = `${apiURL}${pupilRecordEndPoint}`;
+  const pupilAnswersURL = `${apiURL}${pupilAnswersEndPoint}`;
+
+  const [populator, setPopulator] = useState(false);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -38,28 +42,6 @@ function Form() {
   }, []);
 
   useEffect(() => {
-    if (editPupilID) {
-      console.log(`PupilID: ${editPupilID}`);
-
-      fetch(pupilRecordURL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ pupilID: editPupilID }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Unable to find existing Pupil Form");
-          }
-          return response.json();
-        })
-        .then((data) => console.log(data))
-        .catch((err) => {
-          console.error("Error fetching existing Pupil Form:", err.message);
-        });
-    }
-
     fetch(dataUrl)
       .then((response) => {
         if (!response.ok) {
@@ -71,7 +53,52 @@ function Form() {
       .catch((err) => {
         console.error("Error fetching questions:", err.message);
       });
-  }, [dataUrl, pupilRecordURL, editPupilID]);
+
+    if (editPupilID) {
+      setPopulator(true);
+    }
+  }, [dataUrl, editPupilID, setPopulator]);
+
+  useEffect(() => {
+    fetch(pupilRecordURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ pupilID: editPupilID }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unable to find existing Pupil Form");
+        }
+        return response.json();
+      })
+      .then((recordData) => console.log(recordData))
+      .catch((err) => {
+        console.error("Error fetching existing Pupil Form:", err.message);
+      });
+
+    fetch(pupilAnswersURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ pupilID: editPupilID }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unable to find existing Pupil Form Answers");
+        }
+        return response.json();
+      })
+      .then((answerData) => console.log(answerData))
+      .catch((err) => {
+        console.error(
+          "Error fetching existing Pupil Form Answers:",
+          err.message
+        );
+      });
+  }, [editPupilID, populator, pupilRecordURL, pupilAnswersURL]);
 
   const handleRadioChange = (questionIndex, answer_id) => {
     const answer = questions[questionIndex].answers.find(
