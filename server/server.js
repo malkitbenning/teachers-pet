@@ -34,5 +34,5 @@ app.delete("/delete-pupil", deletePupil);
 app.post("/restore-pupil", restorePupil);
 app.post("/login", validateUser);
 app.post("/save-user-form-input", saveUserFormInput);
-app.get("/get-pupil-record", getPupilRecord);
-app.get("/get-pupil-answers", getPupilAnswers);
+app.post("/get-pupil-record", getPupilRecord);
+app.post("/get-pupil-answers", getPupilAnswers);
