@@ -16,7 +16,7 @@
   .printBtn,
   .support-allocation-table,
   .saveBtn,
-  .backBtn {
+  .backBtn ,.saveMessage{
     display: none;
   }
 

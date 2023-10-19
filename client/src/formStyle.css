@@ -50,7 +50,6 @@ h3 {
 
 /* Styling for table cells */
 
-
 /* Styling for questions */
 .question {
   background-color: #e9ecef;
@@ -81,7 +80,6 @@ td:last-child {
   border: 1px solid #e0e0e0;
   padding: 5px 15px;
   text-align: left;
-
 }
 
 .question h3 {
@@ -99,17 +97,20 @@ td:last-child {
 .form-check-input {
   margin-right: 10px;
 }
-.comments {
-  margin-right: 20px;
-  margin-bottom: 900px;
+.comment-section {
+  padding: 10px !important;
 }
-textarea {
-  width: 60%;
 
+.comments {
+  vertical-align: top !important;
+  margin: 20px !important;
+}
+
+textarea {
+  width: 80%;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  resize: vertical;
 }
 
 td[colspan="2"] {
@@ -179,6 +180,17 @@ td[colspan="2"] {
 
 .textField input:focus {
   border-color: #333;
+}
+.readOnlyInput {
+  background-color: #dedcdc;
+  border: 0px !important;
+  transition: none !important;
+}
+.readOnlyInput:focus {
+  border: 0px !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  user-select: none !important;
 }
 
 /* Responsive for tablets */

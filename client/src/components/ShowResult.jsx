@@ -19,6 +19,8 @@ function ShowResult({
   const [overrideScore, setOverrideScore] = useState("");
   const [overrideComment, setOverrideComment] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [saveMessage,setSaveMessage] = useState('');
+
 
   const handleShowResults = () => {
     const unansweredQuestions = questions
@@ -66,6 +68,8 @@ function ShowResult({
         </div>
 
         {showResults && (
+          <>
+
           <div id="print-content">
             <PrintResult
               selectedAnswers={selectedAnswers}
@@ -81,6 +85,7 @@ function ShowResult({
               overrideComment={overrideComment}
               setOverrideComment={setOverrideComment}
             />
+             <p className="saveMessage">{saveMessage}</p>
             <div className="buttons-after-summary">
               <SaveFormButton
                 selectedAnswers={selectedAnswers}
@@ -91,13 +96,17 @@ function ShowResult({
                 date={date}
                 overrideScore={overrideScore}
                 overrideComment={overrideComment}
+                saveMessage={saveMessage}
+                setSaveMessage={setSaveMessage}
+
               />
               <button className="printBtn" onClick={handlePrint}>
                 Print
               </button>
-              <BackToLandingPageButton teacherID={teacherID} teacherUsername={teacherName} />
+              <BackToLandingPageButton teacherID={teacherID} teacherUsername={teacherName} setSaveMessage={setSaveMessage} />
             </div>
           </div>
+          </>
         )}
       </div>
     </>
