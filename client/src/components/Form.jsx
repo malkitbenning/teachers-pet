@@ -17,11 +17,10 @@ function Form() {
   const [comments, setComments] = useState(() => Array(questions.length).fill(""));
   const teacherID = location.state.teacherID;
 
-  const [teacherName, setTeacherName] = useState("");
   const [pupilID] = useState("");
   const [pupilName, setPupilName] = useState("");
   const [date, setDate] = useState("");
-  
+
   useEffect(() => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
@@ -69,7 +68,7 @@ function Form() {
           <div className="inputField">
             <div className="textField">
               <label>Teacher Name</label>
-              <input onChange={(e) => setTeacherName(e.target.value)} type="text" placeholder={teacherUsername} />
+              <span>{teacherUsername}</span>
             </div>
             <div className="textField">
               <label>Pupil Name</label>
@@ -148,7 +147,7 @@ function Form() {
         questions={questions}
         comments={comments}
         teacherID={teacherID}
-        teacherName={teacherName}
+        teacherName={teacherUsername}
         pupilID={pupilID}
         pupilName={pupilName}
         date={date}

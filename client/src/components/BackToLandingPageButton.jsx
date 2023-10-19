@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
-function BackToLandingPageButton({ teacherID }) {
+function BackToLandingPageButton({ teacherID, teacherUsername }) {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/landingPage", { state: { teacherID } });
+    console.log("backtolanding username", teacherUsername);
+    navigate("/landingPage", { state: { teacherID, teacherUsername } });
   }
 
   return (
