@@ -18,7 +18,7 @@ function SaveFormButton({
     const dateTime = new Date();
     const formattedDateTime = dateTime.toLocaleString();
 
-    setSaveMessage(`I saved data on ${formattedDateTime}`);
+    setSaveMessage(`Case successfully saved on ${formattedDateTime}`);
 
     formSubmission.pupilID = pupilID;
     formSubmission.teacherID = teacherID;

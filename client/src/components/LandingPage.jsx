@@ -85,9 +85,9 @@ function LandingPage() {
 
   return (
     <div>
-      <h1>Pupil Records</h1>
+      <h1 className="caseloadHeader">Teacher Caseload</h1>
       <Link to="/form" state={{ teacherUsername, teacherID }}>
-        New Support Allocation Form
+        <h2>New Support Allocation Form</h2>
       </Link>
       {pupils.length === 0 ? (
         <p>No pupil records to display .</p>

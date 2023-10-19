@@ -11,6 +11,7 @@
 }
 .inputCell {
   width: 10%;
+  margin: 0px auto;
 }
 .finalTable {
   margin: 1em auto;
@@ -34,6 +35,7 @@
 
 .overRide {
   width: 10%;
+  text-align: center !important;
 }
 .title {
   text-align: center ;
@@ -43,8 +45,11 @@
 }
 .inputOverrideScore{
   border: 0px;
-  width: 100px;
+  width: 120px;
   height: 50px;
   background-color: #f7f7f8;
   text-align: center;
+}
+.overrideCommentArea{
+  height: 6rem;
 }

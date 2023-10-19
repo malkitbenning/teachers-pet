@@ -85,21 +85,21 @@ function TeacherOverride({
             </td>
           </tr>
           <tr>
-            <td colSpan="7" className="override-comment">
-              <span className="comments title">Teacher Adjustment Comment</span>
-
+            <td colSpan="6" className="override-comment">
+              <h4 className="comment title">Teacher Adjustment Comment</h4>
               <span className="title">
                 Evidence underpinning any professional adjustment made to the CYP’s matrix support allocation
               </span>
 
               <textarea
+                className="overrideCommentArea"
                 maxLength="255"
                 value={overrideComment}
                 onChange={(e) => setOverrideComment(e.target.value)}
               ></textarea>
             </td>
-            <td colSpan="1" className=" overRide">
-              Teacher adjusted CYP total
+            <td colSpan="2" className="overRide">
+              <h4>Teacher adjusted CYP total</h4>
             </td>
             <td colSpan="1" className="inputCell">
               <input
