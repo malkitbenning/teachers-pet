@@ -61,51 +61,57 @@ function ShowResult({
     <>
       <div>
         <div className="resultsBtn">
+          {showErrorMessage && (
+            <div className="error-msg">
+              Please ensure you have entered a pupil name and answered all above questions.
+            </div>
+          )}
           <button type="button" className="btn btn-primary showResultBtn" onClick={handleShowResults}>
             Show Result
           </button>
-          {showErrorMessage && <div className="error-msg">Please answer all questions.......</div>}
         </div>
 
         {showResults && (
           <>
-
-          <div id="print-content">
-            <PrintResult
-              selectedAnswers={selectedAnswers}
-              questions={questions}
-              comments={comments}
-              teacherName={teacherName}
-              pupilName={pupilName}
-              date={date}
-              totalScore={totalScore}
-              setTotalScore={setTotalScore}
-              overrideScore={overrideScore}
-              setOverrideScore={setOverrideScore}
-              overrideComment={overrideComment}
-              setOverrideComment={setOverrideComment}
-            />
-             <p className="saveMessage">{saveMessage}</p>
-            <div className="buttons-after-summary">
-              <SaveFormButton
+            <div id="print-content">
+              <PrintResult
                 selectedAnswers={selectedAnswers}
+                questions={questions}
                 comments={comments}
-                teacherID={teacherID}
-                pupilID={""}
+                teacherName={teacherName}
                 pupilName={pupilName}
                 date={date}
+                totalScore={totalScore}
+                setTotalScore={setTotalScore}
                 overrideScore={overrideScore}
+                setOverrideScore={setOverrideScore}
                 overrideComment={overrideComment}
-                saveMessage={saveMessage}
-                setSaveMessage={setSaveMessage}
-
+                setOverrideComment={setOverrideComment}
               />
-              <button className="printBtn" onClick={handlePrint}>
-                Print
-              </button>
-              <BackToLandingPageButton teacherID={teacherID} teacherUsername={teacherName} setSaveMessage={setSaveMessage} />
+              <p className="saveMessage">{saveMessage}</p>
+              <div className="buttons-after-summary">
+                <SaveFormButton
+                  selectedAnswers={selectedAnswers}
+                  comments={comments}
+                  teacherID={teacherID}
+                  pupilID={""}
+                  pupilName={pupilName}
+                  date={date}
+                  overrideScore={overrideScore}
+                  overrideComment={overrideComment}
+                  saveMessage={saveMessage}
+                  setSaveMessage={setSaveMessage}
+                />
+                <button className="printBtn" onClick={handlePrint}>
+                  Print
+                </button>
+                <BackToLandingPageButton
+                  teacherID={teacherID}
+                  teacherUsername={teacherName}
+                  setSaveMessage={setSaveMessage}
+                />
+              </div>
             </div>
-          </div>
           </>
         )}
       </div>
