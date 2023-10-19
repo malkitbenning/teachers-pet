@@ -1,0 +1,7 @@
+.sortable-header {
+cursor: pointer;
+color: blue;
+}
+.sortable-header:hover {
+  text-decoration: underline;
+}

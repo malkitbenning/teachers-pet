@@ -10,6 +10,8 @@ function LandingPage() {
   const teacherUsername = location.state.teacherUsername;
   const [pupils, setPupils] = useState([]);
   const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
     fetch(`${apiURL}/fetch-pupil-data`, {
@@ -54,21 +56,48 @@ function LandingPage() {
         });
     }
   };
+
+  const handleSort = (column) => {
+    if (column === sortColumn) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortColumn(column);
+      setSortOrder("asc");
+    }
+  };
+
+  const sortedPupils = [...pupils].sort((a, b) => {
+    if (sortColumn === "pupil_name") {
+      return sortOrder === "asc"
+        ? a.pupil_nickname.localeCompare(b.pupil_nickname)
+        : b.pupil_nickname.localeCompare(a.pupil_nickname);
+    } else if (sortColumn === "last_update") {
+      return sortOrder === "asc"
+        ? a.last_update_date.localeCompare(b.last_update_date)
+        : b.last_update_date.localeCompare(a.last_update_date);
+    } else if (sortColumn === "support_code") {
+      return sortOrder === "asc"
+        ? a.final_support_category.localeCompare(b.final_support_category)
+        : b.final_support_category.localeCompare(a.final_support_category);
+    }
+    return 0;
+  });
+
   return (
     <div>
       <h1>Pupil Records</h1>
-      <Link to="/form" state={{ teacherUsername: teacherUsername, teacherID: teacherID }}>
-       New Support Allocation Form
+      <Link to="/form" state={{ teacherUsername, teacherID }}>
+        New Support Allocation Form
       </Link>
       {pupils.length === 0 ? (
         <p>No pupil records to display .</p>
       ) : (
         <table className="pupil-table">
           <thead>
-            <TableHeaderRow />
+            <TableHeaderRow onSort={handleSort} sortColumn={sortColumn} sortOrder={sortOrder} />
           </thead>
           <tbody>
-            {pupils.map((pupil) => (
+            {sortedPupils.map((pupil) => (
               <PupilRow
                 key={pupil.pupil_id}
                 pupil={pupil}
@@ -85,3 +114,4 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
