@@ -75,12 +75,17 @@ const saveUserFormInput = (req, res) => {
       let nextPupilID = result.rows[0].next_id;
       // convert updateDate into a timestamp for storing on db
       const updateTimestamp = updateDate + " 00:00:00";
-
+      if (overrideScore) {
+        queryString =
+          "INSERT INTO pupil (pupil_id, teacher_id, pupil_nickname, last_update, override_score, override_comment) VALUES ($1,$2,$3,$4,$5,$6)";
+        queryArray = [nextPupilID, teacherID, pupilName, updateTimestamp, overrideScore, overrideComment];
+      } else {
+        queryString =
+          "INSERT INTO pupil (pupil_id, teacher_id, pupil_nickname, last_update, override_comment) VALUES ($1,$2,$3,$4,$5)";
+        queryArray = [nextPupilID, teacherID, pupilName, updateTimestamp, overrideComment];
+      }
       client
-        .query(
-          "INSERT INTO pupil (pupil_id, teacher_id, pupil_nickname, last_update, override_score,override_comment) VALUES ($1,$2,$3,$4,$5,$6)",
-          [nextPupilID, teacherID, pupilName, updateTimestamp, overrideScore, overrideComment]
-        )
+        .query(queryString, queryArray)
         .then((result) => {
           if (result.rowCount > 0) {
             for (let i = 0; i < teacherSelectedAnswers.length; i++) {
