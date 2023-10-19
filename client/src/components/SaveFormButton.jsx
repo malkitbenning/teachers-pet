@@ -7,13 +7,19 @@ function SaveFormButton({
   date,
   overrideScore,
   overrideComment,
+  saveMessage,
+  setSaveMessage,
 }) {
-  const apiURL =
-    process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
+  const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
   const endPoint = "/save-user-form-input";
   const formSubmission = {};
 
   function saveUserInput() {
+    const dateTime = new Date();
+    const formattedDateTime = dateTime.toLocaleString();
+
+    setSaveMessage(`I saved data on ${formattedDateTime}`);
+
     formSubmission.pupilID = pupilID;
     formSubmission.teacherID = teacherID;
     formSubmission.pupilName = pupilName;
@@ -21,14 +27,12 @@ function SaveFormButton({
     formSubmission.overrideScore = overrideScore;
     formSubmission.overrideComment = overrideComment;
     const teacherAnswerIDs = Object.values(selectedAnswers);
-    formSubmission.teacherSelectedAnswers = teacherAnswerIDs.map(
-      (answer, index) => {
-        return {
-          answerID: answer,
-          teacherComment: comments[index],
-        };
-      }
-    );
+    formSubmission.teacherSelectedAnswers = teacherAnswerIDs.map((answer, index) => {
+      return {
+        answerID: answer,
+        teacherComment: comments[index],
+      };
+    });
 
     fetch(`${apiURL}${endPoint}`, {
       method: "POST",
@@ -54,7 +58,9 @@ function SaveFormButton({
 
   return (
     <div>
-      <button className="saveBtn" onClick={saveUserInput}>Save</button>
+      <button className="saveBtn" onClick={saveUserInput}>
+        Save
+      </button>
     </div>
   );
 }

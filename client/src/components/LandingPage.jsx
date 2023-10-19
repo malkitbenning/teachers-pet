@@ -34,7 +34,7 @@ function LandingPage() {
   }, [teacherID, apiURL]);
 
   const deletePupil = (pupilId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this pupil?");
+    const confirmDelete = window.confirm("Are you sure you want to delete this pupil Record?");
     if (confirmDelete) {
       fetch(`${apiURL}/delete-pupil`, {
         method: "DELETE",
@@ -61,7 +61,7 @@ function LandingPage() {
        New Support Allocation Form
       </Link>
       {pupils.length === 0 ? (
-        <p>No pupils data available.</p>
+        <p>No pupil records to display .</p>
       ) : (
         <table className="pupil-table">
           <thead>

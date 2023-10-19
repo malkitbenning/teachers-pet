@@ -4,7 +4,6 @@ import ShowResult from "./ShowResult";
 import appendices from "./data/appendices.json";
 import Appendices from "./Appendices";
 
-
 function Form() {
   const apiURL = process.env.REACT_APP_DEV_URL || "https://teacher-server-9cir.onrender.com";
   const endPoint = "/getQandA";
@@ -68,7 +67,14 @@ function Form() {
           <div className="inputField">
             <div className="textField">
               <label>Teacher Name</label>
-              <span>{teacherUsername}</span>
+              <input
+                className="readOnlyInput"
+                value={teacherUsername}
+                tabIndex="-1"
+                type="text"
+                placeholder="enter teacher name"
+                readOnly
+              />
             </div>
             <div className="textField">
               <label>Pupil Name</label>
