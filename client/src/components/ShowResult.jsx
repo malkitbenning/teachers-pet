@@ -13,19 +13,19 @@ function ShowResult({
   pupilID,
   pupilName,
   date,
+  overrideComment,
+  setOverrideComment,
+  overrideScore,
+  setOverrideScore,
 }) {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
-  const [overrideScore, setOverrideScore] = useState("");
-  const [overrideComment, setOverrideComment] = useState("");
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
-  const [saveMessage,setSaveMessage] = useState('');
 
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [saveMessage, setSaveMessage] = useState("");
 
   const handleShowResults = () => {
-    const unansweredQuestions = questions
-      .map((_, index) => selectedAnswers[index])
-      .some((answerId) => !answerId);
+    const unansweredQuestions = questions.map((_, index) => selectedAnswers[index]).some((answerId) => !answerId);
 
     if (unansweredQuestions || pupilName === "") {
       setShowErrorMessage(true);
@@ -41,9 +41,7 @@ function ShowResult({
       const answerId = selectedAnswers[questionIndex];
       if (answerId) {
         const question = questions[questionIndex];
-        const answer = question.answers.find(
-          (ans) => ans.answer_id === answerId
-        );
+        const answer = question.answers.find((ans) => ans.answer_id === answerId);
         if (answer && answer.answer_score) {
           score += answer.answer_score;
         }
@@ -51,7 +49,6 @@ function ShowResult({
     }
     setTotalScore(score);
   }, [selectedAnswers, questions]);
-
 
   const handlePrint = () => {
     window.print();
