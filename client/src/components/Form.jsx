@@ -46,7 +46,7 @@ function Form() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ PupilID: editPupilID }),
+        body: JSON.stringify({ pupilID: editPupilID }),
       })
         .then((response) => {
           if (!response.ok) {
