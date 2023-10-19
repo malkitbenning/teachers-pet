@@ -73,7 +73,9 @@ function Form() {
         }
         return response.json();
       })
-      .then((recordData) => console.log(recordData))
+      .then((recordData) => {
+        console.log(recordData[0].pupil_nickname);
+      })
       .catch((err) => {
         console.error("Error fetching existing Pupil Form:", err.message);
       });
