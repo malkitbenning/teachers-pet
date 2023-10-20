@@ -11,6 +11,7 @@ function ShowResult({
   teacherID,
   teacherName,
   pupilID,
+  setSavedPupilID,
   pupilName,
   date,
   overrideComment,
@@ -92,6 +93,7 @@ function ShowResult({
                   comments={comments}
                   teacherID={teacherID}
                   pupilID={pupilID}
+                  setSavedPupilID={setSavedPupilID}
                   pupilName={pupilName}
                   date={date}
                   overrideScore={overrideScore}
