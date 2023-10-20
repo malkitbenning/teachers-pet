@@ -3,7 +3,6 @@
   border: 2px solid ghostwhite;
 }
 @media print {
-  /* Hide elements that you don't want to print */
   body * {
     padding: 0px 5px;
     margin: 0;
@@ -89,14 +88,14 @@
   }
   .finalTable {
     margin-left: 20px !important ;
-    page-break-after: always;
+    page-break-inside: avoid;
   }
   .question:last-child {
     page-break-after: always;
   }
 
   .close-after-last-question {
-    page-break-after: always;
+    page-break-after: auto;
   }
   .summary,
   .summary td {
