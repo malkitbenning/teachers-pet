@@ -20,8 +20,13 @@ function Form() {
   const [date, setDate] = useState("");
   const [overrideComment, setOverrideComment] = useState("");
   const [overrideScore, setOverrideScore] = useState("");
+  const [savedPupilID, setSavedPupilID] = useState("");
 
-  const editPupilID = location.state.pupilId;
+  let editPupilID = location.state.pupilId;
+  if (savedPupilID !== "" && editPupilID !== savedPupilID) {
+    editPupilID = savedPupilID;
+  }
+
   const pupilRecordEndPoint = "/get-pupil-record";
   const pupilAnswersEndPoint = "/get-pupil-answers";
   const pupilRecordURL = `${apiURL}${pupilRecordEndPoint}`;
@@ -237,6 +242,7 @@ function Form() {
         teacherID={teacherID}
         teacherName={teacherUsername}
         pupilID={editPupilID}
+        setSavedPupilID={setSavedPupilID}
         pupilName={pupilName}
         date={date}
         overrideComment={overrideComment}

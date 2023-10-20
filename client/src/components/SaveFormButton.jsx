@@ -3,6 +3,7 @@ function SaveFormButton({
   comments,
   teacherID,
   pupilID,
+  setSavedPupilID,
   pupilName,
   date,
   overrideScore,
@@ -48,6 +49,7 @@ function SaveFormButton({
         return response.json();
       })
       .then((data) => {
+        setSavedPupilID(data.pupilID);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
