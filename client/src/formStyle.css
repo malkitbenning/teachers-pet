@@ -142,8 +142,8 @@ td[colspan="2"] {
   width: 200px;
   display: flex;
   justify-content: center;
-
-  margin: 70px auto;
+  margin: 20px auto;
+  padding-bottom: 20px;
 }
 
 .inputField td {
