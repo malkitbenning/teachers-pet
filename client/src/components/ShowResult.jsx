@@ -18,7 +18,6 @@ function ShowResult({
   overrideScore,
   setOverrideScore,
 }) {
-  console.log("pupil id is", pupilID);
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
 

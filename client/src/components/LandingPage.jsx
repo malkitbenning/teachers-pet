@@ -85,7 +85,7 @@ function LandingPage() {
 
   return (
     <div>
-      <h1 className="caseloadHeader">Teacher Caseload</h1>
+      <h1 className="caseloadHeader">{teacherUsername}'s Caseload</h1>
       <Link to="/form" state={{ teacherUsername, teacherID }}>
         <h2>New Support Allocation Form</h2>
       </Link>

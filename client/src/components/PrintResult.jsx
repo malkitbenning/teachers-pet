@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TeacherOverride from "./TeacherOverride";
 import "../styles/print.css";
 
@@ -21,6 +21,9 @@ function PrintResult({
   const outMonth = (headerDate.getMonth() + 1).toString().padStart(2, "0");
   const outYear = headerDate.getFullYear();
   const printDate = `${outDay}-${outMonth}-${outYear}`;
+  useEffect(() => {
+    window.scrollTo(0, window.scrollY + 200);
+  }, []);
   return (
     <div id="tableAndContentToPrint">
       <div id="pageBorder"></div>
