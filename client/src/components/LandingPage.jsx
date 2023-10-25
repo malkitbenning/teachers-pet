@@ -36,22 +36,25 @@ function LandingPage() {
   }, [teacherID, apiURL]);
 
   const deletePupil = (pupilId) => {
-    fetch(`${apiURL}/delete-pupil`, {
-      method: "DELETE",
-      body: JSON.stringify({ pupilID: pupilId }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        setPupils((prevPupils) => prevPupils.filter((pupil) => pupil.pupil_id !== pupilId));
+    const confirmDelete = window.confirm("Are you sure you want to delete this pupil Record?");
+    if (confirmDelete) {
+      fetch(`${apiURL}/delete-pupil`, {
+        method: "DELETE",
+        body: JSON.stringify({ pupilID: pupilId }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => {
-        console.error("Error deleting pupil:", error);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          setPupils((prevPupils) => prevPupils.filter((pupil) => pupil.pupil_id !== pupilId));
+        })
+        .catch((error) => {
+          console.error("Error deleting pupil:", error);
+        });
+    }
   };
 
   const handleSort = (column) => {
